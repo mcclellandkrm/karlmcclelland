@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 const Services: React.FC = () => {
   const services = [
     {
-      title: 'Virtual Tours',
-      description: 'Immersive 360° experiences integrated directly with Google Street View and Maps.',
+      title: 'Custom Virtual Tours',
+      description: 'Bespoke 360° experiences with interactive hotspots, branded navigation, and custom content tailored to your business.',
       icon: (
         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
       ),
     },
@@ -43,10 +43,16 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section className="section bg-white">
-      <div className="container-wide">
+    <section className="section bg-white relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-[0.015]" style={{
+        backgroundImage: `radial-gradient(circle, black 1px, transparent 1px)`,
+        backgroundSize: '40px 40px'
+      }}></div>
 
-        {/* Header - BOLD & CLEAR */}
+      <div className="container-wide relative z-10">
+
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,14 +60,14 @@ const Services: React.FC = () => {
           className="mb-24 text-center"
         >
           <h2 className="text-5xl md:text-6xl font-display text-black mb-6 font-light">
-            Our Intensive Solutions
+            Comprehensive Solutions
           </h2>
           <p className="text-neutral-500 text-base uppercase tracking-[0.3em]">
-            Comprehensive Approach
+            Tailored to Your Vision
           </p>
         </motion.div>
 
-        {/* Services Grid - LARGER, BOLDER */}
+        {/* Services Grid */}
         <div className="grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service, index) => (
             <motion.div
@@ -70,9 +76,9 @@ const Services: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="group p-12 bg-white border border-neutral-200 hover:border-black transition-all duration-500"
+              className="group p-12 bg-white border border-neutral-200 hover:border-black hover:scale-[1.02] transition-all duration-500"
             >
-              <div className="mb-8 text-black transition-transform duration-700 group-hover:scale-110">
+              <div className="mb-8 text-black transition-transform duration-700 group-hover:scale-110 group-hover:rotate-6">
                 {service.icon}
               </div>
 
