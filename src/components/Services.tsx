@@ -5,7 +5,7 @@ const Services: React.FC = () => {
   const services = [
     {
       title: 'Custom Virtual Tours',
-      description: 'Bespoke 360° experiences with interactive hotspots, branded navigation, and custom content tailored to your business.',
+      description: 'Unique 360° virtual tour experiences with custom, interactive hotspots, branded navigation, and content tailored to your needs.',
       icon: (
         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -14,7 +14,7 @@ const Services: React.FC = () => {
     },
     {
       title: 'Google Integration',
-      description: 'Official Google Street View certification. Your tour appears on Maps, Search, and Business Profile.',
+      description: 'Your virtual tour can be linked to your Google presence on Maps, Search and your Business Profile to be easily discovered.',
       icon: (
         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -22,8 +22,8 @@ const Services: React.FC = () => {
       ),
     },
     {
-      title: 'Photography',
-      description: 'High-resolution architectural and interior photography for marketing collateral.',
+      title: 'HDR Photography',
+      description: 'High-resolution, HDR photography of the key interior features which you can use in your own marketing efforts.',
       icon: (
         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -32,8 +32,8 @@ const Services: React.FC = () => {
       ),
     },
     {
-      title: 'Optimization',
-      description: 'SEO guidance and technical support to maximize visibility and engagement.',
+      title: 'Design & More',
+      description: 'We can help with your web design, social media presence, SEO and much more to maximize visibility and engagement.',
       icon: (
         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
@@ -60,7 +60,7 @@ const Services: React.FC = () => {
           className="mb-24 text-center"
         >
           <h2 className="text-5xl md:text-6xl font-display text-black mb-6 font-light">
-            Comprehensive Solutions
+            Virtual Tour Solutions
           </h2>
           <p className="text-neutral-500 text-base uppercase tracking-[0.3em]">
             Tailored to Your Vision

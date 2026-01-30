@@ -1,7 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const WhyVirtualTour: React.FC = () => {
+  const [activePanel, setActivePanel] = useState<'traditional' | 'interactive' | null>(null);
+
+  const traditionalPoints = [
+    {
+      title: 'Forgettable',
+      description: 'Another rectangle in a feed. Scrolled past in 1.3 seconds.',
+    },
+    {
+      title: 'Doubt',
+      description: '"Is it really this nice?" Stock-photo skepticism kills conversions.',
+    },
+    {
+      title: 'Invisible',
+      description: "Google's algorithm buries static. You sink.",
+    },
+  ];
+
+  const interactivePoints = [
+    {
+      title: 'Magnetic',
+      description: 'Users explore for 5-10 minutes. They\'re invested before arrival.',
+    },
+    {
+      title: 'Transparent',
+      description: 'What they see is what they get. Confidence converts.',
+    },
+    {
+      title: 'Dominant',
+      description: '360° content ranks higher. You rise.',
+    },
+  ];
+
   return (
     <section className="section bg-neutral-900 relative overflow-hidden">
       {/* Cinematic Fog Background */}
@@ -30,123 +62,115 @@ const WhyVirtualTour: React.FC = () => {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
 
-          {/* Option A: Static (The Old Way) */}
+          {/* Traditional Panel - Deliberately Muted */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
             className="group relative"
+            onMouseEnter={() => setActivePanel('traditional')}
+            onMouseLeave={() => setActivePanel(null)}
           >
-            <div className="absolute -inset-1 bg-gradient-to-br from-neutral-800 to-neutral-900 blur opacity-50 group-hover:opacity-75 transition duration-1000"></div>
-            <div className="relative bg-neutral-900 border border-neutral-800 p-10 lg:p-12 h-full">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-2 h-2 bg-neutral-600"></div>
-                <h3 className="text-xl font-display text-neutral-500 font-light">Traditional Imagery</h3>
+            <div className={`absolute -inset-1 bg-gradient-to-br from-neutral-800 to-neutral-900 blur transition-all duration-700 ${activePanel === 'traditional' ? 'opacity-75' : 'opacity-30'}`}></div>
+            <div className="relative bg-neutral-900/80 border border-neutral-800 p-10 lg:p-12 h-full backdrop-blur-sm">
+
+              {/* Header with Playfair */}
+              <div className="mb-10">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-1.5 h-1.5 bg-neutral-600 rounded-full"></div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-600">The Old Way</span>
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-display text-neutral-500 font-light tracking-wide">
+                  Traditional
+                </h3>
               </div>
 
-              <ul className="space-y-8">
-                <li className="flex gap-6 opacity-50 group-hover:opacity-80 transition-opacity duration-500">
-                  <span className="text-neutral-600 font-mono">01</span>
-                  <div>
-                    <strong className="block text-neutral-400 mb-1">Static & Flat</strong>
-                    <p className="text-neutral-500 text-sm leading-relaxed">Customers passively scroll past. No engagement, no exploration.</p>
-                  </div>
-                </li>
-                <li className="flex gap-6 opacity-50 group-hover:opacity-80 transition-opacity duration-500">
-                  <span className="text-neutral-600 font-mono">02</span>
-                  <div>
-                    <strong className="block text-neutral-400 mb-1">Uncertainty</strong>
-                    <p className="text-neutral-500 text-sm leading-relaxed">"What's around that corner? Is it crowded?" Questions lead to bounces.</p>
-                  </div>
-                </li>
-                <li className="flex gap-6 opacity-50 group-hover:opacity-80 transition-opacity duration-500">
-                  <span className="text-neutral-600 font-mono">03</span>
-                  <div>
-                    <strong className="block text-neutral-400 mb-1">Invisible</strong>
-                    <p className="text-neutral-500 text-sm leading-relaxed">Google prioritizes interactive content. Static listings get buried.</p>
-                  </div>
-                </li>
+              <ul className="space-y-6">
+                {traditionalPoints.map((point, index) => (
+                  <motion.li
+                    key={point.title}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 * index, duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className={`flex gap-5 transition-all duration-500 ${activePanel === 'traditional' ? 'opacity-90' : 'opacity-40'}`}
+                  >
+                    <span className="text-neutral-700 font-mono text-base mt-0.5">0{index + 1}</span>
+                    <div>
+                      <strong className="block text-neutral-400 mb-1.5 text-base tracking-wide">{point.title}</strong>
+                      <p className="text-neutral-600 text-base leading-relaxed">{point.description}</p>
+                    </div>
+                  </motion.li>
+                ))}
               </ul>
+
+              {/* Visual indicator - faded/static feel */}
+              <div className="mt-10 pt-6 border-t border-neutral-800/50">
+                <div className="flex items-center gap-2 text-neutral-700">
+                  <div className="w-8 h-[1px] bg-neutral-700"></div>
+                  <span className="text-[10px] uppercase tracking-widest">Static</span>
+                </div>
+              </div>
             </div>
           </motion.div>
 
-          {/* Option B: Virtual (The Luxury Standard) */}
+          {/* Interactive Panel - Vibrant & Alive */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
             className="group relative"
+            onMouseEnter={() => setActivePanel('interactive')}
+            onMouseLeave={() => setActivePanel(null)}
           >
-            <div className="absolute -inset-0.5 bg-gradient-to-br from-white/20 to-neutral-800 blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
-            <div className="relative bg-neutral-900 border border-white/30 p-10 lg:p-12 h-full">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-2 h-2 bg-white shadow-[0_0_10px_#FFFFFF]"></div>
-                <h3 className="text-xl font-display text-white font-light">Interactive Immersion</h3>
+            <div className={`absolute -inset-0.5 bg-gradient-to-br from-white/30 via-white/10 to-neutral-800 blur transition-all duration-700 ${activePanel === 'interactive' ? 'opacity-100' : 'opacity-60'}`}></div>
+            <div className="relative bg-neutral-900/90 border border-white/20 p-10 lg:p-12 h-full backdrop-blur-sm">
+
+              {/* Header with Playfair */}
+              <div className="mb-10">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400">The New Standard</span>
+                </div>
+                <h3 className="text-3xl lg:text-4xl font-display text-white font-light tracking-wide">
+                  Interactive
+                </h3>
               </div>
 
-              <ul className="space-y-8">
-                <li className="flex gap-6">
-                  <span className="text-white font-mono">01</span>
-                  <div>
-                    <strong className="block text-white mb-1">Command Attention</strong>
-                    <p className="text-neutral-300 text-sm leading-relaxed">Users stop scrolling. They tap, turn, and walk through. Engagement skyrockets.</p>
-                  </div>
-                </li>
-                <li className="flex gap-6">
-                  <span className="text-white font-mono">02</span>
-                  <div>
-                    <strong className="block text-white mb-1">Absolute Confidence</strong>
-                    <p className="text-neutral-300 text-sm leading-relaxed">"I love that table by the window." The decision is made before they arrive.</p>
-                  </div>
-                </li>
-                <li className="flex gap-6">
-                  <span className="text-white font-mono">03</span>
-                  <div>
-                    <strong className="block text-white mb-1">Dominance</strong>
-                    <p className="text-neutral-300 text-sm leading-relaxed">Google actively boosts listings with 360° content. You appear first.</p>
-                  </div>
-                </li>
+              <ul className="space-y-6">
+                {interactivePoints.map((point, index) => (
+                  <motion.li
+                    key={point.title}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 + 0.1 * index, duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className={`flex gap-5 transition-all duration-500 ${activePanel === 'interactive' ? 'translate-x-1' : ''}`}
+                  >
+                    <span className="text-white/60 font-mono text-base mt-0.5">0{index + 1}</span>
+                    <div>
+                      <strong className="block text-white mb-1.5 text-base tracking-wide">{point.title}</strong>
+                      <p className="text-neutral-400 text-base leading-relaxed">{point.description}</p>
+                    </div>
+                  </motion.li>
+                ))}
               </ul>
 
-              {/* Glowing CTA */}
-              <div className="mt-12 pt-8 border-t border-white/5">
-                <a href="#contact" className="inline-flex items-center gap-3 text-neutral-300 hover:text-white transition-colors duration-500 group/link">
-                  <span className="text-xs font-bold uppercase tracking-[0.2em]">Start The Tour</span>
-                  <svg className="w-4 h-4 transform group-hover/link:translate-x-2 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+              {/* Visual indicator - alive/immersive feel */}
+              <div className="mt-10 pt-6 border-t border-white/10">
+                <div className="flex items-center gap-2 text-white/60">
+                  <div className="w-8 h-[1px] bg-white/40"></div>
+                  <span className="text-[10px] uppercase tracking-widest">Immersive</span>
+                </div>
               </div>
             </div>
           </motion.div>
 
         </div>
-
-        {/* Live Data Strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 py-10 border-t border-b border-white/5"
-        >
-          <div className="text-center">
-            <span className="block text-3xl font-display text-white mb-2 font-light">60M+</span>
-            <span className="text-xs font-bold uppercase tracking-widest text-neutral-500">Views Generated</span>
-          </div>
-          <div className="text-center border-l border-r border-white/5">
-            <span className="block text-3xl font-display text-white mb-2 font-light">150+</span>
-            <span className="text-xs font-bold uppercase tracking-widest text-neutral-500">Clients Served</span>
-          </div>
-          <div className="text-center">
-            <span className="block text-3xl font-display text-white mb-2 font-light">100%</span>
-            <span className="text-xs font-bold uppercase tracking-widest text-neutral-500">Google Certified</span>
-          </div>
-        </motion.div>
 
       </div>
     </section>

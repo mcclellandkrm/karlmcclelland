@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +18,7 @@ const Contact: React.FC = () => {
     setSubmitStatus('idle');
 
     try {
-      // TODO: Replace with your actual Formspree form ID
-      const FORMSPREE_ID = 'myzknydd'; // Get this from formspree.io after signing up
+      const FORMSPREE_ID = 'myzknydd';
 
       const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
@@ -50,93 +50,115 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section className="bg-white py-20 section" id="contact">
+    <section className="section bg-white" id="contact">
       <div className="container-wide">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+        {/* Header - matching other sections */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-4xl md:text-5xl font-display text-black mb-4 font-light">
+            Let's Work Together
+          </h2>
+          <p className="text-neutral-500 text-sm uppercase tracking-[0.3em]">
+            Start a Conversation
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+
           {/* Left side - Info */}
-          <div>
-            <h2 className="mb-6 text-4xl md:text-5xl font-display text-black font-light">
-              Ready to Get <span className="text-black">Discovered?</span>
-            </h2>
-            <p className="mb-8 text-xl leading-relaxed text-neutral-600">
-              Let's showcase your business with a professional Google Street View virtual tour.
-              Perfect for small businesses ready to stand out.
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-xl leading-relaxed text-neutral-600 mb-12">
+              Ready to showcase your business with a professional virtual tour?
+              Whether you're a local cafe or a luxury European property, let's discuss how to bring your space to life.
             </p>
 
-            <div className="mb-8 space-y-6">
-              <div className="flex items-start gap-4">
+            <div className="space-y-8 mb-12">
+              <div className="flex items-start gap-5">
                 <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-neutral-100">
-                  <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div>
-                  <h4 className="mb-1 text-lg font-medium font-display text-black">Email</h4>
-                  <a href="mailto:me@karlmcclelland.com" className="transition-colors text-neutral-600 hover:text-black">
+                  <h4 className="text-lg font-display text-black font-light mb-1">Email</h4>
+                  <a href="mailto:me@karlmcclelland.com" className="text-base text-neutral-600 hover:text-black transition-colors">
                     me@karlmcclelland.com
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 rounded-full bg-bronze-100">
-                  <svg className="w-6 h-6 text-bronze-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-start gap-5">
+                <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-neutral-100">
+                  <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 <div>
-                  <h4 className="mb-1 text-lg font-medium font-display text-stone-800">Phone</h4>
-                  <a href="tel:+447960044486" className="transition-colors text-stone-500 hover:text-bronze-600">
+                  <h4 className="text-lg font-display text-black font-light mb-1">Phone</h4>
+                  <a href="tel:+447960044486" className="text-base text-neutral-600 hover:text-black transition-colors">
                     +44 7960 044 486
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 rounded-full bg-bronze-100">
-                  <svg className="w-6 h-6 text-bronze-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-start gap-5">
+                <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-neutral-100">
+                  <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
                 <div>
-                  <h4 className="mb-1 text-lg font-medium font-display text-black">Across Northern Ireland</h4>
-                  <p className="text-neutral-600">
-                    From Belfast to Ballymoney, Derry to Newry - serving all of NI
+                  <h4 className="text-lg font-display text-black font-light mb-1">Location</h4>
+                  <p className="text-base text-neutral-600">
+                    Based in Belfast. Working across Ireland, UK & Europe.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="pt-8 border-t border-neutral-200">
-              <h3 className="mb-4 text-2xl font-display text-black font-light">What Happens Next?</h3>
-              <ol className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <span className="flex items-center justify-center flex-shrink-0 w-8 h-8 font-bold text-white bg-black">1</span>
-                  <p className="pt-1 text-neutral-600">I'll review your business and get in touch within 24 hours</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="flex items-center justify-center flex-shrink-0 w-8 h-8 font-bold text-white bg-black">2</span>
-                  <p className="pt-1 text-neutral-600">We'll schedule a convenient time for the shoot (usually 1-2 hours)</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="flex items-center justify-center flex-shrink-0 w-8 h-8 font-bold text-white bg-black">3</span>
-                  <p className="pt-1 text-neutral-600">Your tour goes live on Google within 1-2 weeks</p>
-                </li>
+            {/* What Happens Next */}
+            <div className="pt-10 border-t border-neutral-200">
+              <h3 className="text-2xl font-display text-black font-light mb-6">What Happens Next</h3>
+              <ol className="space-y-4">
+                {[
+                  "I'll review your enquiry and respond within 24 hours",
+                  "We'll schedule a convenient time for the shoot",
+                  "Your tour goes live within 1-2 weeks"
+                ].map((step, index) => (
+                  <li key={index} className="flex items-start gap-4">
+                    <span className="flex items-center justify-center flex-shrink-0 w-8 h-8 text-sm font-bold text-white bg-black">
+                      {index + 1}
+                    </span>
+                    <p className="text-base text-neutral-600 pt-1">{step}</p>
+                  </li>
+                ))}
               </ol>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right side - Form */}
-          {/* Right side - Form */}
-          <div id="contact-form" className="p-10 bg-white border border-neutral-200 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-neutral-100 -mr-16 -mt-16 opacity-50"></div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-neutral-50 border border-neutral-200 p-10 lg:p-12"
+          >
+            <h3 className="text-2xl font-display text-black font-light mb-8">Get Your Quote</h3>
 
-            <h3 className="mb-8 text-3xl font-display text-black font-light relative z-10">Get Your Quote</h3>
-            <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="group">
-                  <label htmlFor="name" className="block mb-2 text-xs font-bold uppercase tracking-widest text-neutral-500 group-focus-within:text-black transition-colors">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block mb-2 text-sm uppercase tracking-[0.2em] text-neutral-500">
                     Your Name
                   </label>
                   <input
@@ -146,13 +168,12 @@ const Contact: React.FC = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full pb-2 bg-transparent border-b border-neutral-300 focus:border-black outline-none text-black transition-all duration-500 placeholder-transparent"
-                    placeholder="John Smith"
+                    className="w-full pb-3 bg-transparent border-b border-neutral-300 focus:border-black outline-none text-black text-base transition-colors duration-300"
                   />
                 </div>
 
-                <div className="group">
-                  <label htmlFor="business" className="block mb-2 text-xs font-bold uppercase tracking-widest text-stone-400 group-focus-within:text-bronze-600 transition-colors">
+                <div>
+                  <label htmlFor="business" className="block mb-2 text-sm uppercase tracking-[0.2em] text-neutral-500">
                     Business Name
                   </label>
                   <input
@@ -162,14 +183,13 @@ const Contact: React.FC = () => {
                     required
                     value={formData.business}
                     onChange={handleChange}
-                    className="w-full pb-2 bg-transparent border-b border-stone-200 focus:border-bronze-500 outline-none text-stone-900 transition-all duration-500 placeholder-transparent"
-                    placeholder="The Corner Cafe"
+                    className="w-full pb-3 bg-transparent border-b border-neutral-300 focus:border-black outline-none text-black text-base transition-colors duration-300"
                   />
                 </div>
               </div>
 
-              <div className="group">
-                <label htmlFor="email" className="block mb-2 text-xs font-bold uppercase tracking-widest text-stone-400 group-focus-within:text-bronze-600 transition-colors">
+              <div>
+                <label htmlFor="email" className="block mb-2 text-sm uppercase tracking-[0.2em] text-neutral-500">
                   Email Address
                 </label>
                 <input
@@ -179,13 +199,12 @@ const Contact: React.FC = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full pb-2 bg-transparent border-b border-stone-200 focus:border-bronze-500 outline-none text-stone-900 transition-all duration-500 placeholder-transparent"
-                  placeholder="john@example.com"
+                  className="w-full pb-3 bg-transparent border-b border-neutral-300 focus:border-black outline-none text-black text-base transition-colors duration-300"
                 />
               </div>
 
-              <div className="group">
-                <label htmlFor="phone" className="block mb-2 text-xs font-bold uppercase tracking-widest text-stone-400 group-focus-within:text-bronze-600 transition-colors">
+              <div>
+                <label htmlFor="phone" className="block mb-2 text-sm uppercase tracking-[0.2em] text-neutral-500">
                   Phone Number
                 </label>
                 <input
@@ -194,13 +213,12 @@ const Contact: React.FC = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full pb-2 bg-transparent border-b border-stone-200 focus:border-bronze-500 outline-none text-stone-900 transition-all duration-500 placeholder-transparent"
-                  placeholder="028 XXXX XXXX"
+                  className="w-full pb-3 bg-transparent border-b border-neutral-300 focus:border-black outline-none text-black text-base transition-colors duration-300"
                 />
               </div>
 
-              <div className="group">
-                <label htmlFor="message" className="block mb-2 text-xs font-bold uppercase tracking-widest text-stone-400 group-focus-within:text-bronze-600 transition-colors">
+              <div>
+                <label htmlFor="message" className="block mb-2 text-sm uppercase tracking-[0.2em] text-neutral-500">
                   Tell me about your project
                 </label>
                 <textarea
@@ -209,8 +227,7 @@ const Contact: React.FC = () => {
                   rows={3}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full pb-2 bg-transparent border-b border-stone-200 focus:border-bronze-500 outline-none text-stone-900 resize-none transition-all duration-500 placeholder-transparent"
-                  placeholder="Project details..."
+                  className="w-full pb-3 bg-transparent border-b border-neutral-300 focus:border-black outline-none text-black text-base resize-none transition-colors duration-300"
                 />
               </div>
 
@@ -219,26 +236,27 @@ const Contact: React.FC = () => {
                 disabled={isSubmitting}
                 className="btn-primary w-full disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                <span>{isSubmitting ? 'Sending...' : 'Request Quote'}</span>
+                {isSubmitting ? 'Sending...' : 'Request Quote'}
               </button>
 
               {submitStatus === 'success' && (
-                <div className="p-4 text-center border bg-neutral-50 border-neutral-300">
-                  <p className="font-medium text-black">Thanks for your interest! I'll be in touch within 24 hours.</p>
+                <div className="p-4 text-center bg-neutral-100 border border-neutral-300">
+                  <p className="text-base text-black">Thanks for your interest! I'll be in touch within 24 hours.</p>
                 </div>
               )}
 
               {submitStatus === 'error' && (
-                <div className="p-4 text-center bg-red-50 border border-red-300">
-                  <p className="font-medium text-red-600">Oops! Something went wrong. Please email me directly at me@karlmcclelland.com</p>
+                <div className="p-4 text-center bg-red-50 border border-red-200">
+                  <p className="text-base text-red-600">Something went wrong. Please email me directly at me@karlmcclelland.com</p>
                 </div>
               )}
 
               <p className="text-sm text-center text-neutral-500">
-                No obligation. I'll send you pricing and availability within 24 hours.
+                No obligation. Pricing and availability within 24 hours.
               </p>
             </form>
-          </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

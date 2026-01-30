@@ -25,11 +25,11 @@ const faqs: FAQItem[] = [
   },
   {
     question: "Will this work for my type of business?",
-    answer: "Absolutely! Virtual tours work brilliantly for cafes, restaurants, retail shops, craft stores, salons, gyms, pubs, hotels, schools, and any business where seeing the space helps customers make a decision."
+    answer: "Absolutely! Virtual tours work brilliantly for cafes, restaurants, retail shops, hotels, salons, gyms, pubs, holiday rentals, and any business where seeing the space helps customers make a decision."
   },
   {
-    question: "Do I need to prepare my business beforehand?",
-    answer: "Just ensure your space is tidy and presentable - the same way you'd want customers to see it. I'll help you showcase your business in the best light and can advise on any specific preparations during our consultation call."
+    question: "Do you travel outside Northern Ireland?",
+    answer: "Yes! I regularly travel across Ireland, UK, and continental Europe. From Geneva ski chalets to Portuguese coastal villas - the process and quality remain consistent wherever you are."
   }
 ];
 
@@ -44,12 +44,12 @@ const FAQ: React.FC = () => {
     <section className="section bg-white">
       <div className="container-wide">
 
-        {/* Header - IDENTICAL to all other sections */}
+        {/* Header - matching other sections */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-24 text-center"
+          className="mb-20 text-center"
         >
           <h2 className="text-4xl md:text-5xl font-display text-black mb-4 font-light">
             Questions
@@ -59,7 +59,7 @@ const FAQ: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* FAQ List - Sharp edges, consistent */}
+        {/* FAQ List */}
         <div className="max-w-3xl mx-auto space-y-1">
           {faqs.map((faq, index) => (
             <motion.div
@@ -68,16 +68,16 @@ const FAQ: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="border border-neutral-200"
+              className="border border-neutral-200 hover:border-neutral-400 transition-colors duration-300"
             >
               <button
                 onClick={() => toggleFAQ(index)}
                 className="w-full p-8 text-left flex justify-between items-center hover:bg-neutral-50 transition-colors duration-300"
               >
-                <span className="text-xl md:text-2xl font-display text-black font-light pr-8">
+                <span className="text-xl font-display text-black font-light pr-8">
                   {faq.question}
                 </span>
-                <span className="text-3xl text-black flex-shrink-0">
+                <span className="text-2xl text-black flex-shrink-0 w-8 h-8 flex items-center justify-center border border-neutral-300">
                   {openIndex === index ? '−' : '+'}
                 </span>
               </button>
@@ -91,7 +91,7 @@ const FAQ: React.FC = () => {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-8 pb-8 pt-4 text-base leading-relaxed text-neutral-600 border-t border-neutral-200">
+                    <div className="px-8 pb-8 text-base leading-relaxed text-neutral-600 border-t border-neutral-200">
                       {faq.answer}
                     </div>
                   </motion.div>

@@ -82,7 +82,7 @@ const HowItWorks: React.FC = () => {
                 delay: index * 0.1,
                 ease: [0.19, 1, 0.22, 1]
               }}
-              className="group relative bg-neutral-900 border border-neutral-800 p-8 hover:border-white transition-all duration-500"
+              className="group relative bg-neutral-900 border border-neutral-800 p-8 hover:border-white hover:bg-neutral-800 transition-all duration-500"
             >
               {/* Step Number */}
               <div className="mb-6">
@@ -95,10 +95,10 @@ const HowItWorks: React.FC = () => {
               </div>
 
               {/* Content */}
-              <h3 className="text-lg font-display text-white mb-3 font-light">
+              <h3 className="text-xl font-display text-white mb-3 font-light">
                 {step.title}
               </h3>
-              <p className="text-sm leading-relaxed text-neutral-300">
+              <p className="text-base leading-relaxed text-neutral-300">
                 {step.description}
               </p>
 
@@ -108,55 +108,143 @@ const HowItWorks: React.FC = () => {
           ))}
         </div>
 
-        {/* Location Flexibility - Architectural Card */}
+        {/* Where I'm Heading - Dynamic Destinations */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="border border-neutral-800 bg-neutral-900/50 backdrop-blur-sm"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-
-            {/* Left: Content */}
-            <div className="p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-neutral-800">
-              <span className="text-[10px] font-mono text-neutral-400 tracking-[0.3em] mb-4 block">
-                GLOBAL COVERAGE
-              </span>
-              <h3 className="text-3xl md:text-4xl font-display text-white mb-6 font-light">
-                I Come to You
-              </h3>
-              <p className="text-neutral-400 leading-relaxed mb-8">
-                Based in Belfast, regularly traveling across Ireland, UK, and continental Europe.
-                From Geneva ski chalets to Portuguese coastal villas—the process and quality remain consistent.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#contact" className="btn-primary">
-                  Start a Project
-                </a>
-                <a href="tel:+447960044486" className="btn-secondary">
-                  Call +44 7960 044 486
-                </a>
-              </div>
-            </div>
-
-            {/* Right: Current Locations */}
-            <div className="p-12 lg:p-16 bg-black/30">
-              <span className="text-[10px] font-mono text-neutral-400 tracking-[0.3em] mb-6 block">
-                CURRENT SCHEDULE
-              </span>
-              <div className="space-y-4">
-                {['Northern Ireland', 'Austria', 'Portugal'].map((location, i) => (
-                  <div key={i} className="flex items-center gap-4 pb-4 border-b border-neutral-800 last:border-0">
-                    <div className="w-1 h-1 bg-white rounded-full"></div>
-                    <span className="text-white text-sm">{location}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
+          {/* Section Header - matching Process header above */}
+          <div className="text-center mb-12">
+            <h3 className="text-4xl md:text-5xl font-display text-white mb-4 font-light">
+              Where I'm Heading
+            </h3>
+            <p className="text-neutral-400 text-sm uppercase tracking-[0.3em] mb-6">
+              Upcoming Trips
+            </p>
+            <p className="text-base leading-relaxed text-neutral-300 max-w-2xl mx-auto">
+              Planning shoots across Europe. If your property is in one of these destinations,
+              join the itinerary and share travel costs.
+            </p>
           </div>
+
+          {/* Destination Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {[
+              {
+                destination: 'Portugal',
+                region: 'Algarve & Lisbon Coast',
+                timing: 'Spring 2026',
+                image: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=800&q=80'
+              },
+              {
+                destination: 'Austria',
+                region: 'Tyrol & Salzburg',
+                timing: 'Winter 2026',
+                image: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=800&q=80'
+              },
+              {
+                destination: 'Poland',
+                region: 'Krakow & Surrounding',
+                timing: 'Q2 2026',
+                image: 'https://images.unsplash.com/photo-1519197924294-4ba991a11128?auto=format&fit=crop&w=800&q=80'
+              }
+            ].map((trip, index) => (
+              <motion.div
+                key={trip.destination}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 * index, duration: 0.5 }}
+                className="group relative overflow-hidden border border-neutral-800 hover:border-white/30 transition-all duration-500"
+              >
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                  <img
+                    src={trip.image}
+                    alt={trip.destination}
+                    className="w-full h-full object-cover opacity-30 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+                </div>
+
+                {/* Content */}
+                <div className="relative p-8 min-h-[280px] flex flex-col justify-end">
+                  <span className="text-neutral-300 text-base uppercase tracking-[0.2em] mb-2">
+                    {trip.timing}
+                  </span>
+                  <h4 className="text-2xl font-display text-white font-light mb-2">
+                    {trip.destination}
+                  </h4>
+                  <p className="text-neutral-300 text-base leading-relaxed">
+                    {trip.region}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA Section with Form */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="border border-neutral-800 bg-neutral-900/50 backdrop-blur-sm p-10 lg:p-12"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+              {/* Left: Content */}
+              <div>
+                <h4 className="text-2xl font-display text-white font-light mb-4">
+                  Business in one of these areas?
+                </h4>
+                <p className="text-base leading-relaxed text-neutral-300">
+                  Join an existing trip and benefit from shared travel costs. Limited slots per destination.
+                </p>
+              </div>
+
+              {/* Right: Form */}
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    className="w-full bg-neutral-800/50 border border-neutral-700 px-4 py-3 text-white text-base placeholder-neutral-400 focus:outline-none focus:border-white transition-colors duration-300"
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    className="w-full bg-neutral-800/50 border border-neutral-700 px-4 py-3 text-white text-base placeholder-neutral-400 focus:outline-none focus:border-white transition-colors duration-300"
+                    required
+                  />
+                </div>
+
+                {/* GDPR Consent */}
+                <label className="flex items-start gap-3 cursor-pointer group pt-2">
+                  <input
+                    type="checkbox"
+                    name="consent"
+                    className="mt-1 w-4 h-4 accent-white"
+                    required
+                  />
+                  <span className="text-neutral-400 text-sm leading-relaxed group-hover:text-neutral-300 transition-colors">
+                    I consent to being contacted about upcoming trips and services. View our privacy policy.
+                  </span>
+                </label>
+
+                <button
+                  type="submit"
+                  className="px-10 py-4 text-[10px] font-bold uppercase tracking-[0.25em] bg-white text-black border border-white transition-all duration-300 hover:bg-transparent hover:text-white"
+                >
+                  Let Me Know
+                </button>
+              </form>
+            </div>
+          </motion.div>
         </motion.div>
 
       </div>
