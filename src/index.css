@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,92 +10,228 @@
   }
 
   body {
-    @apply font-sans antialiased text-neutral-900 bg-white;
+    @apply font-body antialiased text-neutral-800 bg-neutral-50;
     font-size: 16px;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Subtle paper texture */
+    background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
-  /* STRICT Typography - Precision & Consistency */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: theme('fontFamily.display');
-    @apply font-light text-black tracking-tight;
-  }
+  /* KARL MCCLELLAND TYPOGRAPHY SYSTEM */
+  /* ================================= */
 
+  /* Display Headings - Playfair Display */
   h1 {
-    @apply text-5xl md:text-6xl lg:text-7xl leading-[1.05];
+    @apply font-display font-light text-neutral-900;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
   }
 
   h2 {
-    @apply text-4xl md:text-5xl leading-[1.1];
+    @apply font-display font-light text-neutral-900;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
   }
 
   h3 {
-    @apply text-2xl md:text-3xl leading-[1.2];
+    @apply font-display font-normal text-neutral-900;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
+  h4 {
+    @apply font-display font-normal text-neutral-800;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  h5 {
+    @apply font-display font-medium text-neutral-800;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    letter-spacing: 0em;
+  }
+
+  h6 {
+    @apply font-display font-medium text-neutral-700;
+    font-size: 1.125rem;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+  }
+
+  /* Body Text - Inter */
   p {
-    @apply leading-relaxed text-neutral-600;
+    @apply font-body text-neutral-600 leading-relaxed;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  /* Small Text & Labels */
+  small, .text-small {
+    @apply font-body text-neutral-500;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.025em;
+  }
+
+  /* Uppercase Labels */
+  .label, .text-label {
+    @apply font-body font-medium uppercase tracking-wider text-neutral-500;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+  }
+
+  /* Monospace for special elements */
+  .mono {
+    @apply font-mono text-neutral-600;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
   }
 }
 
 @layer components {
 
-  /* MONOCHROMATIC LUXURY - Black, White, Grays Only */
+  /* KARL MCCLELLAND BUTTON SYSTEM */
+  /* ============================== */
+
   .btn-primary {
-    @apply px-10 py-4 text-[10px] font-bold uppercase tracking-[0.25em];
-    @apply bg-black text-white border border-black;
-    @apply transition-all duration-300;
-    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-    @apply hover:bg-white hover:text-black hover:border-black;
+    @apply px-8 py-4 font-body font-semibold uppercase tracking-wider;
+    @apply bg-brand-stone text-accent-warm border-2 border-brand-stone;
+    @apply transition-all duration-300 ease-luxury;
+    @apply hover:bg-accent-warm hover:text-brand-stone hover:border-accent-warm hover:shadow-lg;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    box-shadow: 0 0 0 1px rgba(189, 140, 125, 0.35), 0 14px 35px rgba(0, 0, 0, 0.18);
+  }
+
+  .metal-overlay {
+    background-image: radial-gradient(circle at 20% 20%, rgba(189, 140, 125, 0.16), transparent 55%),
+      radial-gradient(circle at 80% 80%, rgba(209, 191, 167, 0.12), transparent 55%);
   }
 
   .btn-secondary {
-    @apply px-10 py-4 text-[10px] font-bold uppercase tracking-[0.25em];
-    @apply bg-white text-black border border-black;
-    @apply transition-all duration-300;
-    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-    @apply hover:bg-black hover:text-white;
+    @apply px-8 py-4 font-body font-semibold uppercase tracking-wider;
+    @apply bg-transparent text-accent-warm border-2 border-accent-warm;
+    @apply transition-all duration-300 ease-luxury;
+    @apply hover:bg-accent-warm hover:text-white hover:shadow-lg;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
   }
 
   .btn-ghost {
-    @apply px-6 py-3 text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-500;
-    @apply transition-all duration-300;
-    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-    @apply hover:text-black hover:translate-x-2;
+    @apply px-6 py-3 font-body font-medium uppercase tracking-wider text-brand-stone;
+    @apply transition-all duration-300 ease-luxury;
+    @apply hover:text-accent-warm hover:translate-x-1;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
   }
 
-  /* Precision Cards - Sharp Edges, Clean Shadows */
+  .btn-accent {
+    @apply px-6 py-3 font-body font-medium text-white bg-accent-warm;
+    @apply transition-all duration-300 ease-luxury;
+    @apply hover:bg-accent-earth hover:shadow-md;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+  }
+
+  /* LUXURY CARDS - Warm & Inviting */
+  /* ============================== */
+
   .card-luxury {
     @apply relative overflow-hidden bg-white border border-neutral-200;
-    @apply transition-all duration-500;
-    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    @apply transition-all duration-500 ease-luxury;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   .card-luxury:hover {
-    @apply border-black transform translate-y-[-2px];
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    @apply border-accent-warm/30;
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(255, 194, 0, 0.15);
   }
 
-  /* Form inputs - Minimal & Clean */
+  .card-warm {
+    @apply bg-gradient-to-br from-neutral-50 to-neutral-100;
+    @apply border border-neutral-200/50;
+    @apply transition-all duration-500 ease-luxury;
+  }
+
+  .card-warm:hover {
+    @apply border-accent-warm/20 shadow-lg;
+    box-shadow: 0 10px 30px -5px rgba(255, 194, 0, 0.1);
+  }
+
+  /* FORM ELEMENTS - Clean & Professional */
+  /* ==================================== */
+
   .input {
-    @apply w-full pb-3 bg-transparent border-b border-neutral-300 text-black;
-    @apply transition-all duration-300;
-    @apply focus:outline-none focus:border-black;
-    @apply placeholder-neutral-400 text-sm;
+    @apply w-full pb-3 bg-transparent border-b-2 border-neutral-300 text-neutral-800;
+    @apply transition-all duration-300 ease-luxury;
+    @apply focus:outline-none focus:border-accent-warm;
+    @apply placeholder-neutral-400;
+    font-size: 1rem;
+    line-height: 1.5;
   }
 
-  /* Section spacing - Generous Breathing Room */
+  .textarea {
+    @apply w-full p-4 bg-neutral-50 border border-neutral-200 text-neutral-800;
+    @apply transition-all duration-300 ease-luxury;
+    @apply focus:outline-none focus:border-accent-warm focus:bg-white;
+    @apply placeholder-neutral-400;
+    @apply rounded-lg;
+    font-size: 1rem;
+    line-height: 1.6;
+    min-height: 120px;
+  }
+
+  /* SECTION SPACING - Generous & Breathing */
+  /* ====================================== */
+
   .section {
-    @apply py-32 lg:py-40;
+    @apply py-28 lg:py-36 xl:py-44;
   }
 
-  .section-sm {
-    @apply py-20 lg:py-24;
+  .section-compact {
+    @apply py-16 lg:py-20;
+  }
+
+  .section-hero {
+    @apply py-32 lg:py-48 xl:py-56;
+  }
+
+  /* ACCENT ELEMENTS - Personality Injection */
+  /* ======================================= */
+
+  .accent-bronze {
+    color: theme('colors.brand.bronze');
+  }
+
+  .accent-warm {
+    color: theme('colors.accent.warm');
+  }
+
+  .bg-accent-warm {
+    background-color: theme('colors.accent.warm');
+  }
+
+  .border-accent {
+    border-color: theme('colors.brand.bronze');
+  }
+
+  /* DIVIDER ELEMENTS */
+  .divider {
+    @apply border-neutral-200;
+  }
+
+  .divider-warm {
+    border-color: theme('colors.brand.bronze / 0.3');
   }
 }
 

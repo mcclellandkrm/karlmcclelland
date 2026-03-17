@@ -78,8 +78,8 @@ const TourComparison: React.FC = () => {
             </ul>
 
             <div className="text-center">
-              <p className="mb-2 text-3xl font-bold text-black">From £349</p>
-              <p className="text-sm text-neutral-500">Belfast Special Package</p>
+              <p className="mb-2 text-3xl font-bold text-black">From £599</p>
+              <p className="text-sm text-neutral-500">Professional Package</p>
             </div>
           </div>
 

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 interface PortfolioItem {
   id: number;
@@ -14,214 +15,137 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: 1,
     name: "Suitor Brothers",
-    type: "Retail Store",
-    location: "Belfast",
+    type: "Menswear Retail",
+    location: "Belfast, UK",
     image: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&auto=format&fit=crop&q=80",
     tourUrl: "https://walkinto.in/easyembedview/-yHP0G_qIn-1xHwCz_58n",
-    description: "Step inside Belfast's premier menswear destination. Our virtual tour showcases the carefully curated collection and bespoke fitting experience."
+    description: "Premium menswear boutique. Virtual tour showcases curated collections and fitting experience."
   },
   {
     id: 2,
-    name: "Luxury Property",
-    type: "Accommodation",
-    location: "Donegal",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&auto=format&fit=crop&q=80",
+    name: "Café Central",
+    type: "Independent Café",
+    location: "Munich, Germany",
+    image: "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=800&auto=format&fit=crop&q=80",
     tourUrl: "#",
-    description: "Experience coastal luxury from anywhere in the world. This immersive tour lets guests explore every detail before booking their stay."
+    description: "Traditional German café. Virtual experience captures authentic atmosphere and menu highlights."
   },
   {
     id: 3,
-    name: "Kitchen Design",
-    type: "Showroom",
-    location: "Belfast",
-    image: "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=800&auto=format&fit=crop&q=80",
+    name: "Luxury Villa",
+    type: "Holiday Rental",
+    location: "Algarve, Portugal",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&auto=format&fit=crop&q=80",
     tourUrl: "#",
-    description: "A contemporary design showroom brought to life. Clients can explore kitchen configurations and finishes in stunning 360° detail."
+    description: "Premium holiday villa. Guests explore luxury amenities and coastal views before booking."
   },
   {
     id: 4,
-    name: "Wine & Spirits",
-    type: "Retail Store",
-    location: "Northern Ireland",
-    image: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=800&auto=format&fit=crop&q=80",
-    tourUrl: "https://walkinto.in/easyembedview/bJE0A9kzD3bkgN0Cq1fDn",
-    description: "Browse an extensive collection of premium wines and spirits. The virtual tour captures the atmosphere and expertise of this specialist retailer."
+    name: "Fitness Studio",
+    type: "Local Gym",
+    location: "Belfast, UK",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&auto=format&fit=crop&q=80",
+    tourUrl: "#",
+    description: "Modern fitness facility. Virtual tour showcases equipment, classes, and community atmosphere."
   },
   {
     id: 5,
-    name: "Grand Central",
+    name: "Wine Merchant",
+    type: "Specialist Retail",
+    location: "Dublin, Ireland",
+    image: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=800&auto=format&fit=crop&q=80",
+    tourUrl: "https://walkinto.in/easyembedview/bJE0A9kzD3bkgN0Cq1fDn",
+    description: "Curated wine collection. Virtual experience highlights rare vintages and expert recommendations."
+  },
+  {
+    id: 6,
+    name: "Boutique Hotel",
     type: "Hospitality",
-    location: "Belfast",
+    location: "Prague, Czech Republic",
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=80",
     tourUrl: "#",
-    description: "Luxury hotel experience"
+    description: "Historic boutique hotel. Guests preview elegant rooms and city views before arrival."
   }
 ];
 
 const Portfolio: React.FC = () => {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
-
-  // Display first 4 items in 2 rows
-  const row1 = portfolioItems.slice(0, 2);
-  const row2 = portfolioItems.slice(2, 4);
-
-  const getFlexBasis = (itemId: number, rowItems: PortfolioItem[], isFirstInRow: boolean) => {
-    const isInRow = rowItems.some(item => item.id === hoveredId);
-
-    // Default state: first card 55%, second card 45%
-    if (hoveredId === null || !isInRow) {
-      return isFirstInRow ? '55%' : '45%';
-    }
-
-    // Hovered state
-    if (hoveredId === itemId) return '62%';
-    return '38%';
-  };
-
-  const renderCard = (item: PortfolioItem, rowItems: PortfolioItem[], index: number) => {
-    const isHovered = hoveredId === item.id;
-    const isFirstInRow = index === 0;
-    const flexBasis = getFlexBasis(item.id, rowItems, isFirstInRow);
-
-    return (
-      <a
-        key={item.id}
-        href={item.tourUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group relative block overflow-hidden"
-        style={{
-          flexBasis,
-          transition: 'flex-basis 0.6s cubic-bezier(0.19, 1, 0.22, 1)',
-          clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 50px), calc(100% - 50px) 100%, 0 100%)',
-          borderRadius: '24px 24px 0 24px',
-        }}
-        onMouseEnter={() => setHoveredId(item.id)}
-        onMouseLeave={() => setHoveredId(null)}
-      >
-        {/* Card Container with cut corner */}
-        <div
-          className="relative w-full"
-          style={{
-            height: '420px',
-          }}
-        >
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img
-              src={item.image}
-              alt={item.name}
-              className="w-full h-full object-cover transition-transform duration-700"
-              style={{
-                transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-              }}
-              loading="lazy"
-            />
-            {/* Gradient Overlay */}
-            <div
-              className="absolute inset-0 transition-opacity duration-500"
-              style={{
-                background: 'linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%)',
-              }}
-            />
-          </div>
-
-          {/* Content */}
-          <div className="relative h-full p-8 flex flex-col">
-            {/* Top: Category Tag */}
-            <div>
-              <span
-                className="inline-block px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-white rounded-full"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.2)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255,255,255,0.3)',
-                }}
-              >
-                {item.type}
-              </span>
-            </div>
-
-            {/* Middle/Bottom: Title & Description */}
-            <div className="mt-auto pb-8">
-              <h3 className="text-2xl md:text-3xl lg:text-4xl text-white font-light mb-4">
-                {item.name}
-              </h3>
-              <p
-                className="text-white/90 text-base leading-relaxed max-w-sm transition-all duration-500"
-                style={{
-                  opacity: isHovered ? 1 : 0,
-                  transform: isHovered ? 'translateY(0)' : 'translateY(16px)',
-                }}
-              >
-                {item.description}
-              </p>
-            </div>
-          </div>
-
-          {/* Arrow Button - positioned at the angled cut corner */}
-          <div
-            className="absolute w-14 h-14 flex items-center justify-center rounded-full transition-all duration-300"
-            style={{
-              backgroundColor: isHovered ? '#FF9500' : 'white',
-              bottom: '8px',
-              right: '8px',
-            }}
-          >
-            <svg
-              className="w-5 h-5 transition-all duration-300"
-              style={{
-                color: isHovered ? 'white' : 'black',
-                transform: isHovered ? 'translate(2px, -2px)' : 'translate(0, 0)',
-              }}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
-          </div>
-        </div>
-      </a>
-    );
-  };
-
   return (
-    <section id="portfolio" className="section bg-white">
-      <div className="container-wide">
-        {/* Section Header */}
-        <div className="mb-16">
-          <span className="block mb-4 text-xs font-bold uppercase tracking-[0.2em] text-neutral-500">
-            Selected Work
-          </span>
-          <h2>Virtual Showcase</h2>
+    <section className="section bg-neutral-900 relative overflow-hidden">
+      {/* Cinematic Fog Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-800 via-neutral-900 to-black opacity-80"></div>
+
+      <div className="container-wide relative z-10">
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-display text-white mb-4 font-light">
+            Recent Work
+          </h2>
+          <p className="text-neutral-400 text-sm uppercase tracking-[0.3em]">
+            Across Europe & UK
+          </p>
+        </motion.div>
+
+        {/* Portfolio Grid - Simple 3-column layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {portfolioItems.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="group relative overflow-hidden border border-neutral-800 hover:border-white/30 transition-all duration-500"
+            >
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover opacity-30 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+              </div>
+
+              {/* Content */}
+              <div className="relative p-8 min-h-[320px] flex flex-col justify-end">
+                <div className="mb-3">
+                  <span className="text-neutral-300 text-sm uppercase tracking-[0.2em]">
+                    {item.type}
+                  </span>
+                </div>
+                <h4 className="text-xl font-display text-white font-light mb-2">
+                  {item.name}
+                </h4>
+                <p className="text-neutral-400 text-sm mb-3">
+                  {item.location}
+                </p>
+                <p className="text-neutral-300 text-sm leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Grid - 2 rows */}
-        <div className="flex flex-col gap-4">
-          {/* Row 1 */}
-          <div className="flex gap-4">
-            {row1.map((item, index) => renderCard(item, row1, index))}
-          </div>
-          {/* Row 2 */}
-          <div className="flex gap-4">
-            {row2.map((item, index) => renderCard(item, row2, index))}
-          </div>
-        </div>
-
-        {/* View All Link */}
-        <div className="mt-16 text-center">
-          <a
-            href="/portfolio"
-            className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-neutral-600 hover:text-orange-500 transition-colors duration-300"
-          >
-            View all work
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="text-center mt-16"
+        >
+          <a href="#contact" className="btn-primary">
+            Start Your Project
           </a>
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );

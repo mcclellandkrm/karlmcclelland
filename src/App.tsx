@@ -1,17 +1,11 @@
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import CursorFollow from './components/CursorFollow';
-import Services from './components/Services';
-import GoogleCertified from './components/GoogleCertified';
-import WhyVirtualTour from './components/WhyVirtualTour';
-import SpecialOffer from './components/SpecialOffer';
+import Proof from './components/Proof';
+import Offerings from './components/Offerings';
 import Portfolio from './components/Portfolio';
-import About from './components/About';
-import HowItWorks from './components/HowItWorks';
-import BoldStatement from './components/BoldStatement';
-import ClientLogos from './components/ClientLogos';
-import Testimonials from './components/Testimonials';
-import FAQ from './components/FAQ';
+import Process from './components/Process';
+import Trips from './components/Trips';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -21,17 +15,11 @@ function App() {
       <CursorFollow />
       <Navigation />
       <Hero />
-      <Services />
-      <GoogleCertified />
+      <Proof />
+      <Offerings />
       <Portfolio />
-      <ClientLogos />
-      <About />
-      <WhyVirtualTour />
-      <HowItWorks />
-      <BoldStatement />
-      <SpecialOffer />
-      <Testimonials />
-      <FAQ />
+      <Process />
+      <Trips />
       <Contact />
       <Footer />
     </div>

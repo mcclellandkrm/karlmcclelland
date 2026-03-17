@@ -5,23 +5,33 @@ import React from 'react';
 const ClientCarousel: React.FC = () => {
 
   return (
-    <section className="py-20 bg-stone-50 overflow-hidden">
+    <section className="py-20 bg-neutral-50 overflow-hidden">
       <div className="container-wide">
-        <p className="text-center text-sm font-bold tracking-widest text-stone-400 uppercase mb-12 font-display">
+        <p className="text-center text-sm font-bold tracking-widest text-brand-stone uppercase mb-12 font-display">
           Trusted by Premier Businesses
         </p>
 
-        <div className="relative">
-          <div className="flex flex-wrap justify-center gap-12 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
-            {/* Logos would go here - using text placeholders for now with premium typography */}
-            <div className="text-2xl font-display text-stone-400 font-bold">SOMERVILLE</div>
-            <div className="text-2xl font-display text-stone-400 font-bold">SUITOR BROS</div>
-            <div className="text-2xl font-display text-stone-400 font-bold">BULLITT</div>
-            <div className="text-2xl font-display text-stone-400 font-bold">MERCHANT</div>
-            <div className="text-2xl font-display text-stone-400 font-bold">TITANIC</div>
+        <div className="relative overflow-hidden">
+          <div className="flex gap-12 animate-carousel">
+            {['SOMERVILLE', 'SUITOR BROS', 'BULLITT', 'MERCHANT', 'TITANIC', 'VICTORINOX', 'SANDQVIST'].map((name) => (
+              <div key={name} className="text-2xl font-display text-stone-400 font-semibold whitespace-nowrap">
+                {name}
+              </div>
+            ))}
           </div>
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-neutral-50 via-neutral-50/0 to-neutral-50" />
         </div>
       </div>
+
+      <style>{`
+        @keyframes carousel {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-carousel {
+          animation: carousel 30s linear infinite;
+        }
+      `}</style>
     </section>
   );
 };

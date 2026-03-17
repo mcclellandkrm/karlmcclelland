@@ -90,8 +90,9 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-lg font-display text-black font-light mb-1">Email</h4>
-                  <a href="mailto:me@karlmcclelland.com" className="text-base text-neutral-600 hover:text-black transition-colors">
+                  <a href="mailto:me@karlmcclelland.com" className="group relative text-base text-neutral-600 hover:text-black transition-colors">
                     me@karlmcclelland.com
+                    <span className="absolute bottom-[-2px] left-0 h-[1px] w-0 bg-accent-ember transition-all duration-300 group-hover:w-full" />
                   </a>
                 </div>
               </div>
@@ -104,8 +105,9 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-lg font-display text-black font-light mb-1">Phone</h4>
-                  <a href="tel:+447960044486" className="text-base text-neutral-600 hover:text-black transition-colors">
+                  <a href="tel:+447960044486" className="group relative text-base text-neutral-600 hover:text-black transition-colors">
                     +44 7960 044 486
+                    <span className="absolute bottom-[-2px] left-0 h-[1px] w-0 bg-accent-ember transition-all duration-300 group-hover:w-full" />
                   </a>
                 </div>
               </div>
@@ -122,6 +124,37 @@ const Contact: React.FC = () => {
                   <p className="text-base text-neutral-600">
                     Based in Belfast. Working across Ireland, UK & Europe.
                   </p>
+                </div>
+              </div>
+
+              {/* Book a Call Button */}
+              <div className="pt-4">
+                <a
+                  href="https://cal.com/karl-mcclelland-m2ppu8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 btn-primary"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Book a Call
+                </a>
+              </div>
+
+              {/* Payment Methods */}
+              <div className="pt-4 border-t border-neutral-200">
+                <h4 className="text-lg font-display text-black font-light mb-4">Payment Methods</h4>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2 text-sm text-neutral-600">
+                    <span className="font-medium">SumUp</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-neutral-600">
+                    <span className="font-medium">Revolut</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-neutral-600">
+                    <span className="font-medium">Stripe</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -252,7 +285,7 @@ const Contact: React.FC = () => {
               )}
 
               <p className="text-sm text-center text-neutral-500">
-                No obligation. Pricing and availability within 24 hours.
+                No obligation. Pricing starts from £599. Availability within 24 hours.
               </p>
             </form>
           </motion.div>
