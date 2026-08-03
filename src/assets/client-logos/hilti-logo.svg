@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="b" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100">
+  <g id="c" data-name="Layer 1">
+    <g>
+      <path d="m116.45,72.29h-22.15V31.7h22.15v40.59Zm176.39-40.59h-22.15v40.59h22.15V31.7ZM6.17,72.29h22.15v-10.66h38.73v10.66h22.15V31.7h-22.15v10.66H28.32v-10.66H6.17v40.59Zm115.44,0h68.59v-18.71h-46.44v-21.88h-22.15v40.59Zm50.98-21.88h35.43v21.88h22.15v-21.88h35.43v-18.71h-93.01v18.71Z" stroke-width="0"/>
+      <rect width="300" height="100" fill="none" stroke-width="0"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,33 @@
+<div
+  id="cursor-follow"
+  class="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference transition-opacity duration-300 opacity-0 hidden lg:block"
+>
+  <div id="cursor-ring" class="relative -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-transparent rounded-full border border-white transition-all duration-300 ease-out"></div>
+  <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-white rounded-full"></div>
+</div>
+
+<script>
+  const cursor = document.getElementById('cursor-follow');
+  const ring = document.getElementById('cursor-ring');
+
+  if (cursor && ring) {
+    const handleMouseMove = (e: MouseEvent) => {
+      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      cursor.classList.remove('opacity-0');
+      cursor.classList.add('opacity-100');
+
+      const target = e.target as HTMLElement;
+      const isPointer = window.getComputedStyle(target).cursor === 'pointer';
+      ring.classList.toggle('w-12', isPointer);
+      ring.classList.toggle('h-12', isPointer);
+      ring.classList.toggle('bg-white/20', isPointer);
+      ring.classList.toggle('w-6', !isPointer);
+      ring.classList.toggle('h-6', !isPointer);
+      ring.classList.toggle('bg-transparent', !isPointer);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseleave', () => cursor.classList.add('opacity-0'));
+    document.addEventListener('mouseenter', () => cursor.classList.remove('opacity-0'));
+  }
+</script>

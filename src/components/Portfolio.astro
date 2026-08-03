@@ -1,0 +1,37 @@
+---
+import PortfolioCard from './PortfolioCard.astro';
+import { portfolioItems } from '../data/portfolio';
+---
+
+<section id="work" class="section bg-neutral-900 relative overflow-hidden">
+  <!-- Cinematic Fog Background -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-800 via-neutral-900 to-black opacity-80"></div>
+
+  <div class="container-wide relative z-10">
+
+    <!-- Header -->
+    <div data-reveal class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-display text-white mb-4 font-light">
+        Recent Work
+      </h2>
+      <p class="text-neutral-400 text-sm uppercase tracking-[0.3em]">
+        Real 360° Walkthroughs
+      </p>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      {portfolioItems.map((item, index) => (
+        <PortfolioCard {...item} delay={index * 0.1} />
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div data-reveal style="transition-delay: 0.3s" class="text-center mt-16">
+      <a href="#contact" class="btn-primary">
+        Start Your Project
+      </a>
+    </div>
+
+  </div>
+</section>

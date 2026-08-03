@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets';
+import logoMark from '../assets/brand/logo-mark.svg';
+import logoLockup from '../assets/brand/logo-lockup.svg';
+
+const navLinks = ['Offerings', 'Work', 'Process'];
+const mobileLinks = ['Home', 'Offerings', 'Work', 'Process', 'Contact'];
+---
+
+<nav id="site-nav" class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-500 bg-transparent py-6">
+  <div class="container-wide">
+    <div class="relative flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#top" class="flex items-center">
+        <Image src={logoMark} alt="Karl McClelland" class="w-10 h-10 sm:hidden" />
+        <Image src={logoLockup} alt="Karl McClelland" class="hidden sm:block h-10 w-auto" />
+      </a>
+
+      <!-- Center Links -->
+      <div class="hidden lg:flex items-center gap-10 text-sm tracking-wider text-brand-stone">
+        {navLinks.map((item) => (
+          <a
+            href={`#${item.toLowerCase()}`}
+            class="group relative font-medium hover:text-accent-warm transition-colors duration-300"
+          >
+            {item}
+            <span class="absolute bottom-[-4px] left-0 h-[2px] w-0 bg-accent-ember transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="flex items-center gap-6">
+        <a href="#contact" class="hidden md:flex btn-primary">
+          Get a quote
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 text-brand-stone" aria-label="Toggle menu">
+          <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 transition-all duration-500 pointer-events-none opacity-0">
+  <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/40"></div>
+
+  <div id="mobile-menu-panel" class="absolute top-0 right-0 h-full w-[85vw] max-w-sm bg-white shadow-2xl transition-transform duration-500 translate-x-full">
+    <div class="flex flex-col h-full p-10 pt-24">
+      <nav class="flex flex-col gap-8">
+        {mobileLinks.map((item) => (
+          <a
+            href={item === 'Home' ? '#top' : `#${item.toLowerCase()}`}
+            class="mobile-menu-link text-3xl font-display font-light text-black hover:opacity-50 transition-opacity duration-300 text-left"
+          >
+            {item}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </div>
+</div>
+
+<script>
+  const nav = document.getElementById('site-nav');
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  const panel = document.getElementById('mobile-menu-panel');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+  const links = document.querySelectorAll('.mobile-menu-link');
+
+  const setScrolled = () => {
+    if (window.scrollY > 50) {
+      nav?.classList.add('bg-white/70', 'border-b', 'border-brand-bronze/10', 'py-4');
+      nav?.classList.remove('py-6');
+    } else {
+      nav?.classList.remove('bg-white/70', 'border-b', 'border-brand-bronze/10', 'py-4');
+      nav?.classList.add('py-6');
+    }
+  };
+
+  window.addEventListener('scroll', setScrolled);
+  setScrolled();
+
+  let isOpen = false;
+  const setMenu = (open: boolean) => {
+    isOpen = open;
+    menu?.classList.toggle('opacity-100', open);
+    menu?.classList.toggle('pointer-events-auto', open);
+    menu?.classList.toggle('opacity-0', !open);
+    panel?.classList.toggle('translate-x-0', open);
+    panel?.classList.toggle('translate-x-full', !open);
+    iconOpen?.classList.toggle('hidden', open);
+    iconClose?.classList.toggle('hidden', !open);
+  };
+
+  toggle?.addEventListener('click', () => setMenu(!isOpen));
+  backdrop?.addEventListener('click', () => setMenu(false));
+  links.forEach((link) => link.addEventListener('click', () => setMenu(false)));
+</script>

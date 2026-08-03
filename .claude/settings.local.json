@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"d:\\\\PROJECTS_ROOM\\\\01_Current_Projects\\\\website-karlmcclelland.com\\\\karlmcclelland\" && grep -o \"text-4xl[^}]*{[^}]*}\" dist/assets/index-DITT6cn1.css | head -5 *)",
+      "Read(//d/PROJECTS_ROOM/01_Current_Projects/website-karlmcclelland.com/karlmcclelland/**)",
+      "Bash(mkdir -p src/assets/client-logos src/components src/data src/layouts src/pages src/styles public/logos/googlelogos)",
+      "Bash(cp salvaged-client-logos/*.svg salvaged-client-logos/*.png src/assets/client-logos/)",
+      "Bash(node -e ' *)",
+      "Bash(npx astro *)",
+      "Bash(rm -f nav-desktop.png nav-mobile.png footer.png footer-desktop.png)",
+      "Bash(pkill -f \"astro dev\")"
+    ]
+  }
+}
