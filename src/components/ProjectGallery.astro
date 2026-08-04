@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface GalleryImage {
+  image: ImageMetadata;
+  alt: string;
+}
+
+interface Props {
+  images: GalleryImage[];
+}
+
+const { images } = Astro.props;
+---
+
+{images.length > 0 && (
+  <div class="container-wide py-16 lg:py-24">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {images.map(({ image, alt }) => (
+        <div class="aspect-[4/3] overflow-hidden bg-material-limestone">
+          <Image src={image} alt={alt} loading="lazy" class="h-full w-full object-cover" />
+        </div>
+      ))}
+    </div>
+  </div>
+)}

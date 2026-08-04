@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import bandqLogo from '../assets/client-logos/bandq-logo.svg';
+import eaLogo from '../assets/client-logos/ea-logo.svg';
+import gohLogo from '../assets/client-logos/goh-logo.svg';
+import hiltiLogo from '../assets/client-logos/hilti-logo.svg';
+import hyundaiLogo from '../assets/client-logos/hyundai-logo.svg';
+import lyricLogo from '../assets/client-logos/lyric-logo.svg';
+import niScreenLogo from '../assets/client-logos/ni-screen-logo.png';
+import odysseyLogo from '../assets/client-logos/odyssey-logo.svg';
+import skodaLogo from '../assets/client-logos/skoda-logo.svg';
+import sseLogo from '../assets/client-logos/sse-logo.svg';
+import toyotaLogo from '../assets/client-logos/toyota-logo.svg';
+
+// Static grid — replaces ClientLogos.astro's auto-scrolling marquee.
+// See STRUCTURE_AUDIT.md: a self-animating carousel reads as the kind of
+// "tech agency" flourish the brief explicitly rules out.
+const clients = [
+  { name: 'Toyota', logo: toyotaLogo },
+  { name: 'Hyundai', logo: hyundaiLogo },
+  { name: 'Skoda', logo: skodaLogo },
+  { name: 'EA', logo: eaLogo },
+  { name: 'B&Q', logo: bandqLogo },
+  { name: 'Hilti', logo: hiltiLogo },
+  { name: 'SSE', logo: sseLogo },
+  { name: 'NI Screen', logo: niScreenLogo },
+  { name: 'Lyric Theatre', logo: lyricLogo },
+  { name: 'Odyssey Arena', logo: odysseyLogo },
+  { name: 'Grand Opera House', logo: gohLogo },
+];
+---
+
+<ul class="grid grid-cols-2 gap-px bg-material-stone/15 sm:grid-cols-3 lg:grid-cols-4">
+  {clients.map((client) => (
+    <li class="flex items-center justify-center bg-white p-8">
+      <Image
+        src={client.logo}
+        alt={client.name}
+        class="h-8 w-auto object-contain opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+      />
+    </li>
+  ))}
+</ul>

@@ -53,8 +53,23 @@ export default {
           600: '#E68600',
         },
         stone: colors.stone,
+        // McClelland Design Studio materials palette (CLAUDE_PROJECT_BRIEF.md).
+        // Additive alongside the legacy tokens above — those still drive the
+        // untouched homepage components. New components should use `material.*`
+        // only. See STRUCTURE_AUDIT.md §5.
+        material: {
+          limestone: '#E8E1D2',
+          charcoal: '#25241F',
+          stone: '#8C8879',
+          forest: '#2B3A2D',
+          oak: '#B99568',
+          bronze: '#A8805F',
+          copper: '#A85C39',
+        },
       },
       fontFamily: {
+        // Typography is explicitly NOT finalised (CLAUDE_PROJECT_BRIEF.md).
+        // Kept centralised here on purpose so swapping it later is a one-file change.
         sans: ['Inter', 'system-ui', 'sans-serif'],
         display: ['Playfair Display', 'serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],

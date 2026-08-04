@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+}
+
+const { entry } = Astro.props;
+const { title, client, category, location, summary, heroImage } = entry.data;
+---
+
+<header class="border-b border-material-stone/20 bg-material-limestone">
+  <div class="container-wide py-20 lg:py-28">
+    {category.length > 0 && <span class="text-label text-material-bronze">{category.join(' · ')}</span>}
+    <h1 class="mt-4 max-w-3xl font-display font-light text-material-charcoal">{title}</h1>
+    {(client || location) && (
+      <p class="mt-4 text-lg text-material-charcoal/70">{[client, location].filter(Boolean).join(' — ')}</p>
+    )}
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-material-charcoal/80">{summary}</p>
+  </div>
+  {heroImage && (
+    <div class="aspect-[16/9] w-full overflow-hidden">
+      <Image
+        src={heroImage}
+        alt={title}
+        widths={[640, 1024, 1600]}
+        sizes="100vw"
+        class="h-full w-full object-cover"
+      />
+    </div>
+  )}
+</header>

@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import logoMark from '../assets/brand/logo-mark.svg';
+import logoLockup from '../assets/brand/logo-lockup.svg';
+
+const navLinks = [
+  { label: 'Work', href: '/work' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Thinking', href: '/thinking' },
+  { label: 'Clients', href: '/clients' },
+  { label: 'Studio', href: '/studio' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
+---
+
+<header class="border-b border-material-stone/15 bg-material-limestone/95 backdrop-blur-sm">
+  <div class="container-wide">
+    <div class="flex h-20 items-center justify-between">
+      <a href="/" class="flex items-center" aria-label="McClelland Design Studio — home">
+        <Image src={logoMark} alt="" aria-hidden="true" class="h-9 w-9 sm:hidden" />
+        <Image src={logoLockup} alt="McClelland Design Studio" class="hidden h-9 w-auto sm:block" />
+      </a>
+
+      <nav aria-label="Primary" class="hidden lg:block">
+        <ul class="flex items-center gap-10 text-sm tracking-wide text-material-charcoal">
+          {navLinks.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                class:list={[
+                  'relative pb-1 transition-colors duration-300 hover:text-material-bronze',
+                  isActive(item.href) &&
+                    'text-material-bronze after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-material-bronze',
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <button
+        id="site-nav-toggle"
+        type="button"
+        class="p-2 text-material-charcoal lg:hidden"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="site-nav-mobile"
+      >
+        <svg id="site-nav-icon-open" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="site-nav-icon-close" class="hidden h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div
+  id="site-nav-mobile"
+  class="fixed inset-0 z-40 hidden bg-material-limestone lg:hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Site navigation"
+>
+  <nav aria-label="Mobile" class="flex h-full flex-col items-start gap-8 px-8 pt-28">
+    {navLinks.map((item) => (
+      <a
+        href={item.href}
+        aria-current={isActive(item.href) ? 'page' : undefined}
+        class="font-display text-3xl font-light text-material-charcoal transition-colors duration-300 hover:text-material-bronze"
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
+</div>
+
+<script>
+  const toggle = document.getElementById('site-nav-toggle');
+  const menu = document.getElementById('site-nav-mobile');
+  const iconOpen = document.getElementById('site-nav-icon-open');
+  const iconClose = document.getElementById('site-nav-icon-close');
+
+  let isOpen = false;
+
+  const setOpen = (open: boolean) => {
+    isOpen = open;
+    menu?.classList.toggle('hidden', !open);
+    toggle?.setAttribute('aria-expanded', String(open));
+    toggle?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    iconOpen?.classList.toggle('hidden', open);
+    iconClose?.classList.toggle('hidden', !open);
+    document.body.classList.toggle('overflow-hidden', open);
+  };
+
+  toggle?.addEventListener('click', () => setOpen(!isOpen));
+
+  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isOpen) {
+      setOpen(false);
+      toggle?.focus();
+    }
+  });
+</script>

@@ -1,0 +1,49 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  tone?: 'charcoal' | 'forest';
+}
+
+const {
+  eyebrow,
+  title,
+  body,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+  tone = 'charcoal',
+} = Astro.props;
+
+const toneClass = tone === 'forest' ? 'bg-material-forest' : 'bg-material-charcoal';
+---
+
+<section class:list={['section text-white', toneClass]}>
+  <div class="container-wide text-center">
+    {eyebrow && <span class="text-label text-material-bronze">{eyebrow}</span>}
+    <h2 class="mt-4 font-display font-light text-white">{title}</h2>
+    {body && <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/70">{body}</p>}
+    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a
+        href={primaryHref}
+        class="inline-flex items-center justify-center gap-2 border-2 border-material-limestone bg-material-limestone px-8 py-4 text-xs font-semibold uppercase tracking-wider text-material-charcoal transition-colors duration-300 hover:bg-transparent hover:text-material-limestone"
+      >
+        {primaryLabel}
+      </a>
+      {secondaryLabel && secondaryHref && (
+        <a
+          href={secondaryHref}
+          class="inline-flex items-center justify-center gap-2 border-2 border-white/30 px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white transition-colors duration-300 hover:border-white"
+        >
+          {secondaryLabel}
+        </a>
+      )}
+    </div>
+  </div>
+</section>
