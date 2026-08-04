@@ -1,26 +1,143 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
-import Hero from '../components/Hero.astro';
-import CursorFollow from '../components/CursorFollow.astro';
-import Proof from '../components/Proof.astro';
-import Offerings from '../components/Offerings.astro';
-import Portfolio from '../components/Portfolio.astro';
-import Process from '../components/Process.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import MainLayout from '../layouts/MainLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ClientLogoGrid from '../components/ClientLogoGrid.astro';
+import CTASection from '../components/CTASection.astro';
+
+// Structural scaffold for the homepage — see STRUCTURE_AUDIT.md §7.
+// No stock or fabricated content: only real, migrated work entries and
+// real client logos are used. Anywhere real photography doesn't exist yet
+// is an honest placeholder, not stock imagery.
+const workEntries = (
+  await getCollection('work', ({ data }) => data.section === 'work' && !data.draft)
+).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+const featuredEntry = workEntries.find((entry) => entry.data.featured) ?? workEntries[0];
 ---
 
-<Layout>
-  <div class="min-h-screen">
-    <CursorFollow />
-    <Navigation />
-    <Hero />
-    <Proof />
-    <Offerings />
-    <Portfolio />
-    <Process />
-    <Contact />
-    <Footer />
-  </div>
-</Layout>
+<MainLayout title="McClelland Design Studio | karlmcclelland.com">
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-material-stone/20 bg-material-limestone">
+    <div class="container-wide py-24 lg:py-32">
+      <div class="max-w-2xl">
+        <h1 class="font-display font-light text-material-charcoal">
+          We help businesses present themselves properly online.
+        </h1>
+        <p class="mt-6 text-label text-material-stone">
+          Photography / Walkthroughs / Websites / Google Business Optimisation
+        </p>
+        <a
+          href="/work"
+          class="mt-8 inline-flex items-center gap-2 text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal"
+        >
+          Explore our work →
+        </a>
+      </div>
+    </div>
+    <div class="flex items-center justify-center border-t border-material-stone/20 bg-material-stone/10 py-24">
+      <span class="text-label text-material-stone/60">Hero photography — pending real shoot</span>
+    </div>
+  </section>
+
+  <!-- Selected work -->
+  <section class="section-compact bg-white">
+    <div class="container-wide">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_2fr]">
+        <div>
+          <span class="text-label text-material-bronze">Selected Work</span>
+          <h2 class="mt-4 max-w-xs font-display font-light text-material-charcoal">
+            A working record, not a highlight reel.
+          </h2>
+          <a
+            href="/work"
+            class="mt-6 inline-flex items-center gap-2 text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal"
+          >
+            View all work →
+          </a>
+        </div>
+
+        {workEntries.length > 0 ? (
+          <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
+            {workEntries.map((entry) => <ProjectCard entry={entry} href={`/work/${entry.id}`} />)}
+          </div>
+        ) : (
+          <p class="text-material-charcoal/60">More work is on the way.</p>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured project -->
+  {featuredEntry && (
+    <section class="section-compact bg-material-charcoal text-white">
+      <div class="container-wide grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+        <div>
+          <span class="text-label text-material-bronze">Featured Work</span>
+          <h2 class="mt-4 font-display font-light text-white">{featuredEntry.data.title}</h2>
+          <p class="mt-4 max-w-md leading-relaxed text-white/70">{featuredEntry.data.summary}</p>
+          <a
+            href={`/work/${featuredEntry.id}`}
+            class="mt-6 inline-flex items-center gap-2 text-label text-material-bronze transition-colors duration-300 hover:text-white"
+          >
+            View project →
+          </a>
+        </div>
+        <div class="flex aspect-[4/3] items-center justify-center border border-white/10 bg-white/5">
+          {featuredEntry.data.heroImage ? (
+            <Image src={featuredEntry.data.heroImage} alt="" class="h-full w-full object-cover" />
+          ) : (
+            <span class="text-label text-white/30">Photography pending</span>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Selected clients -->
+  <section class="section-compact bg-material-limestone">
+    <div class="container-wide">
+      <span class="text-label text-material-bronze">Selected Clients</span>
+      <h2 class="mt-4 max-w-md font-display font-light text-material-charcoal">
+        Businesses who trust us to represent them at their best.
+      </h2>
+      <div class="mt-12">
+        <ClientLogoGrid />
+      </div>
+    </div>
+  </section>
+
+  <!-- Studio -->
+  <section class="section-compact bg-white">
+    <div class="container-wide grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+      <div class="flex aspect-[4/3] items-center justify-center border border-material-stone/20 bg-material-stone/10">
+        <span class="text-label text-material-stone/60">Photography pending</span>
+      </div>
+      <div>
+        <span class="text-label text-material-bronze">The Studio</span>
+        <h2 class="mt-4 font-display font-light text-material-charcoal">Led by Karl McClelland.</h2>
+        <p class="mt-4 max-w-md leading-relaxed text-material-charcoal/70">
+          Karl McClelland is the person clients work with. McClelland Design Studio is the
+          business — helping businesses become easier to find and easier to choose.
+        </p>
+        <a
+          href="/studio"
+          class="mt-6 inline-flex items-center gap-2 text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal"
+        >
+          About the studio →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTASection
+    eyebrow="Start a conversation"
+    title="Shall we talk about your business?"
+    body="If you'd like to discuss a project, have a question, or just want some honest advice, we'd love to hear from you."
+    primaryLabel="Get in touch"
+    primaryHref="/contact"
+    tone="forest"
+  />
+</MainLayout>
