@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from '../layouts/MainLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ClientLogoGrid from '../components/ClientLogoGrid.astro';
+import QuoteBlock from '../components/QuoteBlock.astro';
+
+const [featured] = await getCollection('work', ({ data }) => Boolean(data.quote) && !data.draft);
+---
+
+<MainLayout title="Clients | McClelland Design Studio">
+  <PageIntro
+    eyebrow="Clients"
+    title="Trusted by businesses who take their name seriously."
+    intro="A selection of the organisations we've worked with."
+  />
+
+  <div class="container-wide pb-24 lg:pb-32">
+    <ClientLogoGrid />
+  </div>
+
+  {featured?.data.quote && (
+    <div class="border-t border-material-stone/15 bg-material-limestone py-20 lg:py-28">
+      <div class="container-wide">
+        <QuoteBlock
+          text={featured.data.quote.text}
+          attribution={featured.data.quote.attribution}
+          role={featured.data.quote.role}
+        />
+      </div>
+    </div>
+  )}
+</MainLayout>

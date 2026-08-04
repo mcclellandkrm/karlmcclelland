@@ -1,0 +1,27 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import CTASection from '../components/CTASection.astro';
+---
+
+<MainLayout title="Studio | McClelland Design Studio">
+  <PageIntro
+    eyebrow="Studio"
+    title="McClelland Design Studio"
+    intro="[STUDIO INTRO — placeholder. Copy for this page is a Creative Director call per CLAUDE_PROJECT_BRIEF.md and hasn't been drafted yet.]"
+  />
+
+  <div class="container-wide pb-24 lg:pb-32">
+    <p class="max-w-2xl text-material-charcoal/60">
+      Karl McClelland is the person clients work with. McClelland Design Studio is the business.
+      [Further studio copy — process, philosophy, the person behind the work — to be drafted.]
+    </p>
+  </div>
+
+  <CTASection
+    eyebrow="Start a conversation"
+    title="Imagine your business presented to this standard."
+    primaryLabel="Get in touch"
+    primaryHref="/contact"
+  />
+</MainLayout>

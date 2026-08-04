@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const entries = (
+  await getCollection('work', ({ data }) => data.section === 'projects' && !data.draft)
+).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<MainLayout title="Projects | McClelland Design Studio">
+  <PageIntro
+    eyebrow="Projects"
+    title="Work we've taken on for its own sake."
+  />
+
+  <div class="container-wide pb-24 lg:pb-32">
+    {entries.length > 0 ? (
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {entries.map((entry) => <ProjectCard entry={entry} href={`/projects/${entry.id}`} />)}
+      </div>
+    ) : (
+      <p class="text-material-charcoal/60">Nothing here yet.</p>
+    )}
+  </div>
+</MainLayout>

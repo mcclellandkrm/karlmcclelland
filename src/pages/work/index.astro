@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const entries = (
+  await getCollection('work', ({ data }) => data.section === 'work' && !data.draft)
+).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<MainLayout title="Work | McClelland Design Studio">
+  <PageIntro
+    eyebrow="Work"
+    title="Real businesses, presented properly."
+    intro="A working record of the businesses we've helped become easier to find and easier to choose."
+  />
+
+  <div class="container-wide pb-24 lg:pb-32">
+    {entries.length > 0 ? (
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {entries.map((entry) => <ProjectCard entry={entry} href={`/work/${entry.id}`} />)}
+      </div>
+    ) : (
+      <p class="text-material-charcoal/60">More work is on the way.</p>
+    )}
+  </div>
+</MainLayout>
