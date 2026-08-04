@@ -1,5 +1,16 @@
 # karlmcclelland.com — Rebuild Source of Truth
 
+> [!WARNING]
+> LEGACY STRATEGY DOCUMENT
+>
+> This file reflects the previous direction for karlmcclelland.com.
+> It has been superseded for brand, positioning, navigation, page structure,
+> colour and design decisions by `CLAUDE_PROJECT_BRIEF.md`.
+>
+> Continue to use this file only for verified facts, statistics, credentials,
+> client names, contact information and operational details unless those are
+> explicitly replaced elsewhere.
+
 **Last updated:** 29 July 2026 (rev 2 — build complete, world-class standard + hero direction added)
 **Purpose:** The single reference for the karlmcclelland.com rebuild. Every decision about positioning, language, content, and build lives here. If another chat, a Claude Code session, or a future you contradicts this, this document wins until it's deliberately updated. Written to prevent the "many sources, scattered decisions" problem.
 
