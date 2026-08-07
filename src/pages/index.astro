@@ -6,6 +6,10 @@ import ProjectCard from '../components/ProjectCard.astro';
 import ClientLogoGrid from '../components/ClientLogoGrid.astro';
 import CTASection from '../components/CTASection.astro';
 
+// Test images for the CTA background — swap the import below to compare.
+// import ctaBackground from '../assets/home-page-photos/bandq_1.webp';
+import ctaBackground from '../assets/home-page-photos/bandq_2.webp';
+
 // Structural scaffold for the homepage — see STRUCTURE_AUDIT.md §7.
 // No stock or fabricated content: only real, migrated work entries and
 // real client logos are used. Anywhere real photography doesn't exist yet
@@ -139,5 +143,7 @@ const featuredEntry = workEntries.find((entry) => entry.data.featured) ?? workEn
     primaryLabel="Get in touch"
     primaryHref="/contact"
     tone="forest"
+    backgroundImage={ctaBackground}
+    parallax
   />
 </MainLayout>

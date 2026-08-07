@@ -1,4 +1,7 @@
 ---
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface Props {
   eyebrow?: string;
   title: string;
@@ -8,6 +11,8 @@ interface Props {
   secondaryLabel?: string;
   secondaryHref?: string;
   tone?: 'charcoal' | 'forest';
+  backgroundImage?: ImageMetadata;
+  parallax?: boolean;
 }
 
 const {
@@ -19,13 +24,32 @@ const {
   secondaryLabel,
   secondaryHref,
   tone = 'charcoal',
+  backgroundImage,
+  parallax = false,
 } = Astro.props;
 
 const toneClass = tone === 'forest' ? 'bg-material-forest' : 'bg-material-charcoal';
+
+const optimizedBg = backgroundImage
+  ? await getImage({ src: backgroundImage, width: 2400, format: 'webp' })
+  : null;
 ---
 
-<section class:list={['section text-white', toneClass]}>
-  <div class="container-wide text-center">
+<section class:list={['section relative overflow-hidden text-white', !optimizedBg && toneClass]}>
+  {optimizedBg && (
+    <>
+      <div
+        class:list={[
+          'absolute inset-0 bg-cover bg-center',
+          parallax && '[@media(hover:hover)_and_(pointer:fine)]:bg-fixed',
+        ]}
+        style={{ backgroundImage: `url(${optimizedBg.src})` }}
+      >
+      </div>
+      <div class="absolute inset-0 bg-material-charcoal/60"></div>
+    </>
+  )}
+  <div class="container-wide relative text-center">
     {eyebrow && <span class="text-label text-material-bronze">{eyebrow}</span>}
     <h2 class="mt-4 font-display font-light text-white">{title}</h2>
     {body && <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/70">{body}</p>}

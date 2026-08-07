@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import logoMark from '../assets/brand/logo-mark.svg';
-import logoLockup from '../assets/brand/logo-lockup.svg';
+import logo from '../assets/brand/SVG/MDS-logo-dfc.svg';
 
 const navLinks = [
   { label: 'Work', href: '/work' },
@@ -20,8 +19,7 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
   <div class="container-wide">
     <div class="flex h-20 items-center justify-between">
       <a href="/" class="flex items-center" aria-label="McClelland Design Studio — home">
-        <Image src={logoMark} alt="" aria-hidden="true" class="h-9 w-9 sm:hidden" />
-        <Image src={logoLockup} alt="McClelland Design Studio" class="hidden h-9 w-auto sm:block" />
+        <Image src={logo} alt="McClelland Design Studio" class="h-8 w-auto sm:h-9" />
       </a>
 
       <nav aria-label="Primary" class="hidden lg:block">

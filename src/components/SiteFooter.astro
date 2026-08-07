@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/brand/SVG/MDS-logo-wlsg.svg';
+
 const currentYear = new Date().getFullYear();
 
 const links = [
@@ -15,7 +18,7 @@ const links = [
   <div class="container-wide py-16">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
       <div>
-        <p class="font-display text-xl font-light text-white">McClelland Design Studio</p>
+        <Image src={logo} alt="McClelland Design Studio" class="h-9 w-auto" />
         <p class="mt-4 max-w-sm leading-relaxed text-white/60">
           We help businesses present themselves properly online.
         </p>
