@@ -1,15 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/brand/SVG/MDS-logo-dfc.svg';
+import { navLinks, site } from '../data/site';
 
-const navLinks = [
-  { label: 'Work', href: '/work' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Thinking', href: '/thinking' },
-  { label: 'Clients', href: '/clients' },
-  { label: 'Studio', href: '/studio' },
-  { label: 'Contact', href: '/contact' },
-];
 
 const currentPath = Astro.url.pathname;
 const isActive = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
@@ -18,8 +11,8 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
 <header class="border-b border-material-stone/15 bg-material-limestone/95 backdrop-blur-sm">
   <div class="container-wide">
     <div class="flex h-20 items-center justify-between">
-      <a href="/" class="flex items-center" aria-label="McClelland Design Studio — home">
-        <Image src={logo} alt="McClelland Design Studio" class="h-8 w-auto sm:h-9" />
+      <a href="/" class="flex items-center" aria-label={`${site.name} — home`}>
+        <Image src={logo} alt={site.name} class="h-8 w-auto sm:h-9" />
       </a>
 
       <nav aria-label="Primary" class="hidden lg:block">

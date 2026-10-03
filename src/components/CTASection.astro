@@ -13,6 +13,7 @@ interface Props {
   tone?: 'charcoal' | 'forest';
   backgroundImage?: ImageMetadata;
   parallax?: boolean;
+  steps?: { title: string; body: string }[];
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   tone = 'charcoal',
   backgroundImage,
   parallax = false,
+  steps = [],
 } = Astro.props;
 
 const toneClass = tone === 'forest' ? 'bg-material-forest' : 'bg-material-charcoal';
@@ -53,9 +55,21 @@ const optimizedBg = backgroundImage
     {eyebrow && <span class="text-label text-material-bronze">{eyebrow}</span>}
     <h2 class="mt-4 font-display font-light text-white">{title}</h2>
     {body && <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/70">{body}</p>}
+    {steps.length > 0 && (
+      <ol class="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-10 text-left md:grid-cols-3">
+        {steps.map((step, index) => (
+          <li class="border-t border-white/20 pt-6">
+            <span class="text-label text-material-oak">{String(index + 1).padStart(2, '0')}</span>
+            <h3 class="mt-3 font-display text-2xl font-light text-white">{step.title}</h3>
+            <p class="mt-3 leading-relaxed text-white/70">{step.body}</p>
+          </li>
+        ))}
+      </ol>
+    )}
     <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
       <a
         href={primaryHref}
+        {...(primaryHref.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         class="inline-flex items-center justify-center gap-2 border-2 border-material-limestone bg-material-limestone px-8 py-4 text-xs font-semibold uppercase tracking-wider text-material-charcoal transition-colors duration-300 hover:bg-transparent hover:text-material-limestone"
       >
         {primaryLabel}
@@ -63,6 +77,7 @@ const optimizedBg = backgroundImage
       {secondaryLabel && secondaryHref && (
         <a
           href={secondaryHref}
+          {...(secondaryHref.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           class="inline-flex items-center justify-center gap-2 border-2 border-white/30 px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white transition-colors duration-300 hover:border-white"
         >
           {secondaryLabel}

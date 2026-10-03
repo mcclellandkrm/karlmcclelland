@@ -30,9 +30,9 @@ const clients = [
 ];
 ---
 
-<ul class="grid grid-cols-2 gap-px bg-material-stone/15 sm:grid-cols-3 lg:grid-cols-4">
+<ul class="grid grid-cols-2 pl-px pt-px sm:grid-cols-3 lg:grid-cols-4">
   {clients.map((client) => (
-    <li class="flex items-center justify-center bg-white p-8">
+    <li class="flex items-center justify-center -ml-px -mt-px border border-material-stone/15 bg-white p-8">
       <Image
         src={client.logo}
         alt={client.name}

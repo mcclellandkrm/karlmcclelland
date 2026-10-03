@@ -1,0 +1,15 @@
+---
+import { stats } from '../data/site';
+---
+
+<dl class="grid grid-cols-3 gap-6 border-y border-material-stone/20 py-10">
+  {stats.map((stat) => (
+    <div>
+      <dt class="sr-only">{stat.label}</dt>
+      <dd>
+        <span class="block font-display text-4xl font-light text-material-charcoal sm:text-5xl">{stat.value}</span>
+        <span class="mt-2 block text-label text-material-stone">{stat.label}</span>
+      </dd>
+    </div>
+  ))}
+</dl>

@@ -1,219 +1,104 @@
 ---
-const nextSteps = [
-  "I'll review your enquiry and respond within 24 hours",
-  "We'll schedule a convenient time for the shoot",
-  "Your walkthrough goes live within 1-2 weeks",
-];
+import { site } from '../data/site';
+import { nextSteps } from '../data/next-steps';
+
+const fieldClass =
+  'w-full border-b border-material-stone/40 bg-transparent pb-3 text-base text-material-charcoal outline-none transition-colors duration-300 focus:border-material-charcoal';
+const labelClass = 'mb-2 block text-label text-material-stone';
 ---
 
-<section class="section bg-white" id="contact">
-  <div class="container-wide">
+<section class="container-wide pb-24 lg:pb-32">
+  <div class="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
+    <div>
+      <ol class="space-y-10">
+        {nextSteps.steps.map((step, index) => (
+          <li class="border-t border-material-stone/20 pt-6">
+            <span class="text-label text-material-bronze">{String(index + 1).padStart(2, '0')}</span>
+            <h2 class="mt-3 font-display text-2xl font-light text-material-charcoal">{step.title}</h2>
+            <p class="mt-3 max-w-md leading-relaxed text-material-charcoal/70">{step.body}</p>
+          </li>
+        ))}
+      </ol>
 
-    <!-- Header -->
-    <div data-reveal class="text-center mb-20">
-      <h2 class="text-4xl md:text-5xl font-display text-black mb-4 font-light">
-        Let's Work Together
-      </h2>
-      <p class="text-neutral-500 text-sm uppercase tracking-[0.3em]">
-        Start a Conversation
-      </p>
+      <div class="mt-12 flex flex-col gap-4 sm:flex-row">
+        <a
+          href={site.whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center border-2 border-material-charcoal bg-material-charcoal px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white transition-colors duration-300 hover:bg-transparent hover:text-material-charcoal"
+        >
+          WhatsApp a video
+        </a>
+        <a
+          href={site.bookingHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center border-2 border-material-stone/40 px-8 py-4 text-xs font-semibold uppercase tracking-wider text-material-charcoal transition-colors duration-300 hover:border-material-charcoal"
+        >
+          Book a call
+        </a>
+      </div>
+
+      <dl class="mt-12 space-y-4 border-t border-material-stone/20 pt-8 text-material-charcoal/80">
+        <div>
+          <dt class="text-label text-material-stone">Phone</dt>
+          <dd class="mt-1"><a href={site.phoneHref} class="hover:text-material-bronze">{site.phoneDisplay}</a></dd>
+        </div>
+        <div>
+          <dt class="text-label text-material-stone">Email</dt>
+          <dd class="mt-1"><a href={`mailto:${site.email}`} class="hover:text-material-bronze">{site.email}</a></dd>
+        </div>
+        <div>
+          <dt class="text-label text-material-stone">Based in</dt>
+          <dd class="mt-1">{site.base}</dd>
+        </div>
+      </dl>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+    <div class="border border-material-stone/20 bg-material-limestone/40 p-10 lg:p-12">
+      <h2 class="font-display text-2xl font-light text-material-charcoal">Or drop me a line</h2>
+      <p class="mt-3 text-material-charcoal/70">Tell me a little about your business and I'll come back to you.</p>
 
-      <!-- Left side - Info -->
-      <div data-reveal>
-        <p class="text-xl leading-relaxed text-neutral-600 mb-12">
-          Ready to showcase your business with a real 360° walkthrough?
-          Whether you're a local cafe or a luxury European property, let's discuss how to bring your space to life.
+      <form id="contact-form" class="mt-10 space-y-8">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div>
+            <label for="name" class={labelClass}>Your name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required class={fieldClass} />
+          </div>
+          <div>
+            <label for="business" class={labelClass}>Business</label>
+            <input type="text" id="business" name="business" autocomplete="organization" required class={fieldClass} />
+          </div>
+        </div>
+        <div>
+          <label for="email" class={labelClass}>Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required class={fieldClass} />
+        </div>
+        <div>
+          <label for="phone" class={labelClass}>Phone (optional)</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" class={fieldClass} />
+        </div>
+        <div>
+          <label for="message" class={labelClass}>About your space</label>
+          <textarea id="message" name="message" rows="4" class:list={[fieldClass, 'resize-none']}></textarea>
+        </div>
+
+        <button
+          type="submit"
+          id="contact-submit"
+          class="w-full border-2 border-material-charcoal bg-material-charcoal px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white transition-colors duration-300 hover:bg-transparent hover:text-material-charcoal disabled:cursor-not-allowed disabled:opacity-70"
+        >
+          Send
+        </button>
+
+        <p id="contact-success" class="hidden border border-material-forest/30 bg-material-forest/5 p-4 text-center text-material-charcoal" role="status">
+          Thanks — I'll be in touch shortly.
         </p>
-
-        <div class="space-y-8 mb-12">
-          <div class="flex items-start gap-5">
-            <div class="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-neutral-100">
-              <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <div>
-              <h4 class="text-lg font-display text-black font-light mb-1">Email</h4>
-              <a href="mailto:me@karlmcclelland.com" class="group relative text-base text-neutral-600 hover:text-black transition-colors">
-                me@karlmcclelland.com
-                <span class="absolute bottom-[-2px] left-0 h-[1px] w-0 bg-accent-ember transition-all duration-300 group-hover:w-full"></span>
-              </a>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-5">
-            <div class="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-neutral-100">
-              <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-            </div>
-            <div>
-              <h4 class="text-lg font-display text-black font-light mb-1">Phone</h4>
-              <a href="tel:+447960044486" class="group relative text-base text-neutral-600 hover:text-black transition-colors">
-                +44 7960 044 486
-                <span class="absolute bottom-[-2px] left-0 h-[1px] w-0 bg-accent-ember transition-all duration-300 group-hover:w-full"></span>
-              </a>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-5">
-            <div class="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-neutral-100">
-              <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <div>
-              <h4 class="text-lg font-display text-black font-light mb-1">Location</h4>
-              <p class="text-base text-neutral-600">
-                Based in Belfast. Working across Ireland, UK & Europe.
-              </p>
-            </div>
-          </div>
-
-          <!-- Book a Call Button -->
-          <div class="pt-4">
-            <a
-              href="https://cal.com/karl-mcclelland-m2ppu8"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-3 btn-primary"
-            >
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              Book a Call
-            </a>
-          </div>
-
-          <!-- Payment Methods -->
-          <div class="pt-4 border-t border-neutral-200">
-            <h4 class="text-lg font-display text-black font-light mb-4">Payment Methods</h4>
-            <div class="flex items-center gap-4">
-              <div class="flex items-center gap-2 text-sm text-neutral-600">
-                <span class="font-medium">SumUp</span>
-              </div>
-              <div class="flex items-center gap-2 text-sm text-neutral-600">
-                <span class="font-medium">Revolut</span>
-              </div>
-              <div class="flex items-center gap-2 text-sm text-neutral-600">
-                <span class="font-medium">Stripe</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- What Happens Next -->
-        <div class="pt-10 border-t border-neutral-200">
-          <h3 class="text-2xl font-display text-black font-light mb-6">What Happens Next</h3>
-          <ol class="space-y-4">
-            {nextSteps.map((step, index) => (
-              <li class="flex items-start gap-4">
-                <span class="flex items-center justify-center flex-shrink-0 w-8 h-8 text-sm font-bold text-white bg-black">
-                  {index + 1}
-                </span>
-                <p class="text-base text-neutral-600 pt-1">{step}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </div>
-
-      <!-- Right side - Form -->
-      <div data-reveal class="bg-neutral-50 border border-neutral-200 p-10 lg:p-12">
-        <h3 class="text-2xl font-display text-black font-light mb-8">Get Your Quote</h3>
-
-        <form id="contact-form" class="space-y-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label for="name" class="block mb-2 text-sm uppercase tracking-[0.2em] text-neutral-500">
-                Your Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                class="w-full pb-3 bg-transparent border-b border-neutral-300 focus:border-black outline-none text-black text-base transition-colors duration-300"
-              />
-            </div>
-
-            <div>
-              <label for="business" class="block mb-2 text-sm uppercase tracking-[0.2em] text-neutral-500">
-                Business Name
-              </label>
-              <input
-                type="text"
-                id="business"
-                name="business"
-                required
-                class="w-full pb-3 bg-transparent border-b border-neutral-300 focus:border-black outline-none text-black text-base transition-colors duration-300"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label for="email" class="block mb-2 text-sm uppercase tracking-[0.2em] text-neutral-500">
-              Email Address
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              class="w-full pb-3 bg-transparent border-b border-neutral-300 focus:border-black outline-none text-black text-base transition-colors duration-300"
-            />
-          </div>
-
-          <div>
-            <label for="phone" class="block mb-2 text-sm uppercase tracking-[0.2em] text-neutral-500">
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              class="w-full pb-3 bg-transparent border-b border-neutral-300 focus:border-black outline-none text-black text-base transition-colors duration-300"
-            />
-          </div>
-
-          <div>
-            <label for="message" class="block mb-2 text-sm uppercase tracking-[0.2em] text-neutral-500">
-              Tell me about your project
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="3"
-              class="w-full pb-3 bg-transparent border-b border-neutral-300 focus:border-black outline-none text-black text-base resize-none transition-colors duration-300"
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            id="contact-submit"
-            class="btn-primary w-full disabled:opacity-70 disabled:cursor-not-allowed"
-          >
-            Request Quote
-          </button>
-
-          <div id="contact-success" class="hidden p-4 text-center bg-neutral-100 border border-neutral-300">
-            <p class="text-base text-black">Thanks for your interest! I'll be in touch within 24 hours.</p>
-          </div>
-
-          <div id="contact-error" class="hidden p-4 text-center bg-red-50 border border-red-200">
-            <p class="text-base text-red-600">Something went wrong. Please email me directly at me@karlmcclelland.com</p>
-          </div>
-
-          <p class="text-sm text-center text-neutral-500">
-            No obligation. Pricing starts from £599. Availability within 24 hours.
-          </p>
-        </form>
-      </div>
-
+        <p id="contact-error" class="hidden border border-material-copper/40 bg-material-copper/5 p-4 text-center text-material-charcoal" role="alert">
+          Something went wrong. Please email me directly at {site.email}.
+        </p>
+        <p class="text-center text-sm text-material-stone">No obligation, no hard sell.</p>
+      </form>
     </div>
   </div>
 </section>
@@ -239,7 +124,7 @@ const nextSteps = [
     try {
       const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(data),
       });
 
@@ -254,7 +139,7 @@ const nextSteps = [
       errorEl?.classList.remove('hidden');
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Request Quote';
+      submitBtn.textContent = 'Send';
     }
   });
 </script>

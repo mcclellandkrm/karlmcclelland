@@ -1,49 +1,60 @@
 ---
 import '../styles/global.css';
+import { site } from '../data/site';
 
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
+// "Virtual tours" stays in titles/descriptions for search, never as the
+// on-page headline (CLAUDE_PROJECT_BRIEF.md → Virtual Tours).
 const {
-  title = 'Karl McClelland - 360° Walkthroughs | Northern Ireland',
-  description = "Google Certified Street View photographer creating real 360° walkthroughs for businesses across Northern Ireland. From Belfast to Ballymoney - get found on Google, get chosen by customers.",
+  title = `${site.name} | 360° Virtual Tours, Photography & Websites | Northern Ireland`,
+  description = `${site.person} helps Northern Ireland businesses present themselves properly online — interactive 360° virtual tours, Google Street View, photography and websites. Based in Belfast and Limavady.`,
+  noindex = false,
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, site.url).href;
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: site.name,
+  founder: { '@type': 'Person', name: site.person },
+  url: site.url,
+  email: site.email,
+  telephone: '+447960044486',
+  areaServed: site.areaServed,
+  address: { '@type': 'PostalAddress', addressLocality: 'Belfast', addressCountry: 'GB' },
+  sameAs: [site.linkedinHref, site.instagramHref],
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Primary Meta Tags -->
     <title>{title}</title>
-    <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="360 walkthrough Northern Ireland, real photo walkthrough Belfast, Google Street View walkthrough, 360 photography NI, business walkthrough, Google Certified photographer, Belfast 360 walkthrough, virtual tour Northern Ireland" />
-    <meta name="author" content="Karl McClelland" />
+    <meta name="author" content={site.person} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://karlmcclelland.com/" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://karlmcclelland.com/og-image.jpg" />
+    <meta name="twitter:card" content="summary" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://karlmcclelland.com/" />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="https://karlmcclelland.com/og-image.jpg" />
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://karlmcclelland.com/" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <slot />

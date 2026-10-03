@@ -1,0 +1,28 @@
+---
+import { getWorkBySector } from '../data/work';
+
+// "Find work like yours" — one click from any kind of business to the
+// closest examples on /work.
+const sectors = await getWorkBySector();
+---
+
+{sectors.length > 0 && (
+  <ul class="grid grid-cols-1 pl-px pt-px sm:grid-cols-2 lg:grid-cols-4">
+    {sectors.map((sector) => (
+      <li class="-ml-px -mt-px border border-material-stone/20 bg-white">
+        <a
+          href={`/work#${sector.id}`}
+          class="group flex h-full flex-col justify-between gap-6 p-8 transition-colors duration-300 hover:bg-material-limestone/60"
+        >
+          <span>
+            <span class="block font-display text-xl font-light text-material-charcoal">{sector.label}</span>
+            <span class="mt-2 block text-sm text-material-stone">{sector.examples}</span>
+          </span>
+          <span class="text-label text-material-bronze transition-colors duration-300 group-hover:text-material-charcoal">
+            {sector.entries.length} {sector.entries.length === 1 ? 'example' : 'examples'} →
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+)}

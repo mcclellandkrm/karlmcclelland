@@ -1,29 +1,22 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/brand/SVG/MDS-logo-wlsg.svg';
+import { navLinks, site } from '../data/site';
 
 const currentYear = new Date().getFullYear();
 
-const links = [
-  { label: 'Work', href: '/work' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Thinking', href: '/thinking' },
-  { label: 'Clients', href: '/clients' },
-  { label: 'Studio', href: '/studio' },
-  { label: 'Contact', href: '/contact' },
-];
 ---
 
 <footer class="border-t border-material-stone/20 bg-material-charcoal text-white">
   <div class="container-wide py-16">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
       <div>
-        <Image src={logo} alt="McClelland Design Studio" class="h-9 w-auto" />
+        <Image src={logo} alt={site.name} class="h-9 w-auto" />
         <p class="mt-4 max-w-sm leading-relaxed text-white/60">
-          We help businesses present themselves properly online.
+          {site.tagline}
         </p>
         <a
-          href="https://www.linkedin.com/in/karlmcclelland"
+          href={site.linkedinHref}
           target="_blank"
           rel="noopener noreferrer"
           class="mt-6 inline-flex h-10 w-10 items-center justify-center border border-white/20 text-white/60 transition-colors duration-300 hover:border-white hover:text-white"
@@ -38,7 +31,7 @@ const links = [
       <div>
         <p class="text-label text-white/40">Navigate</p>
         <ul class="mt-6 space-y-3">
-          {links.map((link) => (
+          {navLinks.map((link) => (
             <li>
               <a href={link.href} class="text-white/70 transition-colors duration-300 hover:text-white">
                 {link.label}
@@ -51,16 +44,17 @@ const links = [
       <div>
         <p class="text-label text-white/40">Get In Touch</p>
         <ul class="mt-6 space-y-3 text-white/70">
-          <li><a href="mailto:me@karlmcclelland.com" class="transition-colors duration-300 hover:text-white">me@karlmcclelland.com</a></li>
-          <li><a href="tel:+447960044486" class="transition-colors duration-300 hover:text-white">+44 7960 044 486</a></li>
-          <li>Belfast, Northern Ireland</li>
+          <li><a href={`mailto:${site.email}`} class="transition-colors duration-300 hover:text-white">{site.email}</a></li>
+          <li><a href={site.phoneHref} class="transition-colors duration-300 hover:text-white">{site.phoneDisplay}</a></li>
+          <li><a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" class="transition-colors duration-300 hover:text-white">WhatsApp</a></li>
+          <li>{site.base}</li>
         </ul>
       </div>
     </div>
 
     <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 md:flex-row">
-      <p>© {currentYear} McClelland Design Studio.</p>
-      <p>Google Street View Trusted Photographer</p>
+      <p>© {currentYear} {site.name}.</p>
+      <p>360° virtual tours · Google Street View · Photography · Websites</p>
     </div>
   </div>
 </footer>

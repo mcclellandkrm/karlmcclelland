@@ -1,111 +1,110 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import MainLayout from '../layouts/MainLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ClientLogoGrid from '../components/ClientLogoGrid.astro';
 import CTASection from '../components/CTASection.astro';
+import SectorNav from '../components/SectorNav.astro';
+import WalkthroughEmbed from '../components/WalkthroughEmbed.astro';
+import Stats from '../components/Stats.astro';
+import { getPublishedWork } from '../data/work';
+import { sectorLabel } from '../data/sectors';
+import { nextSteps } from '../data/next-steps';
+import { site } from '../data/site';
 
 // Test images for the CTA background — swap the import below to compare.
 // import ctaBackground from '../assets/home-page-photos/bandq_1.webp';
 import ctaBackground from '../assets/home-page-photos/bandq_2.webp';
 
-// Structural scaffold for the homepage — see STRUCTURE_AUDIT.md §7.
-// No stock or fabricated content: only real, migrated work entries and
-// real client logos are used. Anywhere real photography doesn't exist yet
-// is an honest placeholder, not stock imagery.
-const workEntries = (
-  await getCollection('work', ({ data }) => data.section === 'work' && !data.draft)
-).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
-
-const featuredEntry = workEntries.find((entry) => entry.data.featured) ?? workEntries[0];
+// Only real, published work and real client logos — no stock, no fabricated
+// case studies. The hero leads with a live walkthrough: demonstrate, don't explain.
+const workEntries = await getPublishedWork();
+const withWalkthrough = workEntries.filter((entry) => entry.data.walkthroughUrl);
+const heroEntry = withWalkthrough.find((entry) => entry.data.featured) ?? withWalkthrough[0];
+const recentWork = workEntries.filter((entry) => entry !== heroEntry).slice(0, 3);
 ---
 
-<MainLayout title="McClelland Design Studio | karlmcclelland.com">
+<MainLayout>
   <!-- Hero -->
-  <section class="relative overflow-hidden border-b border-material-stone/20 bg-material-limestone">
-    <div class="container-wide py-24 lg:py-32">
-      <div class="max-w-2xl">
+  <section class="border-b border-material-stone/20 bg-material-limestone">
+    <div class="container-wide py-20 lg:py-28">
+      <div class="max-w-3xl">
         <h1 class="font-display font-light text-material-charcoal">
           We help businesses present themselves properly online.
         </h1>
         <p class="mt-6 text-label text-material-stone">
-          Photography / Walkthroughs / Websites / Google Business Optimisation
+          360° Walkthroughs / Photography / Google Business / Websites
         </p>
-        <a
-          href="/work"
-          class="mt-8 inline-flex items-center gap-2 text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal"
-        >
-          Explore our work →
+      </div>
+    </div>
+    {heroEntry?.data.walkthroughUrl && (
+      <div class="container-wide pb-16 lg:pb-20">
+        <WalkthroughEmbed src={heroEntry.data.walkthroughUrl} title={heroEntry.data.title} poster={heroEntry.data.heroImage} />
+        <div class="mt-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline">
+          <p class="text-material-charcoal/70">
+            <span class="text-material-charcoal">{heroEntry.data.title}</span>
+            {heroEntry.data.location && <> · {heroEntry.data.location}</>} · {sectorLabel(heroEntry.data.sector)}
+          </p>
+          <a
+            href={`/work/${heroEntry.id}`}
+            class="text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal"
+          >
+            See the project →
+          </a>
+        </div>
+      </div>
+    )}
+  </section>
+
+  <!-- Why it matters -->
+  <section class="section-compact bg-white">
+    <div class="container-wide grid grid-cols-1 gap-12 lg:grid-cols-[1fr_2fr]">
+      <span class="text-label text-material-bronze">Why it matters</span>
+      <div>
+        <h2 class="max-w-2xl font-display font-light text-material-charcoal">
+          Customers look before they visit.
+        </h2>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-material-charcoal/70">
+          When someone is choosing between you and the place next door, they pick the one they can
+          already picture themselves in. The listing that lets people step inside wins the click. The
+          one that doesn't quietly loses it, and never finds out.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Find work like yours -->
+  <section class="section-compact border-t border-material-stone/15 bg-material-limestone/40">
+    <div class="container-wide">
+      <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+        <div>
+          <span class="text-label text-material-bronze">Find a business like yours</span>
+          <h2 class="mt-4 max-w-md font-display font-light text-material-charcoal">See it done for someone like you.</h2>
+        </div>
+        <a href="/work" class="text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal">
+          View all work →
         </a>
       </div>
-    </div>
-    <div class="flex items-center justify-center border-t border-material-stone/20 bg-material-stone/10 py-24">
-      <span class="text-label text-material-stone/60">Hero photography — pending real shoot</span>
+      <div class="mt-12">
+        <SectorNav />
+      </div>
+      {recentWork.length > 0 && (
+        <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {recentWork.map((entry) => <ProjectCard entry={entry} />)}
+        </div>
+      )}
     </div>
   </section>
-
-  <!-- Selected work -->
-  <section class="section-compact bg-white">
-    <div class="container-wide">
-      <div class="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_2fr]">
-        <div>
-          <span class="text-label text-material-bronze">Selected Work</span>
-          <h2 class="mt-4 max-w-xs font-display font-light text-material-charcoal">
-            A working record, not a highlight reel.
-          </h2>
-          <a
-            href="/work"
-            class="mt-6 inline-flex items-center gap-2 text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal"
-          >
-            View all work →
-          </a>
-        </div>
-
-        {workEntries.length > 0 ? (
-          <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
-            {workEntries.map((entry) => <ProjectCard entry={entry} href={`/work/${entry.id}`} />)}
-          </div>
-        ) : (
-          <p class="text-material-charcoal/60">More work is on the way.</p>
-        )}
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured project -->
-  {featuredEntry && (
-    <section class="section-compact bg-material-charcoal text-white">
-      <div class="container-wide grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-        <div>
-          <span class="text-label text-material-bronze">Featured Work</span>
-          <h2 class="mt-4 font-display font-light text-white">{featuredEntry.data.title}</h2>
-          <p class="mt-4 max-w-md leading-relaxed text-white/70">{featuredEntry.data.summary}</p>
-          <a
-            href={`/work/${featuredEntry.id}`}
-            class="mt-6 inline-flex items-center gap-2 text-label text-material-bronze transition-colors duration-300 hover:text-white"
-          >
-            View project →
-          </a>
-        </div>
-        <div class="flex aspect-[4/3] items-center justify-center border border-white/10 bg-white/5">
-          {featuredEntry.data.heroImage ? (
-            <Image src={featuredEntry.data.heroImage} alt="" class="h-full w-full object-cover" />
-          ) : (
-            <span class="text-label text-white/30">Photography pending</span>
-          )}
-        </div>
-      </div>
-    </section>
-  )}
 
   <!-- Selected clients -->
-  <section class="section-compact bg-material-limestone">
+  <section class="section-compact bg-white">
     <div class="container-wide">
       <span class="text-label text-material-bronze">Selected Clients</span>
       <h2 class="mt-4 max-w-md font-display font-light text-material-charcoal">
-        Businesses who trust us to represent them at their best.
+        Trusted by names you know.
       </h2>
+      <div class="mt-12">
+        <Stats />
+      </div>
       <div class="mt-12">
         <ClientLogoGrid />
       </div>
@@ -113,17 +112,18 @@ const featuredEntry = workEntries.find((entry) => entry.data.featured) ?? workEn
   </section>
 
   <!-- Studio -->
-  <section class="section-compact bg-white">
+  <section class="section-compact border-t border-material-stone/15 bg-white">
     <div class="container-wide grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
       <div class="flex aspect-[4/3] items-center justify-center border border-material-stone/20 bg-material-stone/10">
-        <span class="text-label text-material-stone/60">Photography pending</span>
+        <span class="text-label text-material-stone/60">Portrait of Karl — pending</span>
       </div>
       <div>
         <span class="text-label text-material-bronze">The Studio</span>
-        <h2 class="mt-4 font-display font-light text-material-charcoal">Led by Karl McClelland.</h2>
+        <h2 class="mt-4 font-display font-light text-material-charcoal">You'll work with Karl.</h2>
         <p class="mt-4 max-w-md leading-relaxed text-material-charcoal/70">
-          Karl McClelland is the person clients work with. McClelland Design Studio is the
-          business — helping businesses become easier to find and easier to choose.
+          {site.person} is the person behind every walkthrough, from the first walk round to the
+          finished tour. Based in Belfast and Limavady, working with businesses right across
+          Northern Ireland.
         </p>
         <a
           href="/studio"
@@ -135,15 +135,5 @@ const featuredEntry = workEntries.find((entry) => entry.data.featured) ?? workEn
     </div>
   </section>
 
-  <!-- CTA -->
-  <CTASection
-    eyebrow="Start a conversation"
-    title="Shall we talk about your business?"
-    body="If you'd like to discuss a project, have a question, or just want some honest advice, we'd love to hear from you."
-    primaryLabel="Get in touch"
-    primaryHref="/contact"
-    tone="forest"
-    backgroundImage={ctaBackground}
-    parallax
-  />
+  <CTASection {...nextSteps} tone="forest" backgroundImage={ctaBackground} parallax />
 </MainLayout>

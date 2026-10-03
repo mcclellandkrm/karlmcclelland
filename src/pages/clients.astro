@@ -4,30 +4,40 @@ import MainLayout from '../layouts/MainLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import ClientLogoGrid from '../components/ClientLogoGrid.astro';
 import QuoteBlock from '../components/QuoteBlock.astro';
+import Stats from '../components/Stats.astro';
+import CTASection from '../components/CTASection.astro';
+import { nextSteps } from '../data/next-steps';
+import { site } from '../data/site';
 
-const [featured] = await getCollection('work', ({ data }) => Boolean(data.quote) && !data.draft);
+const quotes = (await getCollection('work', ({ data }) => Boolean(data.quote) && !data.draft)).map(
+  (entry) => entry.data.quote!
+);
 ---
 
-<MainLayout title="Clients | McClelland Design Studio">
+<MainLayout
+  title={`Clients | ${site.name}`}
+  description="Brands and businesses Karl McClelland has photographed and built 360° walkthroughs for, from Toyota and Hilti to the Lyric Theatre and SSE Arena."
+>
   <PageIntro
     eyebrow="Clients"
-    title="Trusted by businesses who take their name seriously."
-    intro="A selection of the organisations we've worked with."
+    title="Trusted by names you know."
+    intro="A selection of the organisations Karl has photographed and built walkthroughs for."
   />
 
   <div class="container-wide pb-24 lg:pb-32">
+    <div class="mb-16"><Stats /></div>
     <ClientLogoGrid />
   </div>
 
-  {featured?.data.quote && (
+  {quotes.length > 0 && (
     <div class="border-t border-material-stone/15 bg-material-limestone py-20 lg:py-28">
-      <div class="container-wide">
-        <QuoteBlock
-          text={featured.data.quote.text}
-          attribution={featured.data.quote.attribution}
-          role={featured.data.quote.role}
-        />
+      <div class="container-wide space-y-20">
+        {quotes.map((quote) => (
+          <QuoteBlock text={quote.text} attribution={quote.attribution} role={quote.role} />
+        ))}
       </div>
     </div>
   )}
+
+  <CTASection {...nextSteps} tone="forest" />
 </MainLayout>

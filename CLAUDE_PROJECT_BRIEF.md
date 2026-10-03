@@ -165,6 +165,25 @@ NOT
 
 ---
 
+# Audience & Role of the Site (decided 2026-10-01)
+
+The site's first job is to back up Karl's outreach emails.
+
+Karl emails businesses large and small across Northern Ireland — industrial and trade, showrooms and retail, restaurants and hotels, offices, schools, developments. The recipient (owner, CEO, showroom or sales manager) clicks the website link in the signature and, within a minute, needs four answers:
+
+1. **Is this real?** An established business, run by someone expert in the field.
+2. **Has he done this for a business like mine?** If not exactly, then something close. Work is organised by type of business so a visitor finds "someone like me" in one click.
+3. **What would mine look like?** The low-pressure route in: WhatsApp a quick video of the space → ballpark figure and/or test 360s → Karl calls in and is shown round.
+4. **Is it a hassle, is it expensive?** Definitely not a hassle. Talk about value and investment, and the cost of *not* being seen — especially in hospitality, where the customer just clicks on the next venue.
+
+Lead with real walkthroughs embedded on the page — demonstrate, don't explain. Put Karl on the page: real photography of him, local presence (Belfast and Limavady).
+
+Not featured: equipment and software, pricing tiers, process diagrams, gimmicks. A "from" price is still an open question.
+
+Credentials: Google's Trusted Photographer programme has ended, so the site doesn't claim the badge. Client logos are all backed by Karl's own work (B&Q store photography in Letterkenny, Navan and Waterford; Google tours for Hilti and SSE; full Toyota photography).
+
+---
+
 # Visual Direction
 
 Primary influences:
@@ -272,13 +291,9 @@ Honest.
 
 # Navigation Direction
 
-Current thinking:
+Decided 2026-10-01:
 
 Work
-
-Projects
-
-Thinking
 
 Clients
 
@@ -286,7 +301,7 @@ Studio
 
 Contact
 
-This may evolve.
+/projects folded into /work. /thinking removed for now — it returns later as **Labs** (narration, accessibility and similar experiments) once there is real content.
 
 ---
 

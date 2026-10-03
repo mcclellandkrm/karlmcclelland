@@ -1,21 +1,25 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { sectorIds } from './data/sectors';
 
-// Single flexible schema shared by /work and /projects (CLAUDE_PROJECT_BRIEF.md
-// nav lists both; the brief doesn't define what separates them, so entries
-// self-assign via `section` rather than living in two duplicate schemas).
-// See STRUCTURE_AUDIT.md §3–4.
+// One collection for all case studies (/projects was folded into /work).
+// Entries are grouped on /work by `sector` so a visitor can find a business
+// like theirs; `services` lets what we do emerge through the work rather than
+// leading with a services list (CLAUDE_PROJECT_BRIEF.md → Services).
 const work = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/work' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
       client: z.string().optional(),
-      section: z.enum(['work', 'projects']).default('work'),
-      category: z.array(z.string()).default([]),
+      sector: z.enum(sectorIds),
+      services: z.array(z.string()).default([]),
       location: z.string().optional(),
       summary: z.string(),
-      externalUrl: z.string().url().optional(),
+      // One line on what the work did for the client.
+      outcome: z.string().optional(),
+      // Embeddable walkthrough URL (walkinto.in embed, Pano2VR export, Google Maps embed).
+      walkthroughUrl: z.string().url().optional(),
       heroImage: image().optional(),
       gallery: z
         .array(
