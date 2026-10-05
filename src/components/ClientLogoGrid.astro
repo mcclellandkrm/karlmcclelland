@@ -15,7 +15,14 @@ import toyotaLogo from '../assets/client-logos/toyota-logo.svg';
 // Static grid — replaces ClientLogos.astro's auto-scrolling marquee.
 // See STRUCTURE_AUDIT.md: a self-animating carousel reads as the kind of
 // "tech agency" flourish the brief explicitly rules out.
-const clients = [
+interface Props {
+  // Client names to show, in this order. Omit to show every client.
+  only?: string[];
+}
+
+const { only } = Astro.props;
+
+const allClients = [
   { name: 'Toyota', logo: toyotaLogo },
   { name: 'Hyundai', logo: hyundaiLogo },
   { name: 'Skoda', logo: skodaLogo },
@@ -28,9 +35,13 @@ const clients = [
   { name: 'Odyssey Arena', logo: odysseyLogo },
   { name: 'Grand Opera House', logo: gohLogo },
 ];
+
+const clients = only
+  ? only.map((name) => allClients.find((client) => client.name === name)).filter((client) => client !== undefined)
+  : allClients;
 ---
 
-<ul class="grid grid-cols-2 pl-px pt-px sm:grid-cols-3 lg:grid-cols-4">
+<ul class:list={['grid grid-cols-2 pl-px pt-px sm:grid-cols-3', only && only.length === 6 ? 'lg:grid-cols-6' : 'lg:grid-cols-4']}>
   {clients.map((client) => (
     <li class="flex items-center justify-center -ml-px -mt-px border border-material-stone/15 bg-white p-8">
       <Image

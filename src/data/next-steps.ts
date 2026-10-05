@@ -13,7 +13,7 @@ export const nextSteps = {
     },
     {
       title: 'Get a ballpark',
-      body: "I'll come back with a ballpark figure and what I'd suggest — or take a few test 360s so you can see your own space first.",
+      body: "I'll come back with a ballpark figure and what I'd suggest, or take a few test 360s so you can see your own space first.",
     },
     {
       title: 'I call in, you show me round',

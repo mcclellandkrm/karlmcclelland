@@ -1,62 +1,93 @@
 ---
+import { Image } from 'astro:assets';
 import MainLayout from '../layouts/MainLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 import ClientLogoGrid from '../components/ClientLogoGrid.astro';
 import CTASection from '../components/CTASection.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import SectorNav from '../components/SectorNav.astro';
 import WalkthroughEmbed from '../components/WalkthroughEmbed.astro';
 import Stats from '../components/Stats.astro';
-import { getPublishedWork } from '../data/work';
-import { sectorLabel } from '../data/sectors';
+import { getPublishedWork, getWorkBySector } from '../data/work';
 import { nextSteps } from '../data/next-steps';
-import { site } from '../data/site';
+import { featuredTestimonial, googleCredential, homepageClients } from '../data/proof';
+import streetViewMark from '../../public/logos/googlelogos/streetview-logo.svg';
 
-// Test images for the CTA background — swap the import below to compare.
-// import ctaBackground from '../assets/home-page-photos/bandq_1.webp';
-import ctaBackground from '../assets/home-page-photos/bandq_2.webp';
-
-// Only real, published work and real client logos — no stock, no fabricated
-// case studies. The hero leads with a live walkthrough: demonstrate, don't explain.
+// Homepage structure is frozen by Rev 3.1 Decisions, section 6. Each section
+// does one job. Only real, published work; no stock, no placeholder case studies.
 const workEntries = await getPublishedWork();
-const withWalkthrough = workEntries.filter((entry) => entry.data.walkthroughUrl);
-const heroEntry = withWalkthrough.find((entry) => entry.data.featured) ?? withWalkthrough[0];
-const recentWork = workEntries.filter((entry) => entry !== heroEntry).slice(0, 3);
+const leadEntry = workEntries.find((entry) => entry.data.featured) ?? workEntries[0];
+const otherWork = workEntries.filter((entry) => entry !== leadEntry).slice(0, 3);
+
+// Sector navigation earns its place once there is more than one sector to choose from.
+const sectorsWithWork = await getWorkBySector();
+const showSectorNav = sectorsWithWork.length >= 2;
 ---
 
 <MainLayout>
-  <!-- Hero -->
-  <section class="border-b border-material-stone/20 bg-material-limestone">
-    <div class="container-wide py-20 lg:py-28">
+  <!-- 1. Hero: fixed headline, supporting line, one action, Cottonmount visual -->
+  <section class="bg-material-limestone">
+    <div class="container-wide pb-16 pt-24 lg:pb-20 lg:pt-36">
       <div class="max-w-3xl">
         <h1 class="font-display font-light text-material-charcoal">
           We help businesses present themselves properly online.
         </h1>
-        <p class="mt-6 text-label text-material-stone">
-          360° Walkthroughs / Photography / Google Business / Websites
+        <p class="mt-8 max-w-xl text-lg leading-relaxed text-material-charcoal/70">
+          Real photography and interactive 360° walkthroughs for businesses worth seeing properly.
         </p>
+        <a
+          href="#work"
+          class="mt-10 inline-flex items-center justify-center border-2 border-material-charcoal bg-material-charcoal px-8 py-4 text-xs font-semibold uppercase tracking-wider text-material-limestone transition-colors duration-300 hover:bg-transparent hover:text-material-charcoal"
+        >
+          View selected work
+        </a>
       </div>
     </div>
-    {heroEntry?.data.walkthroughUrl && (
-      <div class="container-wide pb-16 lg:pb-20">
-        <WalkthroughEmbed src={heroEntry.data.walkthroughUrl} title={heroEntry.data.title} poster={heroEntry.data.heroImage} />
-        <div class="mt-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline">
-          <p class="text-material-charcoal/70">
-            <span class="text-material-charcoal">{heroEntry.data.title}</span>
-            {heroEntry.data.location && <> · {heroEntry.data.location}</>} · {sectorLabel(heroEntry.data.sector)}
-          </p>
-          <a
-            href={`/work/${heroEntry.id}`}
-            class="text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal"
-          >
-            See the project →
-          </a>
-        </div>
+    {leadEntry?.data.walkthroughUrl && (
+      <div class="container-wide pb-20 lg:pb-28">
+        <WalkthroughEmbed src={leadEntry.data.walkthroughUrl} title={leadEntry.data.title} poster={leadEntry.data.heroImage} eager />
+        <p class="mt-4 text-sm text-material-charcoal/60">
+          <span class="text-material-charcoal">{leadEntry.data.title}</span>
+          {leadEntry.data.location && <>, {leadEntry.data.location}</>}
+        </p>
       </div>
     )}
   </section>
 
-  <!-- Why it matters -->
-  <section class="section-compact bg-white">
+  <!-- 2. Proof: stats, six logos, Chris Suitor with 1M+ views, Google credential -->
+  <section class="section-compact bg-white" aria-label="Proof">
+    <div class="container-wide">
+      <Stats />
+      <div class="mt-16">
+        <ClientLogoGrid only={homepageClients} />
+      </div>
+
+      <div class="mt-20 grid grid-cols-1 gap-12 lg:grid-cols-[2fr_1fr] lg:items-center">
+        <figure>
+          <blockquote class="font-display text-2xl font-light leading-relaxed text-material-charcoal lg:text-3xl">
+            "{featuredTestimonial.text}"
+          </blockquote>
+          <figcaption class="mt-6 text-label text-material-bronze">
+            {featuredTestimonial.attribution}, {featuredTestimonial.role}
+          </figcaption>
+        </figure>
+        <div class="border-l border-material-stone/20 pl-8">
+          <span class="block font-display text-5xl font-light text-material-charcoal">{featuredTestimonial.metric.value}</span>
+          <span class="mt-2 block text-label text-material-stone">{featuredTestimonial.metric.label}</span>
+        </div>
+      </div>
+
+      <div class="mt-16 flex items-start gap-5 border-t border-material-stone/15 pt-10">
+        <Image src={streetViewMark} alt="" class="h-9 w-9 flex-none" />
+        <div>
+          <p class="font-medium text-material-charcoal">{googleCredential.title}</p>
+          <p class="mt-1 text-material-charcoal/70">{googleCredential.body}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Why it matters -->
+  <section class="section-compact border-t border-material-stone/15 bg-material-limestone/40">
     <div class="container-wide grid grid-cols-1 gap-12 lg:grid-cols-[1fr_2fr]">
       <span class="text-label text-material-bronze">Why it matters</span>
       <div>
@@ -72,68 +103,88 @@ const recentWork = workEntries.filter((entry) => entry !== heroEntry).slice(0, 3
     </div>
   </section>
 
-  <!-- Find work like yours -->
-  <section class="section-compact border-t border-material-stone/15 bg-material-limestone/40">
+  <!-- 4. Work: sector navigation (once there is a choice), then real work only -->
+  <section id="work" class="section-compact scroll-mt-8 bg-white">
     <div class="container-wide">
       <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
         <div>
-          <span class="text-label text-material-bronze">Find a business like yours</span>
+          <span class="text-label text-material-bronze">Selected work</span>
           <h2 class="mt-4 max-w-md font-display font-light text-material-charcoal">See it done for someone like you.</h2>
         </div>
         <a href="/work" class="text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal">
-          View all work →
+          All work →
         </a>
       </div>
-      <div class="mt-12">
-        <SectorNav />
-      </div>
-      {recentWork.length > 0 && (
-        <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {recentWork.map((entry) => <ProjectCard entry={entry} />)}
+
+      {showSectorNav && (
+        <div class="mt-12">
+          <SectorNav />
+        </div>
+      )}
+
+      {leadEntry && (
+        <a href={`/work/${leadEntry.id}`} class="group mt-14 grid grid-cols-1 border border-material-stone/20 transition-colors duration-300 hover:border-material-bronze/40 lg:grid-cols-[3fr_2fr]">
+          <div class="relative aspect-[4/3] overflow-hidden bg-material-limestone lg:aspect-auto">
+            {leadEntry.data.heroImage && (
+              <Image
+                src={leadEntry.data.heroImage}
+                alt=""
+                widths={[800, 1400]}
+                sizes="(min-width: 1024px) 60vw, 100vw"
+                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              />
+            )}
+            {leadEntry.data.walkthroughUrl && (
+              <span class="absolute bottom-4 left-4 bg-material-charcoal/80 px-3 py-1.5 text-label text-white">
+                360° walkthrough
+              </span>
+            )}
+          </div>
+          <div class="flex flex-col justify-center p-10 lg:p-14">
+            <h3 class="font-display text-3xl font-light text-material-charcoal">{leadEntry.data.title}</h3>
+            {leadEntry.data.location && <p class="mt-1 text-sm text-material-stone">{leadEntry.data.location}</p>}
+            <p class="mt-6 leading-relaxed text-material-charcoal/70">{leadEntry.data.summary}</p>
+            <span class="mt-8 text-label text-material-bronze transition-colors duration-300 group-hover:text-material-charcoal">
+              See the project →
+            </span>
+          </div>
+        </a>
+      )}
+
+      {otherWork.length > 0 && (
+        <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {otherWork.map((entry) => <ProjectCard entry={entry} />)}
         </div>
       )}
     </div>
   </section>
 
-  <!-- Selected clients -->
-  <section class="section-compact bg-white">
-    <div class="container-wide">
-      <span class="text-label text-material-bronze">Selected Clients</span>
-      <h2 class="mt-4 max-w-md font-display font-light text-material-charcoal">
-        Trusted by names you know.
-      </h2>
-      <div class="mt-12">
-        <Stats />
-      </div>
-      <div class="mt-12">
-        <ClientLogoGrid />
-      </div>
+  <!-- 5. What MDS does: one quiet line -->
+  <section class="border-t border-material-stone/15 bg-white py-12">
+    <p class="container-wide text-label text-material-stone">
+      360° walkthroughs · Commercial photography · Aerial work · Websites
+    </p>
+  </section>
+
+  <!-- 6. Studio: existing copy. Portrait block hidden until a real photo of Karl exists. -->
+  <section class="section-compact border-t border-material-stone/15 bg-material-limestone/40">
+    <div class="container-wide max-w-3xl">
+      <span class="text-label text-material-bronze">The Studio</span>
+      <h2 class="mt-4 font-display font-light text-material-charcoal">You'll work with Karl.</h2>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-material-charcoal/70">
+        Karl McClelland is the person behind every project, from the first walk round to the
+        finished walkthrough. Based in Belfast and Limavady, working with businesses right across
+        Northern Ireland.
+      </p>
+      <a
+        href="/studio"
+        class="mt-8 inline-flex items-center gap-2 text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal"
+      >
+        About the studio →
+      </a>
     </div>
   </section>
 
-  <!-- Studio -->
-  <section class="section-compact border-t border-material-stone/15 bg-white">
-    <div class="container-wide grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-      <div class="flex aspect-[4/3] items-center justify-center border border-material-stone/20 bg-material-stone/10">
-        <span class="text-label text-material-stone/60">Portrait of Karl — pending</span>
-      </div>
-      <div>
-        <span class="text-label text-material-bronze">The Studio</span>
-        <h2 class="mt-4 font-display font-light text-material-charcoal">You'll work with Karl.</h2>
-        <p class="mt-4 max-w-md leading-relaxed text-material-charcoal/70">
-          {site.person} is the person behind every walkthrough, from the first walk round to the
-          finished tour. Based in Belfast and Limavady, working with businesses right across
-          Northern Ireland.
-        </p>
-        <a
-          href="/studio"
-          class="mt-6 inline-flex items-center gap-2 text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal"
-        >
-          About the studio →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <CTASection {...nextSteps} tone="forest" backgroundImage={ctaBackground} parallax />
+  <!-- 7. How it starts: WhatsApp-first, plain charcoal -->
+  <CTASection {...nextSteps} tone="charcoal" />
 </MainLayout>

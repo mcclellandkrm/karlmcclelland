@@ -13,7 +13,7 @@ Purpose: make sure nothing important is lost when the new site replaces the live
 |---|---|---|
 | Stats: 60M+ views across Google · 10+ years · 150+ businesses | ✅ Added (homepage clients section + /clients) | Karl confirmed; business count corrected to **80+** |
 | Suitor Brothers testimonial (Chris Suitor) | Carried over | — |
-| Suitor Brothers + Wine Merchant tours (walkinto.in) | Carried over | — |
+| Suitor Brothers (Street View) + NI wine retailer panos (walkinto.in) | Suitor as proof only; wine retailer on hold (Rev 3.1) | — |
 | Client logos (Toyota, Hyundai, Skoda, EA, B&Q, Hilti, SSE, NI Screen, Lyric, Odyssey, Grand Opera House) | Carried over | — |
 | Process facts: 1–2 hours on site, live within 14 days | ✅ Added to the next-steps band | Karl confirmed: "a couple of hours, depending on size" |
 | What a client receives (360° scenes, Google Business Profile publishing, 25+ hi-res marketing images, embed codes, full commercial usage rights) | Missing | Useful even without prices. **Karl to decide** whether to show it. |

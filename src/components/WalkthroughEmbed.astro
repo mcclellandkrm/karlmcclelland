@@ -10,9 +10,11 @@ interface Props {
   title: string;
   poster?: ImageMetadata;
   aspect?: 'wide' | 'standard';
+  // Set on the hero so the poster isn't lazy-loaded above the fold.
+  eager?: boolean;
 }
 
-const { src, title, poster, aspect = 'wide' } = Astro.props;
+const { src, title, poster, aspect = 'wide', eager = false } = Astro.props;
 
 const posterImage = poster ? await getImage({ src: poster, width: 1800, format: 'webp' }) : null;
 const aspectClass = aspect === 'wide' ? 'aspect-[16/9]' : 'aspect-[4/3]';
@@ -27,7 +29,8 @@ const aspectClass = aspect === 'wide' ? 'aspect-[16/9]' : 'aspect-[4/3]';
     <img
       src={posterImage.src}
       alt=""
-      loading="lazy"
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : undefined}
       decoding="async"
       class="absolute inset-0 h-full w-full object-cover"
     />

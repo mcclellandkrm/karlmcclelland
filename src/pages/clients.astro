@@ -8,10 +8,12 @@ import Stats from '../components/Stats.astro';
 import CTASection from '../components/CTASection.astro';
 import { nextSteps } from '../data/next-steps';
 import { site } from '../data/site';
+import { featuredTestimonial } from '../data/proof';
 
-const quotes = (await getCollection('work', ({ data }) => Boolean(data.quote) && !data.draft)).map(
-  (entry) => entry.data.quote!
-);
+const quotes = [
+  featuredTestimonial,
+  ...(await getCollection('work', ({ data }) => Boolean(data.quote) && !data.draft)).map((entry) => entry.data.quote!),
+];
 ---
 
 <MainLayout

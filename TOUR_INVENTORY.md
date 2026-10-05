@@ -13,8 +13,8 @@ sent emails, clients' Google listings or other sites, so they should keep workin
 | Tour | Current URL | Host | Tech (export date) | Sector | Decision | Notes |
 |---|---|---|---|---|---|---|
 | The Cottonmount | karlmcclelland.com/hospitality/thecottonmount/ | KM | Pano2VR | Restaurants, Bars & Hotels | **Live on new site** | Featured on homepage |
-| Suitor Brothers | walkinto.in/easyembedview/-yHP0G_qIn-1xHwCz_58n | walkinto.in | — | Retail & Showrooms | **Live on new site** | Has client quote |
-| Wine Merchant | walkinto.in/easyembedview/bJE0A9kzD3bkgN0Cq1fDn | walkinto.in | — | Retail & Showrooms | **Live on new site** | |
+| Suitor Brothers | walkinto.in/easyembedview/-yHP0G_qIn-1xHwCz_58n | walkinto.in | Google Street View tour | Retail & Showrooms | **Proof only (Rev 3.1)** | Not a walkthrough. Testimonial + 1M+ Google views shown in the homepage proof strip; entry set to draft |
+| NI wine retailer | walkinto.in/easyembedview/bJE0A9kzD3bkgN0Cq1fDn (to confirm) | walkinto.in | Single 360 panos | Retail & Showrooms | **On hold** | Not Dublin (never was). Name, location and permission TBC. If used, label as "360° panorama" |
 | Lyric Theatre Café Bar | karlmcclelland.com/lyric/ | KM | 3DVista (2026-08-08) | Restaurants, Bars & Hotels | ? | Newer than the main Lyric tour; could join the same case study |
 | Forge Female Fitness, Ballymoney | karlmcclelland.com/gym/forge-female-fitness/index.htm | KM | 3DVista (2026-06-12) | Venues, Leisure & Sport | **Bring over** | ⚠️ Folder address serves a stray `index.html` (Victim Support app) instead of the tour; delete or rename it in Plesk |
 | MDS portfolio (~40 single scenes) | karlmcclelland.com/MDS/ | KM | Pano2VR | Mixed | Keep as is | In every outreach email; source for sector examples |

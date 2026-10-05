@@ -180,7 +180,7 @@ Lead with real walkthroughs embedded on the page — demonstrate, don't explain.
 
 Not featured: equipment and software, pricing tiers, process diagrams, gimmicks. A "from" price is still an open question.
 
-Credentials: Google's Trusted Photographer programme has ended, so the site doesn't claim the badge. Client logos are all backed by Karl's own work (B&Q store photography in Letterkenny, Navan and Waterford; Google tours for Hilti and SSE; full Toyota photography).
+Credentials (corrected 2026-10-05, Rev 3.1): Karl remains a Google Street View Trusted partner with the badge and publishing tools. Google has stopped onboarding new Trusted photographers, so the site shows the credential framed by what it enables (publishing and managing imagery on Google Maps), not by exclusivity. Client logos are all backed by Karl's own work (B&Q store photography in Letterkenny, Navan and Waterford; Google tours for Hilti and SSE; full Toyota photography).
 
 ---
 

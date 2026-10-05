@@ -2,7 +2,8 @@
 import { getWorkBySector } from '../data/work';
 
 // "Find work like yours" — one click from any kind of business to the
-// closest examples on /work.
+// closest examples on /work. Counts stay hidden until a sector has three or
+// more examples (Rev 3.1 Decisions, section 3).
 const sectors = await getWorkBySector();
 ---
 
@@ -19,7 +20,7 @@ const sectors = await getWorkBySector();
             <span class="mt-2 block text-sm text-material-stone">{sector.examples}</span>
           </span>
           <span class="text-label text-material-bronze transition-colors duration-300 group-hover:text-material-charcoal">
-            {sector.entries.length} {sector.entries.length === 1 ? 'example' : 'examples'} →
+            {sector.entries.length >= 3 ? `${sector.entries.length} examples →` : 'View →'}
           </span>
         </a>
       </li>
