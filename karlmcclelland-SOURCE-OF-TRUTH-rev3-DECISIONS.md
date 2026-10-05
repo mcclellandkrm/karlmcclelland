@@ -10,7 +10,8 @@
 1. `CLAUDE_PROJECT_BRIEF.md`: strategic direction (positioning, tone, desired reaction).
 2. This file: specific content and design decisions. Where it is more specific than the Brief, this file wins.
 3. `karlmcclelland-SOURCE-OF-TRUTH.md` (rev 2): factual reference only (contact details, credentials, verified numbers). Ignore its portfolio, hero and kickoff-prompt content.
-4. Any older file, chat or pasted note that disagrees with the above is stale.
+4. `TOUR_INVENTORY.md`: which tours go on the site. Check it before adding or removing any work entry.
+5. Any older file, chat or pasted note that disagrees with the above is stale.
 
 ## 1. Positioning (summary of the Brief)
 
@@ -29,8 +30,8 @@
 
 - **The Cottonmount, Mallusk is the featured work.** Lead (and currently only) full-walkthrough card.
 - **Suitor Brothers is a Google Street View tour, not an interactive walkthrough.** Not a work card (entry set to draft). The testimonial and 1M+ views appear in the proof strip and on /clients. Whether it later returns as a secondary retail entry, labelled honestly as a Street View tour, is Karl's call (see section 10).
-- **There is no Dublin Wine Merchant and never has been.** Removed from the site (5 Oct 2026). Do not reinstate.
-- A **Northern Ireland wine retailer** exists, with some good single 360 panos. If used, it is a secondary item labelled "360° panorama", not a walkthrough. Name and permission: TBC.
+- **There is no Dublin Wine Merchant and never has been.** "Dublin" removed everywhere. Do not reinstate.
+- The **Northern Ireland wine retailer** is real (single 360 panos on walkinto.in). Its entry `src/content/work/wine-merchant.md` stays as a **draft** with location Northern Ireland, labelled "360° panorama", not a walkthrough. Publish only once Karl confirms the name and permission to feature.
 - Sector-based work navigation. No visible category count until a sector has three or more examples. On the homepage, sector navigation appears once two or more sectors have published work.
 - No fictional or placeholder case studies, ever.
 
@@ -47,7 +48,7 @@
 
 ## 5. Language
 
-- "360° walkthrough" everywhere. "Virtual tour" only in meta titles, descriptions and keywords.
+- "360° walkthrough" in headlines and body. "Virtual tour" only in meta titles, descriptions and keywords (SEO), never as the primary message.
 - No em dashes in visible copy.
 
 ## 6. Homepage structure (frozen; built 5 Oct 2026, assess before designing new pages)
@@ -56,8 +57,8 @@
 2. **Proof:** stats, six logos, Chris Suitor quote with 1M+ views, Google Trusted credential.
 3. **Why it matters:** the "no guesswork" idea, two or three sentences.
 4. **Work:** sector navigation (once there is a choice), then real work only. Cottonmount as a single large lead card. No count cards, no sector label on the lead card.
-5. **What MDS does:** one quiet line covering walkthroughs, commercial photography, aerial work and websites. No service-card grid.
-6. **Studio:** existing copy. No portrait block until a proper photo of Karl exists.
+5. **What MDS does:** one quiet line: "Alongside walkthroughs: commercial photography, aerial work and websites built to make the right first impression." No service-card grid.
+6. **Studio:** Karl's first-person copy ("Behind the studio."). No portrait block until a proper photo of Karl exists; a real photo of Karl is a priority shot.
 7. **How it starts:** WhatsApp-first three steps on a plain charcoal background. Horizontal on desktop, stacked on mobile.
 8. **Contact / footer:** walkthrough language, no "virtual tour".
 

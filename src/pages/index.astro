@@ -35,7 +35,7 @@ const showSectorNav = sectorsWithWork.length >= 2;
           Real photography and interactive 360° walkthroughs for businesses worth seeing properly.
         </p>
         <a
-          href="#work"
+          href="/work"
           class="mt-10 inline-flex items-center justify-center border-2 border-material-charcoal bg-material-charcoal px-8 py-4 text-xs font-semibold uppercase tracking-wider text-material-limestone transition-colors duration-300 hover:bg-transparent hover:text-material-charcoal"
         >
           View selected work
@@ -45,10 +45,15 @@ const showSectorNav = sectorsWithWork.length >= 2;
     {leadEntry?.data.walkthroughUrl && (
       <div class="container-wide pb-20 lg:pb-28">
         <WalkthroughEmbed src={leadEntry.data.walkthroughUrl} title={leadEntry.data.title} poster={leadEntry.data.heroImage} eager />
-        <p class="mt-4 text-sm text-material-charcoal/60">
-          <span class="text-material-charcoal">{leadEntry.data.title}</span>
-          {leadEntry.data.location && <>, {leadEntry.data.location}</>}
-        </p>
+        <div class="mt-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline">
+          <p class="text-sm text-material-charcoal/60">
+            <span class="text-material-charcoal">{leadEntry.data.title}</span>
+            {leadEntry.data.location && <>, {leadEntry.data.location}</>}
+          </p>
+          <a href={`/work/${leadEntry.id}`} class="text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal">
+            Explore the walkthrough →
+          </a>
+        </div>
       </div>
     )}
   </section>
@@ -73,6 +78,7 @@ const showSectorNav = sectorsWithWork.length >= 2;
         <div class="border-l border-material-stone/20 pl-8">
           <span class="block font-display text-5xl font-light text-material-charcoal">{featuredTestimonial.metric.value}</span>
           <span class="mt-2 block text-label text-material-stone">{featuredTestimonial.metric.label}</span>
+          <span class="mt-1 block text-sm text-material-charcoal/50">{featuredTestimonial.metric.source}</span>
         </div>
       </div>
 
@@ -92,12 +98,12 @@ const showSectorNav = sectorsWithWork.length >= 2;
       <span class="text-label text-material-bronze">Why it matters</span>
       <div>
         <h2 class="max-w-2xl font-display font-light text-material-charcoal">
-          Customers look before they visit.
+          The easiest choice is the one with no guesswork.
         </h2>
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-material-charcoal/70">
-          When someone is choosing between you and the place next door, they pick the one they can
-          already picture themselves in. The listing that lets people step inside wins the click. The
-          one that doesn't quietly loses it, and never finds out.
+          When people choose where to visit, they take the path of least resistance. A 360° walkthrough
+          removes the guesswork: when customers can see exactly what to expect, picking you becomes the
+          simplest decision they make all day.
         </p>
       </div>
     </div>
@@ -160,9 +166,9 @@ const showSectorNav = sectorsWithWork.length >= 2;
   </section>
 
   <!-- 5. What MDS does: one quiet line -->
-  <section class="border-t border-material-stone/15 bg-white py-12">
-    <p class="container-wide text-label text-material-stone">
-      360° walkthroughs · Commercial photography · Aerial work · Websites
+  <section class="border-t border-material-stone/15 bg-white py-16 lg:py-20">
+    <p class="container-wide max-w-2xl text-lg leading-relaxed text-material-charcoal/70">
+      Alongside walkthroughs: commercial photography, aerial work and websites built to make the right first impression.
     </p>
   </section>
 
@@ -170,17 +176,18 @@ const showSectorNav = sectorsWithWork.length >= 2;
   <section class="section-compact border-t border-material-stone/15 bg-material-limestone/40">
     <div class="container-wide max-w-3xl">
       <span class="text-label text-material-bronze">The Studio</span>
-      <h2 class="mt-4 font-display font-light text-material-charcoal">You'll work with Karl.</h2>
-      <p class="mt-6 max-w-xl text-lg leading-relaxed text-material-charcoal/70">
-        Karl McClelland is the person behind every project, from the first walk round to the
-        finished walkthrough. Based in Belfast and Limavady, working with businesses right across
-        Northern Ireland.
+      <h2 class="mt-4 font-display font-light text-material-charcoal">Behind the studio.</h2>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-material-charcoal/70">
+        I work directly with every client, from the first walk-around to the final interactive build. No
+        reps, no agency layers, and no hand-offs. Just practical advice, meticulous attention to detail,
+        and a genuine interest in showing your space at its absolute best. Based between Belfast and the
+        north coast, working with venues and businesses right across Northern Ireland and beyond.
       </p>
       <a
         href="/studio"
         class="mt-8 inline-flex items-center gap-2 text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal"
       >
-        About the studio →
+        About me and my approach →
       </a>
     </div>
   </section>

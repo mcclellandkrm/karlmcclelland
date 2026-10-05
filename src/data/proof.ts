@@ -6,10 +6,10 @@
 // appears as proof rather than as a work card. Keep the view-count screenshot
 // on file as evidence.
 export const featuredTestimonial = {
-  text: "We've noticed a big increase in public awareness of who we are, what we offer and how to find out and that is definitely helping sales. Excellent work and value for money.",
+  text: "We've noticed a big increase in public awareness of who we are, what we offer and how to find out and that is definitely helping sales. Excellent work and value for money and we really appreciate his attention to detail.",
   attribution: 'Chris Suitor',
-  role: 'Suitor Brothers Menswear',
-  metric: { value: '1M+', label: 'Views on Google' },
+  role: 'Suitor Brothers, Belfast',
+  metric: { value: '1M+', label: 'Views on Google', source: 'Suitor Brothers, Google Street View' },
 };
 
 // Karl remains a Google Street View Trusted partner. Frame it by what it
