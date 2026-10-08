@@ -8,7 +8,9 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, sector, location, summary, heroImage, walkthroughUrl } = entry.data;
+const { title, sector, location, summary, heroImage, walkthroughUrl, services } = entry.data;
+// Single panoramas are labelled honestly; only full walkthroughs say "walkthrough" (Rev 3.1 section 3).
+const badge = services.includes('360° panorama') ? '360° panorama' : '360° walkthrough';
 ---
 
 <a
@@ -31,7 +33,7 @@ const { title, sector, location, summary, heroImage, walkthroughUrl } = entry.da
     )}
     {walkthroughUrl && (
       <span class="absolute bottom-4 left-4 bg-material-charcoal/80 px-3 py-1.5 text-label text-white">
-        360° walkthrough
+        {badge}
       </span>
     )}
   </div>
