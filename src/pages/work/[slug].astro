@@ -1,0 +1,52 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import ProjectHero from '../../components/ProjectHero.astro';
+import ProjectGallery from '../../components/ProjectGallery.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import QuoteBlock from '../../components/QuoteBlock.astro';
+import CTASection from '../../components/CTASection.astro';
+import { getPublishedWork } from '../../data/work';
+import { sectorLabel } from '../../data/sectors';
+import { nextSteps } from '../../data/next-steps';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const entries = await getPublishedWork();
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      related: entries.filter((other) => other.id !== entry.id && other.data.sector === entry.data.sector).slice(0, 3),
+    },
+  }));
+}
+
+const { entry, related } = Astro.props;
+const { title, quote, gallery, summary, sector, location, walkthroughUrl } = entry.data;
+
+const pageTitle = `${title}${walkthroughUrl ? ' — 360° Virtual Tour' : ''}${location ? `, ${location}` : ''} | ${site.name}`;
+---
+
+<MainLayout title={pageTitle} description={summary}>
+  <ProjectHero entry={entry} />
+  <ProjectGallery images={gallery} />
+
+  {quote && (
+    <div class="container-wide py-16 lg:py-24">
+      <QuoteBlock text={quote.text} attribution={quote.attribution} role={quote.role} />
+    </div>
+  )}
+
+  {related.length > 0 && (
+    <section class="border-t border-material-stone/15 py-16 lg:py-20">
+      <div class="container-wide">
+        <span class="text-label text-material-bronze">More in {sectorLabel(sector)}</span>
+        <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {related.map((other) => <ProjectCard entry={other} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTASection {...nextSteps} tone="forest" />
+</MainLayout>

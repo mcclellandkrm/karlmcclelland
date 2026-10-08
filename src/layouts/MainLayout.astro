@@ -1,0 +1,23 @@
+---
+import Layout from './Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { title, description, noindex } = Astro.props;
+---
+
+<Layout title={title} description={description} noindex={noindex}>
+  <div class="flex min-h-screen flex-col bg-white">
+    <SiteHeader />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <SiteFooter />
+  </div>
+</Layout>

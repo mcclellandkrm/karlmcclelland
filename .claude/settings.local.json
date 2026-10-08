@@ -8,7 +8,8 @@
       "Bash(node -e ' *)",
       "Bash(npx astro *)",
       "Bash(rm -f nav-desktop.png nav-mobile.png footer.png footer-desktop.png)",
-      "Bash(pkill -f \"astro dev\")"
+      "Bash(pkill -f \"astro dev\")",
+      "Bash(npm run *)"
     ]
   }
 }

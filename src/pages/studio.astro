@@ -1,0 +1,44 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import CTASection from '../components/CTASection.astro';
+import { nextSteps } from '../data/next-steps';
+import { site } from '../data/site';
+
+// Draft copy built only from confirmed facts — for Karl / Creative Director review.
+---
+
+<MainLayout
+  title={`Studio — Karl McClelland | ${site.name}`}
+  description="Karl McClelland photographs and builds 360° virtual tours, Google Street View tours and websites for businesses across Northern Ireland. Based in Belfast and Limavady."
+>
+  <PageIntro
+    eyebrow="Studio"
+    title="You'll work with Karl."
+    intro={`${site.name} is the business. ${site.person} is the person you'll deal with, from the first walk round to the finished walkthrough.`}
+  />
+
+  <!-- Portrait block hidden until a proper photograph of Karl exists (Rev 3.1, section 6). -->
+  <div class="container-wide pb-24 lg:pb-32">
+
+    <div class="max-w-xl space-y-6 text-lg leading-relaxed text-material-charcoal/80">
+      <p>
+        Karl has photographed and built walkthroughs for theatres, arenas, car showrooms, restaurants,
+        hotels, schools and offices, from full-store photography for B&amp;Q's sites in the Republic of
+        Ireland to Google Street View tours for Hilti and SSE.
+      </p>
+      <p>
+        Every project has the same aim: to make your business easier to choose. Sometimes that's an
+        interactive walkthrough. Sometimes it's photography, a properly presented Google listing, or a
+        website that does the place justice.
+      </p>
+      <p>
+        There are no account managers and no hand-offs. The person who walks round your space is the
+        person who builds what your customers see.
+      </p>
+      <p class="text-material-charcoal">Based in Belfast and Limavady, working right across Northern Ireland.</p>
+    </div>
+  </div>
+
+  <CTASection {...nextSteps} tone="forest" />
+</MainLayout>

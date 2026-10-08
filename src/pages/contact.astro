@@ -1,0 +1,18 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Contact from '../components/Contact.astro';
+import { site } from '../data/site';
+---
+
+<MainLayout
+  title={`Contact | ${site.name}`}
+  description="Send a quick video of your space on WhatsApp, get a ballpark figure, and Karl will call in to see it. No obligation, no hard sell."
+>
+  <PageIntro
+    eyebrow="Contact"
+    title="Show me round."
+    intro="The easiest way to start is a short video of your space. I'll come back with a ballpark and what I'd suggest."
+  />
+  <Contact />
+</MainLayout>

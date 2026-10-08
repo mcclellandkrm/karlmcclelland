@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets';
+import bandqLogo from '../assets/client-logos/bandq-logo.svg';
+import eaLogo from '../assets/client-logos/ea-logo.svg';
+import gohLogo from '../assets/client-logos/goh-logo.svg';
+import hiltiLogo from '../assets/client-logos/hilti-logo.svg';
+import hyundaiLogo from '../assets/client-logos/hyundai-logo.svg';
+import lyricLogo from '../assets/client-logos/lyric-logo.svg';
+import niScreenLogo from '../assets/client-logos/ni-screen-logo.png';
+import odysseyLogo from '../assets/client-logos/odyssey-logo.svg';
+import skodaLogo from '../assets/client-logos/skoda-logo.svg';
+import sseLogo from '../assets/client-logos/sse-logo.svg';
+import toyotaLogo from '../assets/client-logos/toyota-logo.svg';
+
+// Static grid — replaces ClientLogos.astro's auto-scrolling marquee.
+// See STRUCTURE_AUDIT.md: a self-animating carousel reads as the kind of
+// "tech agency" flourish the brief explicitly rules out.
+interface Props {
+  // Client names to show, in this order. Omit to show every client.
+  only?: string[];
+}
+
+const { only } = Astro.props;
+
+const allClients = [
+  { name: 'Toyota', logo: toyotaLogo },
+  { name: 'Hyundai', logo: hyundaiLogo },
+  { name: 'Skoda', logo: skodaLogo },
+  { name: 'EA', logo: eaLogo },
+  { name: 'B&Q', logo: bandqLogo },
+  { name: 'Hilti', logo: hiltiLogo },
+  { name: 'SSE', logo: sseLogo },
+  { name: 'NI Screen', logo: niScreenLogo },
+  { name: 'Lyric Theatre', logo: lyricLogo },
+  { name: 'Odyssey Arena', logo: odysseyLogo },
+  { name: 'Grand Opera House', logo: gohLogo },
+];
+
+const clients = only
+  ? only.map((name) => allClients.find((client) => client.name === name)).filter((client) => client !== undefined)
+  : allClients;
+---
+
+<ul class:list={['grid grid-cols-2 pl-px pt-px sm:grid-cols-3', only && only.length === 6 ? 'lg:grid-cols-6' : 'lg:grid-cols-4']}>
+  {clients.map((client) => (
+    <li class="flex items-center justify-center -ml-px -mt-px border border-material-stone/15 bg-white p-8">
+      <Image
+        src={client.logo}
+        alt={client.name}
+        class="h-8 w-auto object-contain opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+      />
+    </li>
+  ))}
+</ul>
