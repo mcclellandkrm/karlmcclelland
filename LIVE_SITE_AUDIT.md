@@ -25,7 +25,7 @@ Purpose: make sure nothing important is lost when the new site replaces the live
 | Item | Why |
 |---|---|
 | Pricing tiers £599 / £899 / £1,499 | Pricing decision still open ("from" price?) |
-| "Google Certified / Trusted Photographer" claims | Programme has ended |
+| "Google Certified" wording | Replaced. Karl remains a Street View Trusted partner (Rev 3.1 section 4): badge stays, framed by what it enables. Google has stopped onboarding new photographers; the programme has not ended. |
 | **Four fake portfolio items**: Café Central (Munich), Holiday Rental (Algarve), Fitness Studio, Boutique Hotel (Prague) | Unsplash stock photos and dead "#" tour links. **These are live right now**, which is a reason not to wait too long. |
 | "Where I'm working next": Prague (April 2026), Zurich (May 2026) | Out of date; Europe isn't the focus |
 | Payment methods (SumUp, Revolut, Stripe) | Not needed on the site |
