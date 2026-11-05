@@ -3,63 +3,59 @@ import { Image } from 'astro:assets';
 import MainLayout from '../layouts/MainLayout.astro';
 import ClientLogoGrid from '../components/ClientLogoGrid.astro';
 import CTASection from '../components/CTASection.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 import SectorNav from '../components/SectorNav.astro';
 import WalkthroughEmbed from '../components/WalkthroughEmbed.astro';
 import Stats from '../components/Stats.astro';
-import { getPublishedWork, getWorkBySector } from '../data/work';
+import { getPublishedWork } from '../data/work';
 import { nextSteps } from '../data/next-steps';
-import { featuredTestimonial, googleCredential, homepageClients, homepageWork } from '../data/proof';
+import { featuredTestimonial, googleCredential, homepageClients } from '../data/proof';
 import streetViewMark from '../../public/logos/googlelogos/streetview-logo.svg';
 
 // Homepage structure is frozen by Rev 3.1 Decisions, section 6. Each section
 // does one job. Only real, published work; no stock, no placeholder case studies.
 const workEntries = await getPublishedWork();
 const leadEntry = workEntries.find((entry) => entry.data.featured) ?? workEntries[0];
-const remaining = workEntries.filter((entry) => entry !== leadEntry);
-const chosen = homepageWork
-  .map((id) => remaining.find((entry) => entry.id === id))
-  .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
-const otherWork = [...chosen, ...remaining.filter((entry) => !chosen.includes(entry))].slice(0, 3);
 
-// Sector navigation earns its place once there is more than one sector to choose from.
-const sectorsWithWork = await getWorkBySector();
-const showSectorNav = sectorsWithWork.length >= 2;
 ---
 
 <MainLayout>
-  <!-- 1. Hero: fixed headline, supporting line, one action, Cottonmount visual -->
+  <!-- 1. Hero: fixed headline, supporting line, one action, Cottonmount visual.
+       The image leads: it fills the right of the first screen on desktop and
+       runs edge to edge on mobile. -->
   <section class="bg-material-limestone">
-    <div class="container-wide pb-16 pt-24 lg:pb-20 lg:pt-36">
-      <div class="max-w-3xl">
-        <h1 class="font-display font-light text-material-charcoal">
+    <div class="lg:grid lg:h-[calc(100svh-81px)] lg:max-h-[900px] lg:min-h-[620px] lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+      <div class="flex flex-col justify-center px-6 pb-12 pt-16 md:px-16 lg:py-16 lg:pl-32 lg:pr-14 xl:pl-48 2xl:pl-64">
+        <h1 class="hero-title font-display font-light text-material-charcoal">
           We help businesses present themselves properly online.
         </h1>
-        <p class="mt-8 max-w-xl text-lg leading-relaxed text-material-charcoal/70">
+        <p class="mt-7 max-w-md text-lg leading-relaxed text-material-charcoal/70">
           Real photography and interactive 360° walkthroughs for businesses worth seeing properly.
         </p>
-        <a
-          href="/work"
-          class="mt-10 inline-flex items-center justify-center border-2 border-material-charcoal bg-material-charcoal px-8 py-4 text-xs font-semibold uppercase tracking-wider text-material-limestone transition-colors duration-300 hover:bg-transparent hover:text-material-charcoal"
-        >
-          View selected work
-        </a>
-      </div>
-    </div>
-    {leadEntry?.data.walkthroughUrl && (
-      <div class="container-wide pb-20 lg:pb-28">
-        <WalkthroughEmbed src={leadEntry.data.walkthroughUrl} title={leadEntry.data.title} poster={leadEntry.data.heroImage} eager />
-        <div class="mt-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline">
-          <p class="text-sm text-material-charcoal/60">
-            <span class="text-material-charcoal">{leadEntry.data.title}</span>
-            {leadEntry.data.location && <>, {leadEntry.data.location}</>}
-          </p>
-          <a href={`/work/${leadEntry.id}`} class="text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal">
-            Explore the walkthrough →
+        <div>
+          <a
+            href="/work"
+            class="mt-10 inline-flex items-center justify-center border-2 border-material-charcoal bg-material-charcoal px-8 py-4 text-xs font-semibold uppercase tracking-wider text-material-limestone transition-colors duration-300 hover:bg-transparent hover:text-material-charcoal"
+          >
+            View selected work
           </a>
         </div>
+        {leadEntry && (
+          <p class="mt-12 hidden text-sm text-material-charcoal/60 lg:block">
+            Pictured: <a href={`/work/${leadEntry.id}`} class="text-material-charcoal underline-offset-4 hover:underline">{leadEntry.data.title}</a>{leadEntry.data.location && <>, {leadEntry.data.location}</>}
+          </p>
+        )}
       </div>
-    )}
+      {leadEntry?.data.walkthroughUrl && (
+        <div>
+          <div class="aspect-[4/3] w-full sm:aspect-[16/10] lg:aspect-auto lg:h-full">
+            <WalkthroughEmbed src={leadEntry.data.walkthroughUrl} title={leadEntry.data.title} poster={leadEntry.data.heroImage} aspect="fill" eager />
+          </div>
+          <p class="px-6 py-4 text-sm text-material-charcoal/60 md:px-16 lg:hidden">
+            Pictured: <a href={`/work/${leadEntry.id}`} class="text-material-charcoal">{leadEntry.data.title}</a>{leadEntry.data.location && <>, {leadEntry.data.location}</>}
+          </p>
+        </div>
+      )}
+    </div>
   </section>
 
   <!-- 2. Proof: stats, six logos, Chris Suitor with 1M+ views, Google credential -->
@@ -119,53 +115,19 @@ const showSectorNav = sectorsWithWork.length >= 2;
       <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
         <div>
           <span class="text-label text-material-bronze">Selected work</span>
-          <h2 class="mt-4 max-w-md font-display font-light text-material-charcoal">See it done for someone like you.</h2>
+          <h2 class="mt-4 max-w-2xl font-display font-light text-material-charcoal">See it done for someone like you.</h2>
         </div>
         <a href="/work" class="text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal">
           All work →
         </a>
       </div>
 
-      {showSectorNav && (
-        <div class="mt-12">
-          <SectorNav />
-        </div>
-      )}
-
-      {leadEntry && (
-        <a href={`/work/${leadEntry.id}`} class="group mt-14 grid grid-cols-1 border border-material-stone/20 transition-colors duration-300 hover:border-material-bronze/40 lg:grid-cols-[3fr_2fr]">
-          <div class="relative aspect-[4/3] overflow-hidden bg-material-limestone lg:aspect-auto">
-            {leadEntry.data.heroImage && (
-              <Image
-                src={leadEntry.data.heroImage}
-                alt=""
-                widths={[800, 1400]}
-                sizes="(min-width: 1024px) 60vw, 100vw"
-                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-              />
-            )}
-            {leadEntry.data.walkthroughUrl && (
-              <span class="absolute bottom-4 left-4 bg-material-charcoal/80 px-3 py-1.5 text-label text-white">
-                360° walkthrough
-              </span>
-            )}
-          </div>
-          <div class="flex flex-col justify-center p-10 lg:p-14">
-            <h3 class="font-display text-3xl font-light text-material-charcoal">{leadEntry.data.title}</h3>
-            {leadEntry.data.location && <p class="mt-1 text-sm text-material-stone">{leadEntry.data.location}</p>}
-            <p class="mt-6 leading-relaxed text-material-charcoal/70">{leadEntry.data.summary}</p>
-            <span class="mt-8 text-label text-material-bronze transition-colors duration-300 group-hover:text-material-charcoal">
-              See the project →
-            </span>
-          </div>
-        </a>
-      )}
-
-      {otherWork.length > 0 && (
-        <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {otherWork.map((entry) => <ProjectCard entry={entry} />)}
-        </div>
-      )}
+      <!-- Work by type of business. Each tile is a real still plus the real
+           clients in that sector: proof and navigation in one. The Cottonmount
+           is already the hero, so there is no separate lead card. -->
+      <div class="mt-12">
+        <SectorNav />
+      </div>
     </div>
   </section>
 

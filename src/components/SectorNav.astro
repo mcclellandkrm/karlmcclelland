@@ -1,29 +1,89 @@
 ---
+import { Image } from 'astro:assets';
 import { getWorkBySector } from '../data/work';
+import { homepageWork } from '../data/proof';
 
-// "Find work like yours" — one click from any kind of business to the
-// closest examples on /work. Counts stay hidden until a sector has three or
-// more examples (Rev 3.1 Decisions, section 3).
+// "Find work like yours": one click from any kind of business to the closest
+// examples on /work. Each tile shows a real still from that sector's own work
+// (featured entry first, then homepage picks, then newest). Counts stay hidden
+// until a sector has three or more examples (Rev 3.1 Decisions, section 3).
+interface Props {
+  // 'tiles': picture tiles (homepage). 'links': one compact row of jump links
+  // (/work, where each sector already has its own heading and cards).
+  variant?: 'tiles' | 'links';
+}
+const { variant = 'tiles' } = Astro.props;
+
 const sectors = await getWorkBySector();
+
+const rank = (id: string) => {
+  const i = homepageWork.indexOf(id);
+  return i === -1 ? homepageWork.length : i;
+};
+const tiles = sectors.map((sector) => {
+  const withImage = sector.entries.filter((entry) => entry.data.heroImage);
+  const pick =
+    withImage.find((entry) => entry.data.featured) ??
+    [...withImage].sort((a, b) => rank(a.id) - rank(b.id))[0];
+  // Real client names in this sector, picked entry first.
+  const ordered = pick ? [pick, ...sector.entries.filter((entry) => entry !== pick)] : sector.entries;
+  const names = ordered.map((entry) => entry.data.title);
+  return { ...sector, image: pick?.data.heroImage, names };
+});
 ---
 
-{sectors.length > 0 && (
-  <ul class="grid grid-cols-1 pl-px pt-px sm:grid-cols-2 lg:grid-cols-4">
-    {sectors.map((sector) => (
-      <li class="-ml-px -mt-px border border-material-stone/20 bg-white">
+{variant === 'links' && tiles.length > 0 && (
+  <nav aria-label="Jump to a type of business">
+    <ul class="flex flex-wrap gap-x-6 gap-y-3 border-y border-material-stone/20 py-5">
+      {tiles.map((sector) => (
+        <li>
+          <a href={`#${sector.id}`} class="text-sm text-material-charcoal/70 transition-colors duration-300 hover:text-material-bronze">
+            {sector.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+{variant === 'tiles' && tiles.length > 0 && (
+  <ul class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+    {tiles.map((sector) => (
+      <li>
         <a
           href={`/work#${sector.id}`}
-          class="group flex h-full flex-col justify-between gap-6 p-8 transition-colors duration-300 hover:bg-material-limestone/60"
+          class="group relative block aspect-[4/5] overflow-hidden bg-material-charcoal sm:aspect-[4/3]"
         >
-          <span>
-            <span class="block font-display text-xl font-light text-material-charcoal">{sector.label}</span>
-            <span class="mt-2 block text-sm text-material-stone">{sector.examples}</span>
-          </span>
-          <span class="text-label text-material-bronze transition-colors duration-300 group-hover:text-material-charcoal">
-            {sector.entries.length >= 3 ? `${sector.entries.length} examples →` : 'View →'}
+          {sector.image && (
+            <Image
+              src={sector.image}
+              alt=""
+              widths={[360, 560, 800]}
+              sizes="(min-width: 1024px) 25vw, 50vw"
+              class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+            />
+          )}
+          <span class="absolute inset-0 bg-gradient-to-t from-material-charcoal/90 via-material-charcoal/40 to-transparent"></span>
+          <span class="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+            <span class="block font-display text-lg font-light leading-snug text-white sm:text-xl">{sector.label}</span>
+            <span class="mt-1 block text-xs leading-relaxed text-white/75 sm:text-sm">{sector.names.join(' · ')}</span>
+            {sector.entries.length >= 3 && (
+              <span class="mt-2 block text-label text-white/70">{sector.entries.length} examples</span>
+            )}
           </span>
         </a>
       </li>
     ))}
+    {tiles.length % 2 === 1 && (
+      <li>
+        <a
+          href="/work"
+          class="group flex aspect-[4/5] flex-col justify-end border border-material-stone/25 p-4 transition-colors duration-300 hover:border-material-charcoal sm:aspect-[4/3] sm:p-5"
+        >
+          <span class="font-display text-lg font-light text-material-charcoal sm:text-xl">All work</span>
+          <span class="mt-2 text-label text-material-bronze transition-colors duration-300 group-hover:text-material-charcoal">View everything →</span>
+        </a>
+      </li>
+    )}
   </ul>
 )}

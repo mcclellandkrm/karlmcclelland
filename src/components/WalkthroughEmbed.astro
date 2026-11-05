@@ -9,7 +9,8 @@ interface Props {
   src: string;
   title: string;
   poster?: ImageMetadata;
-  aspect?: 'wide' | 'standard';
+  // 'fill' takes the parent's size (e.g. the homepage hero).
+  aspect?: 'wide' | 'standard' | 'fill';
   // Set on the hero so the poster isn't lazy-loaded above the fold.
   eager?: boolean;
 }
@@ -17,7 +18,7 @@ interface Props {
 const { src, title, poster, aspect = 'wide', eager = false } = Astro.props;
 
 const posterImage = poster ? await getImage({ src: poster, width: 1800, format: 'webp' }) : null;
-const aspectClass = aspect === 'wide' ? 'aspect-[16/9]' : 'aspect-[4/3]';
+const aspectClass = { wide: 'aspect-[16/9]', standard: 'aspect-[4/3]', fill: 'h-full' }[aspect];
 ---
 
 <div

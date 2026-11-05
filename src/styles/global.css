@@ -306,3 +306,9 @@
 .legal strong {
   @apply font-semibold text-material-charcoal;
 }
+
+/* Homepage hero headline: sized for the left column of the split hero. */
+.hero-title {
+  font-size: clamp(2.6rem, 4.2vw, 4.6rem);
+  line-height: 1.04;
+}
