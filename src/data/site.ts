@@ -15,12 +15,11 @@ export const site = {
   base: 'Belfast & Limavady, Northern Ireland',
   areaServed: 'Northern Ireland',
   tagline: 'We help businesses present themselves properly online.',
-  // Formspree form IDs. Updates sign-ups currently share the contact form
-  // (tagged "Updates sign-up" in the subject). TODO(Karl): create a second
-  // Formspree form for sign-ups and put its ID in formspreeUpdatesId so the
-  // mailing list stays separate from enquiries.
+  // Formspree form IDs. Separate forms keep the mailing list apart from
+  // enquiries. Updates form (2026-11-05) delivers to me@karlmcclelland.com;
+  // the contact form is believed to deliver to karl@360spaces.co.uk.
   formspreeContactId: 'myzknydd',
-  formspreeUpdatesId: 'myzknydd',
+  formspreeUpdatesId: 'mkjjyebb',
 };
 
 export const legalLinks = [

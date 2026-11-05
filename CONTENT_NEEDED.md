@@ -12,9 +12,12 @@ Each case study is one Markdown file in `src/content/work/` (copy `suitor-brothe
 - [x] **Privacy and cookie pages** — `/privacy/` and `/cookies/`, adapted from 360school. Karl to read through.
       They stay true only while the site sets no cookies and loads nothing third-party before a click.
 - [x] **Quotes** — Hillsborough Tile (James), Signature Works, Ballyclare, Antrim Grammar now on /clients.
-- [ ] **Separate Formspree form for updates sign-ups** — create it in Formspree, then put its ID in
-      `formspreeUpdatesId` in `src/data/site.ts`. Until then sign-ups arrive in the enquiries inbox
-      with the subject "Website: updates sign-up".
+- [x] **Separate Formspree form for updates sign-ups** — `mkjjyebb` (to me@karlmcclelland.com).
+- [ ] **Contact form destination** — `myzknydd` is believed to deliver to karl@360spaces.co.uk. Karl to decide
+      whether enquiries should go to me@karlmcclelland.com (change in the Formspree dashboard, not code).
+- **Image source:** the edited masters for every /MDS pano are in
+  `D:\VIRTUAL TOUR ROOM\CURRENT TOURS\MDS_Portfolio_P2VR\panos\<category>\`. Cut card and hero stills from
+  these, not older copies. Original stills for each project are in that project's own folder.
 - [ ] **Lyric Theatre poster still** (colour) — entry drafted in `src/content/work/lyric-theatre.md`.
       Karl has the original walkthrough photos for Lyric and most projects (B&Q, Apperley's, King's Coronation
       Gardens, Airbnbs, schools, Toyota): one strong still per case study is enough to start.
