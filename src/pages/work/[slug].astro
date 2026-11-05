@@ -42,7 +42,7 @@ const pageTitle = `${title}${walkthroughUrl ? ' — 360° Virtual Tour' : ''}${l
       <div class="container-wide">
         <span class="text-label text-material-bronze">More in {sectorLabel(sector)}</span>
         <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {related.map((other) => <ProjectCard entry={other} />)}
+          {related.map((other) => <ProjectCard entry={other} showSector={false} />)}
         </div>
       </div>
     </section>

@@ -5,9 +5,11 @@ import { sectorLabel } from '../data/sectors';
 
 interface Props {
   entry: CollectionEntry<'work'>;
+  // Hide where the card already sits under its sector heading.
+  showSector?: boolean;
 }
 
-const { entry } = Astro.props;
+const { entry, showSector = true } = Astro.props;
 const { title, sector, location, summary, heroImage, walkthroughUrl, services } = entry.data;
 // Single panoramas are labelled honestly; only full walkthroughs say "walkthrough" (Rev 3.1 section 3).
 const badge = services.includes('360° panorama') ? '360° panorama' : '360° walkthrough';
@@ -38,8 +40,8 @@ const badge = services.includes('360° panorama') ? '360° panorama' : '360° wa
     )}
   </div>
   <div class="p-8">
-    <span class="text-label text-material-bronze">{sectorLabel(sector)}</span>
-    <h3 class="mt-3 font-display text-2xl font-light text-material-charcoal">{title}</h3>
+    {showSector && <span class="mb-3 block text-label text-material-bronze">{sectorLabel(sector)}</span>}
+    <h3 class="font-display text-2xl font-light text-material-charcoal">{title}</h3>
     {location && <p class="mt-1 text-sm text-material-stone">{location}</p>}
     <p class="mt-4 text-base leading-relaxed text-material-charcoal/70">{summary}</p>
   </div>

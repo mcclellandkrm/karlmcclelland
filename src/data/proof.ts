@@ -50,5 +50,10 @@ export const googleCredential = {
   body: 'Publish, update and remove imagery on Google Maps and Street View on your behalf.',
 };
 
+// Cards under the Cottonmount on the homepage, in order (ids = file names in
+// src/content/work). Unpublished or missing ids are skipped; gaps are filled
+// with the newest other work.
+export const homepageWork = ['toyota-showroom', 'mode-german-kitchens', 'limavady-high-school'];
+
 // The homepage shows six logos; /clients shows the full set.
 export const homepageClients = ['Toyota', 'SSE', 'Grand Opera House', 'B&Q', 'Hyundai', 'Skoda'];

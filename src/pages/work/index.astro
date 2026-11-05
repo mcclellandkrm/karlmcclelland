@@ -31,7 +31,7 @@ const sectors = await getWorkBySector();
         <div class="container-wide">
           <h2 class="font-display text-3xl font-light text-material-charcoal">{sector.label}</h2>
           <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {sector.entries.map((entry) => <ProjectCard entry={entry} />)}
+            {sector.entries.map((entry) => <ProjectCard entry={entry} showSector={false} />)}
           </div>
         </div>
       </section>

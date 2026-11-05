@@ -9,14 +9,18 @@ import WalkthroughEmbed from '../components/WalkthroughEmbed.astro';
 import Stats from '../components/Stats.astro';
 import { getPublishedWork, getWorkBySector } from '../data/work';
 import { nextSteps } from '../data/next-steps';
-import { featuredTestimonial, googleCredential, homepageClients } from '../data/proof';
+import { featuredTestimonial, googleCredential, homepageClients, homepageWork } from '../data/proof';
 import streetViewMark from '../../public/logos/googlelogos/streetview-logo.svg';
 
 // Homepage structure is frozen by Rev 3.1 Decisions, section 6. Each section
 // does one job. Only real, published work; no stock, no placeholder case studies.
 const workEntries = await getPublishedWork();
 const leadEntry = workEntries.find((entry) => entry.data.featured) ?? workEntries[0];
-const otherWork = workEntries.filter((entry) => entry !== leadEntry).slice(0, 3);
+const remaining = workEntries.filter((entry) => entry !== leadEntry);
+const chosen = homepageWork
+  .map((id) => remaining.find((entry) => entry.id === id))
+  .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
+const otherWork = [...chosen, ...remaining.filter((entry) => !chosen.includes(entry))].slice(0, 3);
 
 // Sector navigation earns its place once there is more than one sector to choose from.
 const sectorsWithWork = await getWorkBySector();

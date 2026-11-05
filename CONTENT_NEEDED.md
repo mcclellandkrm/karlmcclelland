@@ -59,14 +59,14 @@ Edited panos are hosted on our own server instead of walkinto.in:
 | Folder `/360/…/` | Source | Yaw, pitch | Work entry |
 |---|---|---|---|
 | `wine-retailer` | `retail/retailer-image-for-website.jpg` | 20, 0 | ✅ wine-merchant.md |
-| `mode-kitchen-showroom` | `retail/mode-kitchen-showroom.jpg` | -60, -5 | not yet |
-| `lyric-theatre-cafe` | `arts_theatre/lyric-theatre-cafe.jpg` | -20, 0 | not yet (Lyric draft exists) |
-| `toyota-showroom` | `automotive/toyota.jpg` | -10, 0 | not yet |
-| `titanic-studios-war-room` | `commercial_office/titanic-studios-war-room.jpg` | 25, 0 | not yet |
-| `heineken-lounge` | `commercial_office/heineken-lounge.jpg` | 30, 0 | not yet |
-| `titanic-studios` | `commercial_office/titanic-studios-4.jpg` | 0, 5 | not yet |
-| `technology-department` | `education/technology-department.jpg` | -120, -5 | not yet |
-| `kings-coronation-gardens` | `gardens_grounds/kings-coronation-gardens-1.jpg` | 0, 0 | not yet |
+| `mode-kitchen-showroom` | `retail/mode-kitchen-showroom.jpg` | -60, -5 | ✅ mode-german-kitchens.md |
+| `lyric-theatre-cafe` | `arts_theatre/lyric-theatre-cafe.jpg` | -20, 0 | ✅ lyric-theatre.md |
+| `toyota-showroom` | `automotive/toyota.jpg` | -10, 0 | ✅ toyota-showroom.md |
+| `titanic-studios-war-room` | `commercial_office/titanic-studios-war-room.jpg` | 25, 0 | ✅ titanic-studios.md (viewer) |
+| `heineken-lounge` | `commercial_office/heineken-lounge.jpg` | 30, 0 | ✅ heineken-lounge.md |
+| `titanic-studios` | `commercial_office/titanic-studios-4.jpg` | 0, 5 | titanic-studios.md (gallery still) |
+| `technology-department` | `education/technology-department.jpg` | -120, -5 | ✅ limavady-high-school.md |
+| `kings-coronation-gardens` | `gardens_grounds/kings-coronation-gardens-1.jpg` | 0, 0 | ✅ coronation-garden.md |
 
 ## Walkthrough URLs
 
