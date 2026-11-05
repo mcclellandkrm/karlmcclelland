@@ -5,12 +5,13 @@ State: new site live since 5 Nov 2026 (FileZilla upload of `dist/`). Homepage re
 ## Design (next session)
 
 1. **Client logos:** SSE (the file is the SSE Arena lockup and renders tiny) and Grand Opera House (renders faint). Better files from Karl, or rework the existing ones.
-2. **Mobile stats:** "Views across Google" wraps onto three lines.
-3. **Updates sign-up:** quieter treatment so "WhatsApp a video" stays the main next step (three dark bands in a row at the moment).
-4. **"Alongside walkthroughs…" line:** fold into the Studio section instead of its own band (changes Rev section order; update Rev 3.2).
-5. **Work card summaries:** one line each so cards line up.
-6. **/studio page:** Karl's background (engineering → new media → recruitment, from the old site's About) in his own voice, once a photo exists.
-7. **404 page:** missing pages show the server's plain "File not found." Point Plesk at the site's own 404 page.
+2. **Stats row** (Paul, 5 Nov): spread across the full width, 60M+ left, 10+ centred, 80+ right-aligned; at the moment they bunch left. Fix together with mobile, where "Views across Google" wraps onto three lines.
+3. **"Why it matters" copy** (Paul, 5 Nov): add the reassurance angle. A walkthrough takes away the nerves of visiting somewhere new (a new dentist; a women's-only gym, where it shows it isn't a "rough" place). Forge Female Fitness is the real example: bring that tour over (TOUR_INVENTORY.md) and fix its misdeployed folder first. Karl to approve the wording (copy speaks for him).
+4. **Updates sign-up:** quieter treatment so "WhatsApp a video" stays the main next step (three dark bands in a row at the moment).
+5. **"Alongside walkthroughs…" line:** fold into the Studio section instead of its own band (changes Rev section order; update Rev 3.2).
+6. **Work card summaries:** one line each so cards line up.
+7. **/studio page:** Karl's background (engineering → new media → recruitment, from the old site's About) in his own voice, once a photo exists.
+8. **404 page:** missing pages show the server's plain "File not found." Point Plesk at the site's own 404 page.
 
 ## Content from Karl
 
