@@ -8,6 +8,10 @@ Each case study is one Markdown file in `src/content/work/` (copy `suitor-brothe
 - [x] **The Cottonmount** — published and featured on the homepage. Still wanted: a one-line
       result for `outcome:` in `src/content/work/cottonmount.md`, and a client quote if there is one.
 - [ ] **Portrait(s) of Karl** — documentary, on location. Used on the homepage and /studio.
+      Idea (Karl): short clip of the drone coming into view, Karl glancing sideways at it, drone leaving.
+- [ ] **Privacy and cookie page(s)** — the WordPress ones weren't Karl's (theme demo / plugin-generated), so new ones are needed.
+- [ ] **Two more quotes:** Jenny Lendrum (Antrim Grammar) and James (tile company). Add to `clientTestimonials` in `src/data/proof.ts`.
+- [ ] **Lyric Theatre poster still** (colour) — entry drafted in `src/content/work/lyric-theatre.md`.
 - [ ] **A poster still for every walkthrough** (`heroImage`) — without one the embed shows a plain dark panel.
 - [ ] **3–4 more case studies across different sectors**, prioritised by who you're emailing:
       Forge Female Fitness, Limavady High School, Silverstream PS, plus at least one
