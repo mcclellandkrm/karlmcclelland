@@ -1,0 +1,117 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { site } from '../data/site';
+
+// Adapted from the 360school policy (Oct 2025), corrected for this site:
+// form submissions go via Formspree (US), fonts are self-hosted, walkthroughs
+// are click-to-load. Keep this true if anything on the site changes.
+const updated = '5 November 2026';
+---
+
+<MainLayout
+  title={`Privacy | ${site.name}`}
+  description={`How ${site.name} handles your personal details. No tracking, nothing sold or shared.`}
+>
+  <PageIntro
+    eyebrow="Privacy"
+    title="Your details stay with me."
+    intro="No tracking, no analytics, no advertising. I only hold what you choose to send me, and I never sell or share it."
+  />
+
+  <div class="container-wide pb-24 lg:pb-32">
+    <div class="legal">
+      <p class="text-sm text-material-stone">Last updated: {updated}</p>
+
+      <h2>Who I am</h2>
+      <p>
+        {site.name} is run by {site.person}, based in {site.base}. I am responsible for any personal
+        information collected through this website. You can reach me at{' '}
+        <a href={`mailto:${site.email}`}>{site.email}</a> or on {site.phoneDisplay}.
+      </p>
+
+      <h2>What I collect</h2>
+      <p>Only what you choose to give me:</p>
+      <ul>
+        <li><strong>Contact form:</strong> your name, business, email address, phone number (optional) and your message.</li>
+        <li><strong>Updates sign-up:</strong> your email address, your first name if you give it, and a record that you ticked the box to agree.</li>
+        <li><strong>Email, phone and WhatsApp:</strong> whatever you send me.</li>
+      </ul>
+      <p>
+        Like almost every website, the server that hosts this site keeps standard technical logs
+        (such as IP addresses and the pages requested) for security and to keep it running. I don't use
+        them to identify or follow anyone.
+      </p>
+
+      <h2>How I use it</h2>
+      <ul>
+        <li>To reply to your enquiry, give you a figure and arrange a visit.</li>
+        <li>To carry out work you have asked me to do, and to keep in touch about it.</li>
+        <li>
+          If you sign up for updates: to email you occasionally about something I think will be of real
+          interest to you, such as new work, a new service or a project. You can stop these at any time by
+          replying to any email or writing to <a href={`mailto:${site.email}`}>{site.email}</a>.
+        </li>
+      </ul>
+      <p>
+        <strong>I will never sell, rent or give your email address or any other details to anyone for their own marketing.</strong>
+        Getting in touch through the contact form does not sign you up for updates. That only happens if you tick the box.
+      </p>
+
+      <h2>The legal basis</h2>
+      <p>
+        Under UK data protection law (UK GDPR), I rely on your <strong>consent</strong> for updates; on
+        <strong>legitimate interests</strong> and steps before a contract for replying to enquiries; on
+        <strong>contract</strong> for carrying out work; and on <strong>legal obligation</strong> for keeping business records.
+      </p>
+
+      <h2>Who else handles it</h2>
+      <ul>
+        <li>
+          <strong>Formspree</strong> receives what you send through the forms on this site and forwards it to me
+          by email. Formspree is based in the United States and handles your details under{' '}
+          <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">its own privacy policy</a>.
+        </li>
+        <li><strong>My email provider</strong> stores the emails I send and receive.</li>
+        <li>
+          <strong>Cal.com</strong> handles bookings if you use the "Book a call" link, under{' '}
+          <a href="https://cal.com/privacy" target="_blank" rel="noopener noreferrer">its own privacy policy</a>.
+        </li>
+      </ul>
+      <p>I don't pass your details to anyone else unless the law requires it.</p>
+
+      <h2>Walkthroughs and links to other sites</h2>
+      <p>
+        The 360° walkthroughs on this site are played by third-party tour players, some hosted elsewhere.
+        Nothing from them loads until you press "Step inside". From that point the tour's host may receive
+        your IP address and set its own cookies, as any website you visit would. The same applies when you
+        follow a link to LinkedIn, Instagram, WhatsApp or Cal.com. See the <a href="/cookies/">cookie page</a>.
+      </p>
+
+      <h2>How long I keep it</h2>
+      <ul>
+        <li>Enquiries and correspondence: up to 2 years, or until you ask me to delete them, whichever comes first.</li>
+        <li>Clients: for as long as we work together and up to 7 years afterwards, for accounting and legal reasons.</li>
+        <li>Updates: until you unsubscribe.</li>
+      </ul>
+
+      <h2>Your rights</h2>
+      <p>You can ask me to:</p>
+      <ul>
+        <li>show you the personal information I hold about you</li>
+        <li>correct it</li>
+        <li>delete it</li>
+        <li>stop or limit how I use it</li>
+        <li>give you a copy to take elsewhere</li>
+      </ul>
+      <p>
+        You can also withdraw your consent at any time. Just email <a href={`mailto:${site.email}`}>{site.email}</a>.
+        If you are unhappy with how I have handled your information, you can complain to the{' '}
+        <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noopener noreferrer">Information Commissioner's Office</a>.
+      </p>
+
+      <h2>Changes</h2>
+      <p>If anything here changes, I will update this page and the date at the top.</p>
+    </div>
+  </div>
+</MainLayout>

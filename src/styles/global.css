@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-
+/* Fonts are self-hosted (imported in Layout.astro) so no visitor data goes to
+   Google on page load; the privacy page relies on this. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -288,4 +288,21 @@
     transform: none;
     transition: none;
   }
+}
+
+/* LEGAL PAGES (/privacy, /cookies): plain readable text, no decoration. */
+.legal {
+  @apply max-w-2xl space-y-5 leading-relaxed text-material-charcoal/80;
+}
+.legal h2 {
+  @apply pt-8 font-display text-2xl font-light text-material-charcoal;
+}
+.legal ul {
+  @apply list-disc space-y-2 pl-5;
+}
+.legal a {
+  @apply underline underline-offset-4 hover:text-material-bronze;
+}
+.legal strong {
+  @apply font-semibold text-material-charcoal;
 }

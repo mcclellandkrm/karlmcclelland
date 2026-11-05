@@ -1,0 +1,69 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { site } from '../data/site';
+
+// True only while the site sets no cookies and loads nothing third-party
+// before the visitor acts (fonts self-hosted, walkthroughs click-to-load).
+// Adding analytics or an always-on embed means adding a consent banner first.
+const updated = '5 November 2026';
+---
+
+<MainLayout
+  title={`Cookies | ${site.name}`}
+  description={`${site.name} does not use tracking, analytics or advertising cookies.`}
+>
+  <PageIntro
+    eyebrow="Cookies"
+    title="No tracking cookies. No banner."
+    intro="This website doesn't set any cookies of its own. There is no analytics, no advertising and no tracking, which is why you weren't asked to accept anything."
+  />
+
+  <div class="container-wide pb-24 lg:pb-32">
+    <div class="legal">
+      <p class="text-sm text-material-stone">Last updated: {updated}</p>
+
+      <h2>What cookies are</h2>
+      <p>
+        Cookies are small text files a website can store on your phone or computer. They are often used
+        to remember settings or to track visitors across sites. This site doesn't use them.
+      </p>
+
+      <h2>What loads when you visit</h2>
+      <p>
+        Everything on these pages, including the fonts, comes from this website's own server. Nothing is
+        requested from Google, social networks or advertisers while you browse.
+      </p>
+
+      <h2>When other sites may set cookies</h2>
+      <ul>
+        <li>
+          <strong>360° walkthroughs.</strong> Tours are played by third-party tour players. Nothing from them
+          loads until you press "Step inside". After that, the tour's host may set its own cookies.
+        </li>
+        <li>
+          <strong>Links to other sites.</strong> If you follow a link to Cal.com, LinkedIn, Instagram or
+          WhatsApp, those sites' own cookie policies apply.
+        </li>
+        <li>
+          <strong>Forms.</strong> Sending a form passes your message to Formspree, which forwards it to me.
+          It doesn't set cookies on this site. See the <a href="/privacy/">privacy page</a>.
+        </li>
+      </ul>
+
+      <h2>Managing cookies</h2>
+      <p>
+        You can see and delete cookies in your browser's settings. For a plain-English guide, visit{' '}
+        <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener noreferrer">allaboutcookies.org</a>.
+      </p>
+
+      <h2>If this changes</h2>
+      <p>
+        If I ever add anything that uses cookies, such as visitor statistics, I will ask for your permission
+        first and update this page.
+      </p>
+
+      <p>Questions: <a href={`mailto:${site.email}`}>{site.email}</a> or {site.phoneDisplay}.</p>
+    </div>
+  </div>
+</MainLayout>

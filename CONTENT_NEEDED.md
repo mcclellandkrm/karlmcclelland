@@ -9,9 +9,15 @@ Each case study is one Markdown file in `src/content/work/` (copy `suitor-brothe
       result for `outcome:` in `src/content/work/cottonmount.md`, and a client quote if there is one.
 - [ ] **Portrait(s) of Karl** — documentary, on location. Used on the homepage and /studio.
       Idea (Karl): short clip of the drone coming into view, Karl glancing sideways at it, drone leaving.
-- [ ] **Privacy and cookie page(s)** — the WordPress ones weren't Karl's (theme demo / plugin-generated), so new ones are needed.
-- [ ] **Two more quotes:** Jenny Lendrum (Antrim Grammar) and James (tile company). Add to `clientTestimonials` in `src/data/proof.ts`.
+- [x] **Privacy and cookie pages** — `/privacy/` and `/cookies/`, adapted from 360school. Karl to read through.
+      They stay true only while the site sets no cookies and loads nothing third-party before a click.
+- [x] **Quotes** — Hillsborough Tile (James), Signature Works, Ballyclare, Antrim Grammar now on /clients.
+- [ ] **Separate Formspree form for updates sign-ups** — create it in Formspree, then put its ID in
+      `formspreeUpdatesId` in `src/data/site.ts`. Until then sign-ups arrive in the enquiries inbox
+      with the subject "Website: updates sign-up".
 - [ ] **Lyric Theatre poster still** (colour) — entry drafted in `src/content/work/lyric-theatre.md`.
+      Karl has the original walkthrough photos for Lyric and most projects (B&Q, Apperley's, King's Coronation
+      Gardens, Airbnbs, schools, Toyota): one strong still per case study is enough to start.
 - [ ] **A poster still for every walkthrough** (`heroImage`) — without one the embed shows a plain dark panel.
 - [ ] **3–4 more case studies across different sectors**, prioritised by who you're emailing:
       Forge Female Fitness, Limavady High School, Silverstream PS, plus at least one

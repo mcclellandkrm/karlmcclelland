@@ -65,14 +65,18 @@ export default {
           oak: '#B99568',
           bronze: '#A8805F',
           copper: '#A85C39',
+          // Light copper for error text on charcoal (contrast ~8:1).
+          'copper-light': '#E3A587',
         },
       },
       fontFamily: {
         // Typography is explicitly NOT finalised (CLAUDE_PROJECT_BRIEF.md).
         // Kept centralised here on purpose so swapping it later is a one-file change.
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Playfair Display', 'serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        // Self-hosted via @fontsource (imported in src/layouts/Layout.astro);
+        // swap the package there and the family name here.
+        sans: ['Inter Variable', 'system-ui', 'sans-serif'],
+        display: ['Playfair Display Variable', 'serif'],
+        body: ['Inter Variable', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       fontSize: {
