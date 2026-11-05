@@ -1,7 +1,7 @@
 # Live site audit — karlmcclelland.com (checked 2026-10-01)
 
 Purpose: make sure nothing important is lost when the new site replaces the live one.
-**Nothing should be deployed until every "Karl to decide / check" item below is resolved.**
+**LAUNCHED 5 Nov 2026.** Karl replaced the old site via FileZilla (old `index.html`, `robots.txt`, `vite.svg`, `assets/` backed up on his E: drive). Verified live: all pages, old-URL redirects, every tour folder and /360/ pano. Remaining items below are post-launch tidy-ups, not blockers.
 
 ---
 
