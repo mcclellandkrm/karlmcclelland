@@ -9,8 +9,8 @@ const { text, attribution, role } = Astro.props;
 ---
 
 <figure class="mx-auto max-w-2xl text-center">
-  <blockquote class="font-display text-2xl font-light leading-relaxed text-material-charcoal">
-    "{text}"
+  <blockquote class="font-display text-2xl font-normal leading-relaxed text-material-charcoal">
+    “{text}”
   </blockquote>
   <figcaption class="mt-6 text-label text-material-bronze">
     {attribution}{role && `, ${role}`}

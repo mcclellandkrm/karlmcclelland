@@ -17,7 +17,7 @@ const { title, sector, location, summary, outcome, services, heroImage, walkthro
     <a href={`/work#${sector}`} class="text-label text-material-bronze transition-colors duration-300 hover:text-material-charcoal">
       {sectorLabel(sector)}
     </a>
-    <h1 class="mt-4 max-w-3xl font-display font-light text-material-charcoal">{title}</h1>
+    <h1 class="mt-4 max-w-3xl font-display font-normal text-material-charcoal">{title}</h1>
     {location && <p class="mt-4 text-lg text-material-charcoal/70">{location}</p>}
     <p class="mt-6 max-w-2xl text-lg leading-relaxed text-material-charcoal/80">{summary}</p>
   </div>
@@ -37,7 +37,7 @@ const { title, sector, location, summary, outcome, services, heroImage, walkthro
       {outcome && (
         <div>
           <span class="text-label text-material-stone">The result</span>
-          <p class="mt-3 max-w-2xl font-display text-2xl font-light leading-snug text-material-charcoal">{outcome}</p>
+          <p class="mt-3 max-w-2xl font-display text-2xl font-normal leading-snug text-material-charcoal">{outcome}</p>
         </div>
       )}
       {services.length > 0 && (

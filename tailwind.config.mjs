@@ -74,9 +74,10 @@ export default {
         // Kept centralised here on purpose so swapping it later is a one-file change.
         // Self-hosted via @fontsource (imported in src/layouts/Layout.astro);
         // swap the package there and the family name here.
-        sans: ['Inter Variable', 'system-ui', 'sans-serif'],
-        display: ['Playfair Display Variable', 'serif'],
-        body: ['Inter Variable', 'system-ui', 'sans-serif'],
+        // Chosen 2026-11-05 (Karl): Newsreader headings + Hanken Grotesk text.
+        sans: ['Hanken Grotesk Variable', 'system-ui', 'sans-serif'],
+        display: ['Newsreader Variable', 'Georgia', 'serif'],
+        body: ['Hanken Grotesk Variable', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       fontSize: {

@@ -1,6 +1,6 @@
-# karlmcclelland.com (MDS): Rev 3.1 Decisions
+# karlmcclelland.com (MDS): Rev 3.2 Decisions
 
-**Date:** 5 October 2026 (Rev 3.1, supersedes Rev 3 of 4 October)
+**Date:** 5 November 2026 (Rev 3.2: hero layout, homepage work section and typography, approved by Karl; Rev 3.1 was 5 October 2026)
 **Status:** SETTLED. Do not reopen any item below unless Karl explicitly says so.
 
 **Instruction for any Claude session or Claude Code run:** read this file first. Do not ask Karl to re-confirm anything listed as settled. Do not invent branding, add decorative agency-style sections, use stock or AI imagery, or reopen strategy. Your job is implementation.
@@ -53,10 +53,10 @@
 
 ## 6. Homepage structure (frozen; built 5 Oct 2026, assess before designing new pages)
 
-1. **Hero:** headline kept exactly: **"We help businesses present themselves properly online."** Supporting line: "Real photography and interactive 360° walkthroughs for businesses worth seeing properly." One primary CTA: "View selected work". Cottonmount visual (click-to-load walkthrough with poster).
+1. **Hero:** split layout (Rev 3.2): text on the left, the Cottonmount walkthrough poster filling the right of the first screen; edge to edge on mobile. Headline kept exactly: **"We help businesses present themselves properly online."** Supporting line: "Real photography and interactive 360° walkthroughs for businesses worth seeing properly." One primary CTA: "View selected work". Cottonmount visual (click-to-load walkthrough with poster).
 2. **Proof:** stats, six logos, Chris Suitor quote with 1M+ views, Google Trusted credential.
 3. **Why it matters:** the "no guesswork" idea, two or three sentences.
-4. **Work:** sector navigation (once there is a choice), then real work only. Cottonmount as a single large lead card. No count cards, no sector label on the lead card.
+4. **Work:** (Rev 3.2) picture tiles, one per sector with published work: a real still from that sector plus the real client names, linking to /work. No separate Cottonmount lead card (it is already the hero) and no extra project cards. No counts until a sector has three or more examples. /work uses a compact row of sector jump links.
 5. **What MDS does:** one quiet line: "Alongside walkthroughs: commercial photography, aerial work and websites built to make the right first impression." No service-card grid.
 6. **Studio:** Karl's first-person copy ("Behind the studio."). No portrait block until a proper photo of Karl exists; a real photo of Karl is a priority shot.
 7. **How it starts:** WhatsApp-first three steps on a plain charcoal background. Horizontal on desktop, stacked on mobile.
@@ -68,7 +68,7 @@
 - Materials palette (`material.*` tokens). Bronze as accent only.
 - 20 to 30% more whitespace than the pre-Rev 3 build.
 - Small mono labels only where useful. Subtle motion only.
-- **Typography is not fixed.** Playfair Display + Inter is the current working system, not a locked part of the brand. Keep it swappable via tokens (`tailwind.config.mjs` fontFamily).
+- **Typography (Rev 3.2):** Newsreader (headings, regular weight) + Hanken Grotesk (text), self-hosted. Playfair Display + Inter retired: read as wedding stationery / AI template. Still swappable via tokens (`tailwind.config.mjs` fontFamily + imports in `Layout.astro`).
 - Real imagery only. No stock, no AI imagery, no fake work.
 
 ## 8. Implementation approach
@@ -101,5 +101,6 @@
 - Rev 2 §0 and §5: Suitor Brothers and a "Dublin wine merchant" as the two real portfolio entries. Wrong. See section 3.
 - Rev 2 §9 kickoff prompt: ignore "only Suitor Brothers and the Dublin wine merchant are real".
 - Rev 3 hero headline "Help customers choose you before they arrive.": replaced by the original headline (section 6).
-- Rev 3 "Playfair Display + Inter" as fixed: now flexible (section 7).
+- Rev 3 "Playfair Display + Inter" as fixed: replaced by Newsreader + Hanken Grotesk (Rev 3.2, section 7).
+- Rev 3.1 "Cottonmount as a single large lead card" in Work: replaced by sector picture tiles (Rev 3.2, section 6).
 - Any note saying the Google Trusted programme has ended or that the badge must be removed: wrong. See section 4.

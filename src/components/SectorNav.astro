@@ -65,7 +65,7 @@ const tiles = sectors.map((sector) => {
           )}
           <span class="absolute inset-0 bg-gradient-to-t from-material-charcoal/90 via-material-charcoal/40 to-transparent"></span>
           <span class="absolute inset-x-0 bottom-0 p-4 sm:p-5">
-            <span class="block font-display text-lg font-light leading-snug text-white sm:text-xl">{sector.label}</span>
+            <span class="block font-display text-lg font-normal leading-snug text-white sm:text-xl">{sector.label}</span>
             <span class="mt-1 block text-xs leading-relaxed text-white/75 sm:text-sm">{sector.names.join(' · ')}</span>
             {sector.entries.length >= 3 && (
               <span class="mt-2 block text-label text-white/70">{sector.entries.length} examples</span>
@@ -80,7 +80,7 @@ const tiles = sectors.map((sector) => {
           href="/work"
           class="group flex aspect-[4/5] flex-col justify-end border border-material-stone/25 p-4 transition-colors duration-300 hover:border-material-charcoal sm:aspect-[4/3] sm:p-5"
         >
-          <span class="font-display text-lg font-light text-material-charcoal sm:text-xl">All work</span>
+          <span class="font-display text-lg font-normal text-material-charcoal sm:text-xl">All work</span>
           <span class="mt-2 text-label text-material-bronze transition-colors duration-300 group-hover:text-material-charcoal">View everything →</span>
         </a>
       </li>

@@ -24,26 +24,26 @@
   /* KARL MCCLELLAND TYPOGRAPHY SYSTEM */
   /* ================================= */
 
-  /* Display Headings - Playfair Display */
+  /* Display headings: Newsreader (editorial serif), regular weight */
   h1 {
-    @apply font-display font-light text-neutral-900;
+    @apply font-display font-normal text-neutral-900;
     font-size: clamp(2.5rem, 8vw, 6rem);
     line-height: 1.05;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.02em;
   }
 
   h2 {
-    @apply font-display font-light text-neutral-900;
+    @apply font-display font-normal text-neutral-900;
     font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1.1;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.015em;
   }
 
   h3 {
     @apply font-display font-normal text-neutral-900;
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     line-height: 1.2;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
 
   h4 {
@@ -67,7 +67,7 @@
     letter-spacing: 0.01em;
   }
 
-  /* Body Text - Inter */
+  /* Body text: Hanken Grotesk */
   p {
     @apply font-body text-neutral-600 leading-relaxed;
     font-size: 1rem;

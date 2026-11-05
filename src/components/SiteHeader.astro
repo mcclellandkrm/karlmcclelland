@@ -66,7 +66,7 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
       <a
         href={item.href}
         aria-current={isActive(item.href) ? 'page' : undefined}
-        class="font-display text-3xl font-light text-material-charcoal transition-colors duration-300 hover:text-material-bronze"
+        class="font-display text-3xl font-normal text-material-charcoal transition-colors duration-300 hover:text-material-bronze"
       >
         {item.label}
       </a>

@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Read `karlmcclelland-SOURCE-OF-TRUTH-rev3-DECISIONS.md` (Rev 3.1) before doing anything. It is settled. Do not ask Karl to re-confirm anything in it, and do not reopen strategy.
+Read `karlmcclelland-SOURCE-OF-TRUTH-rev3-DECISIONS.md` (Rev 3.2) before doing anything. It is settled. Do not ask Karl to re-confirm anything in it, and do not reopen strategy.
 
 Order of authority:
 
