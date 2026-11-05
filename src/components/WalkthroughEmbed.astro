@@ -61,15 +61,79 @@ const aspectClass = { wide: 'aspect-[16/9]', standard: 'aspect-[4/3]', fill: 'h-
 </div>
 
 <script>
+  // Desktop: the tour loads in place. Phones and small tablets: it opens full
+  // screen over the page with a Close bar, because tours have their own menus
+  // and controls that don't fit (or fight page scrolling) in a small inline box.
+  // The phone's back gesture also closes it.
+  const SMALL_SCREEN = window.matchMedia('(max-width: 1023px)');
+
+  const makeFrame = (src: string, title: string) => {
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = `${title}, interactive 360° view`;
+    iframe.allow = 'fullscreen; accelerometer; gyroscope; magnetometer; xr-spatial-tracking';
+    iframe.allowFullscreen = true;
+    iframe.className = 'absolute inset-0 h-full w-full border-0';
+    return iframe;
+  };
+
+  let closeOverlay: (() => void) | null = null;
+
+  const openOverlay = (src: string, title: string, returnFocus: HTMLElement) => {
+    const overlay = document.createElement('div');
+    overlay.className = 'fixed inset-0 z-[60] flex flex-col bg-material-charcoal';
+    overlay.style.height = '100dvh';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', `${title}, 360° view`);
+
+    const bar = document.createElement('div');
+    bar.className = 'flex h-14 shrink-0 items-center justify-between gap-4 border-b border-white/10 px-4 text-white';
+    const label = document.createElement('span');
+    label.className = 'truncate text-sm text-white/80';
+    label.textContent = title;
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'flex shrink-0 items-center gap-2 border border-white/40 px-4 py-2 text-xs font-semibold uppercase tracking-wider';
+    close.innerHTML = '<span aria-hidden="true">✕</span> Close';
+    bar.append(label, close);
+
+    const stage = document.createElement('div');
+    stage.className = 'relative flex-1';
+    stage.append(makeFrame(src, title));
+    overlay.append(bar, stage);
+    document.body.append(overlay);
+    document.body.classList.add('overflow-hidden');
+    close.focus();
+
+    // Let the back gesture close the tour instead of leaving the page.
+    history.pushState({ walkthroughOverlay: true }, '');
+
+    const teardown = () => {
+      overlay.remove(); // also stops the tour (and any sound)
+      document.body.classList.remove('overflow-hidden');
+      window.removeEventListener('popstate', teardown);
+      document.removeEventListener('keydown', onKey);
+      closeOverlay = null;
+      returnFocus.focus();
+    };
+    const onKey = (event: KeyboardEvent) => event.key === 'Escape' && history.back();
+    window.addEventListener('popstate', teardown);
+    document.addEventListener('keydown', onKey);
+    close.addEventListener('click', () => history.back());
+    closeOverlay = teardown;
+  };
+
   document.querySelectorAll<HTMLElement>('[data-walkthrough-src]').forEach((container) => {
     const button = container.querySelector<HTMLButtonElement>('.walkthrough-start');
     button?.addEventListener('click', () => {
-      const iframe = document.createElement('iframe');
-      iframe.src = container.dataset.walkthroughSrc ?? '';
-      iframe.title = `${container.dataset.walkthroughTitle ?? 'Walkthrough'}, interactive 360° view`;
-      iframe.allow = 'fullscreen; accelerometer; gyroscope; magnetometer; xr-spatial-tracking';
-      iframe.allowFullscreen = true;
-      iframe.className = 'absolute inset-0 h-full w-full border-0';
+      const src = container.dataset.walkthroughSrc ?? '';
+      const title = container.dataset.walkthroughTitle ?? 'Walkthrough';
+      if (SMALL_SCREEN.matches) {
+        if (!closeOverlay) openOverlay(src, title, button);
+        return;
+      }
+      const iframe = makeFrame(src, title);
       container.replaceChildren(iframe);
       iframe.focus();
     });

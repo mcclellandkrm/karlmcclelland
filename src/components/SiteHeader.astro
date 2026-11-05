@@ -8,7 +8,8 @@ const currentPath = Astro.url.pathname;
 const isActive = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
 ---
 
-<header class="border-b border-material-stone/15 bg-material-limestone/95 backdrop-blur-sm">
+<!-- relative z-50 keeps the header (and its close button) above the open mobile menu (z-40). -->
+<header class="relative z-50 border-b border-material-stone/15 bg-material-limestone/95 backdrop-blur-sm">
   <div class="container-wide">
     <div class="flex h-20 items-center justify-between">
       <a href="/" class="flex items-center" aria-label={`${site.name}, home`}>
