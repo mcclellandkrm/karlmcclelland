@@ -109,7 +109,7 @@ These are real, already published, and grouped here by the new site's types of b
 1. ~~Confirm the stats~~ — done (80+ businesses).
 2. ~~Confirm process timing~~ — done.
 3. Show "what you receive"? (yes / no)
-4. Search Console / Analytics: set up anywhere?
+4. ~~Search Console~~: never set up before. Domain property added 5 Nov 2026 (DNS TXT record in Plesk), `sitemap-index.xml` submitted. Same Google account also holds rkwelding.co.uk. No analytics, by design (see /cookies).
 5. Full list of live tours (karlmcclelland.com, 360spaces.co.uk, 360school.co.uk) → `TOUR_INVENTORY.md`.
 6. `/gym/forge-female-fitness/`: fix or remove? `/victimsupportni/` and `/cottonmount/`: should they stay public?
 7. ~~Recovered testimonials~~: done (Signature Works, Ballyclare; Tribal Burger dropped).
