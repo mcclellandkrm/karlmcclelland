@@ -53,7 +53,7 @@ load anything from them.
 1. In Plesk File Manager, check `httpdocs/assets/` holds **only** the files listed above. If it holds anything else, stop and check what it is.
 2. **Back up** the old files: select them, download as a zip, and keep it. Rolling back means uploading these again.
 3. `npm run build` here.
-4. Upload the **contents** of `dist/` into `httpdocs`: `index.html`, `404.html`, `favicon.svg`, `robots.txt`, `sitemap-index.xml`, `sitemap-0.xml`, and the folders `_astro/`, `work/`, `clients/`, `studio/`, `contact/`. None of these names clash with existing folders.
+4. Upload the **contents** of `dist/` into `httpdocs`: `index.html`, `404.html`, `favicon.svg`, `robots.txt`, `sitemap-index.xml`, `sitemap-0.xml`, and **every folder in `dist/`**: `_astro/`, `logos/`, `work/`, `clients/`, `studio/`, `contact/`, plus the old-WordPress redirect folders (`online-blindness/`, `connect/`, `portfolio/`, `portfolio_group/`, `about_old/` etc.; see `LIVE_SITE_AUDIT.md`). Checked 2026-11-05: none clash with existing folders on the server.
 5. Delete the old `assets/` folder and `vite.svg`.
 6. **Don't touch any other folder**, and don't upload or overwrite any `.htaccess`.
 7. Check: homepage, a case study, the Cottonmount tour, `/MDS/`, and the contact form (send a test).

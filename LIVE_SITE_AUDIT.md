@@ -30,12 +30,42 @@ Purpose: make sure nothing important is lost when the new site replaces the live
 | "Where I'm working next": Prague (April 2026), Zurich (May 2026) | Out of date; Europe isn't the focus |
 | Payment methods (SumUp, Revolut, Stripe) | Not needed on the site |
 
-### SEO: nothing to lose
+### SEO and old links (corrected 2026-11-05)
 
-- One page only (anchor links), so there are **no old URLs to redirect**.
-- No sitemap, no analytics, no Search Console verification tag in the page.
+- The current Vite page is one page only (anchor links), so it has no sub-pages of its own.
+- **But before March 2026 the domain ran a WordPress site**, and its pages are still in Google
+  (e.g. `/online-blindness/`) and the Wayback Machine. They have been 404 since the Vite site went up.
+  The new site now redirects the real ones (`redirects` in `astro.config.mjs`):
+
+  | Old address | Now goes to |
+  |---|---|
+  | `/online-blindness/` (testimonials, still in Google) | `/clients/` |
+  | `/connect/`, `/belfast-business-offer/` | `/contact/` |
+  | `/about_old/`, `/author/me/`, `/main-areas-of-expertise/` | `/studio/` |
+  | `/portfolio/edo-restaurant/`, `/portfolio/lyric-theatre/`, `/portfolio_group/{custom-tours,google-street-view,photography-aerial}/` | `/work/` (repoint to the case study once EDŌ / Lyric are published) |
+  | `/ideas/`, `/all-too-real/`, `/social-media/`, `/boost-your-business-…/` | `/` |
+
+  Left to 404 on purpose: WordPress theme demo pages (`/team/*`, `/services/*`, `/tag/*`, `/portfolio/the-growth/` etc.), never Karl's content.
+- `/privacy-policy/`, `/terms-conditions/`, `/cookie-policy-eu/` existed on WordPress. The new site has none. The contact form collects names and emails, so **Karl to decide** whether a short privacy page is needed (it usually is under UK GDPR).
+- `/TheGarrickBelfast/` was a 3DVista tour on this domain (archived May 2024); now 404. **Karl to check:** is it hosted elsewhere, or worth restoring?
+- `www.karlmcclelland.com` serves the site directly instead of redirecting to `karlmcclelland.com`. **Karl to set** Plesk → Hosting Settings → Preferred domain → `karlmcclelland.com` (a 301, no file changes).
+- Old `robots.txt` points to `/sitemap.xml` (404). The new one points to `/sitemap-index.xml`; submit that in Search Console.
+- No analytics or Search Console tag in the page.
   **Karl to check:** is Search Console or Analytics set up some other way (DNS record, Tag Manager)?
 - `og-image.jpg` is referenced but returns 404.
+
+### Content on the old WordPress site worth recovering (Wayback Machine, Aug 2025)
+
+None of this is in the new site yet. Copied as found; **Karl to confirm** each is still OK to use.
+
+- **Three more real testimonials** (from `/online-blindness/`):
+  - Phil Dunn, Director, The Signature Works: "Karl was fantastic in helping The Signature Works benefit from Google 360. He expertly guided us through creating immersive virtual tours and integrating Google 360 on our website and social media. Through interactive virtual tours, we were able to showcase our in-house production areas and give potential clients an inside look at our extensive facilities. This not only helped build trust with prospective customers but also gave us a competitive edge in the market. Thanks to Karl's support, we gained increased online visibility, higher engagement, and more inquiries from potential customers. Highly recommended!"
+  - Paul Catterson, Director, Tribal Burger: "We are delighted with the quality of and response to our 360 virtual tour. It has made a positive impact on the first impressions people have online of Tribal Burger."
+  - Andrea McCullough, Senior Teacher, Ballyclare High School: "Ballyclare High School has benefitted hugely from the addition of a virtual tour. The engagement figures speak volumes for the guidance and expertise of Karl. Our future pupils and parents are afforded an opportunity to look through the classrooms and see what our school uniquely offers. Karl was very easy to work with and facilitated our ideas and thoughts to create a bespoke experience. We would recommend working with Karl and look forward to doing so again."
+  - These cover industry/trade, hospitality and education: three sectors the outreach targets that currently have no quote.
+- **Lyric Theatre case-study copy** (`/portfolio/lyric-theatre/`, 2023): opens on an aerial pano over Ridgeway Street; navigation styled in The Lyric's colours and fonts; an "active panosphere" in The Studio shows the seating layouts; covers meeting rooms, Boardroom, Rehearsal Room and Café Bar; two-week turnaround. Ready-made description for the Lyric entry.
+- **Karl's background** (`/about_old/`): engineering background, into new media in the Macromedia era, then financial and architectural recruitment and marketing. Possible material for /studio once Karl rewrites it in his own voice.
+- Not worth carrying over: the "Belfast Business Visibility Package" (£349 offer), SEO blog posts, social-media services page.
 
 ---
 
@@ -82,3 +112,9 @@ These are real, already published, and grouped here by the new site's types of b
 4. Search Console / Analytics: set up anywhere?
 5. Full list of live tours (karlmcclelland.com, 360spaces.co.uk, 360school.co.uk) → `TOUR_INVENTORY.md`.
 6. `/gym/forge-female-fitness/`: fix or remove? `/victimsupportni/` and `/cottonmount/`: should they stay public?
+7. Use the three recovered testimonials (Signature Works, Tribal Burger, Ballyclare High School)?
+8. Privacy page: add one?
+9. `/TheGarrickBelfast/`: restore, or let it go?
+10. Set the preferred domain (www → non-www) in Plesk.
+
+Re-checked 2026-11-05: old site unchanged since 17 Mar 2026; all 17 tour folders still load.
