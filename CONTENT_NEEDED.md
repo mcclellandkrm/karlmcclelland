@@ -41,6 +41,19 @@ Each case study is one Markdown file in `src/content/work/` (copy `suitor-brothe
 
 Sectors with no published case study are hidden automatically, so add what's ready and launch.
 
+## Single panoramas (self-hosted)
+
+Edited panos are hosted on our own server instead of walkinto.in:
+
+1. `node scripts/make-pano.mjs "<edited pano.jpg>" <slug> "<Title>" [startYaw] [startPitch]`
+   (cut from `MDS_Portfolio_P2VR\panos\<category>\`).
+2. In Plesk, upload the contents of `pano-uploads/360/` into `httpdocs/360/` (creates `/360/_viewer/`
+   once and `/360/<slug>/` per pano). `/360/` was free on the server (checked 2026-11-05).
+3. Set `walkthroughUrl: https://karlmcclelland.com/360/<slug>/` in the work entry.
+
+- [ ] **Upload `/360/wine-retailer/` and `/360/_viewer/`** — the wine retailer entry already points there,
+      so its viewer shows "not found" until this is uploaded.
+
 ## Walkthrough URLs
 
 `walkthroughUrl` accepts any embeddable link: walkinto.in `easyembedview` links, a Pano2VR export

@@ -13,3 +13,6 @@ node_modules/
 
 # macOS-specific files
 .DS_Store
+
+# panorama upload folders made by scripts/make-pano.mjs (large images; upload to the server, not git)
+pano-uploads/

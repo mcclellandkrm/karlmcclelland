@@ -65,7 +65,7 @@ const aspectClass = aspect === 'wide' ? 'aspect-[16/9]' : 'aspect-[4/3]';
     button?.addEventListener('click', () => {
       const iframe = document.createElement('iframe');
       iframe.src = container.dataset.walkthroughSrc ?? '';
-      iframe.title = `${container.dataset.walkthroughTitle ?? 'Walkthrough'} — interactive 360° walkthrough`;
+      iframe.title = `${container.dataset.walkthroughTitle ?? 'Walkthrough'}, interactive 360° view`;
       iframe.allow = 'fullscreen; accelerometer; gyroscope; magnetometer; xr-spatial-tracking';
       iframe.allowFullscreen = true;
       iframe.className = 'absolute inset-0 h-full w-full border-0';

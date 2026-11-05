@@ -9,7 +9,9 @@ services:
   - 360° panorama
 summary: Curated wine collection, shown in single 360° panoramas.
 heroImage: ../../assets/work/wine-retailer-front.jpg
-walkthroughUrl: https://walkinto.in/easyembedview/bJE0A9kzD3bkgN0Cq1fDn
+# Self-hosted edited pano (no logo in the nadir), made with scripts/make-pano.mjs.
+# Old walkinto.in version (logo in nadir): https://walkinto.in/easyembedview/bJE0A9kzD3bkgN0Cq1fDn
+walkthroughUrl: https://karlmcclelland.com/360/wine-retailer/
 featured: false
 draft: false
 ---
