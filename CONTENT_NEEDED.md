@@ -54,6 +54,20 @@ Edited panos are hosted on our own server instead of walkinto.in:
 - [ ] **Upload `/360/wine-retailer/` and `/360/_viewer/`** — the wine retailer entry already points there,
       so its viewer shows "not found" until this is uploaded.
 
+### Made so far (source in `MDS_Portfolio_P2VR/panos/`; yaw, pitch = opening view)
+
+| Folder `/360/…/` | Source | Yaw, pitch | Work entry |
+|---|---|---|---|
+| `wine-retailer` | `retail/retailer-image-for-website.jpg` | 20, 0 | ✅ wine-merchant.md |
+| `mode-kitchen-showroom` | `retail/mode-kitchen-showroom.jpg` | -60, -5 | not yet |
+| `lyric-theatre-cafe` | `arts_theatre/lyric-theatre-cafe.jpg` | -20, 0 | not yet (Lyric draft exists) |
+| `toyota-showroom` | `automotive/toyota.jpg` | -10, 0 | not yet |
+| `titanic-studios-war-room` | `commercial_office/titanic-studios-war-room.jpg` | 25, 0 | not yet |
+| `heineken-lounge` | `commercial_office/heineken-lounge.jpg` | 30, 0 | not yet |
+| `titanic-studios` | `commercial_office/titanic-studios-4.jpg` | 0, 5 | not yet |
+| `technology-department` | `education/technology-department.jpg` | -120, -5 | not yet |
+| `kings-coronation-gardens` | `gardens_grounds/kings-coronation-gardens-1.jpg` | 0, 0 | not yet |
+
 ## Walkthrough URLs
 
 `walkthroughUrl` accepts any embeddable link: walkinto.in `easyembedview` links, a Pano2VR export
