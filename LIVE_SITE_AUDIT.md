@@ -115,6 +115,8 @@ These are real, already published, and grouped here by the new site's types of b
 7. ~~Recovered testimonials~~: done (Signature Works, Ballyclare; Tribal Burger dropped).
 8. Privacy / cookie page: new ones needed (old ones were not Karl's).
 9. ~~`/TheGarrickBelfast/`~~: was a Street View tour; Karl to find the high-view "Belfast" still.
-10. Set the preferred domain (www → non-www) in Plesk.
+10. ~~Preferred domain~~: set 5 Nov 2026; www and http now 301 to https://karlmcclelland.com (paths kept).
+11. ~~Forms~~: contact and updates sign-up both confirmed arriving (5 Nov 2026).
+12. Missing pages show the server's plain "File not found." rather than the site's own 404 page. Minor; sort out in Plesk later.
 
 Re-checked 2026-11-05: old site unchanged since 17 Mar 2026; all 17 tour folders still load.
