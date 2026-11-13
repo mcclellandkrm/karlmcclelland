@@ -11,3 +11,5 @@ Order of authority:
 Your role is implementation: build, refactor, accessibility, performance. No invented branding, no stock or AI imagery, no placeholder case studies, no extra decorative sections.
 
 Working branch: `design-studio-scaffold` (and short-lived branches off it). `npm run build` must pass before any commit.
+
+An open, not-yet-approved proposal lives in `karlmcclelland-SOURCE-OF-TRUTH-rev4-PROPOSAL.md`. It is NOT authority: Rev 3.2 wins until Karl approves an item in it.
